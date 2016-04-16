@@ -6,3 +6,5 @@ Player1
 ../img/player1.png
 Player2
 ../img/player2.png
+Background
+../img/Hintergrund1.png
