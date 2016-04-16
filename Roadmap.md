@@ -2,11 +2,13 @@
 
 ## Quality Gates / Versions
 
-x  0.1 First visual results
-o  0.2 Moving player
-o  0.3 Switching Player Modes
+x - 0.1 First visual results
 
-o  1.0 Complete Release
+o - 0.2 Moving player
+
+o - 0.3 Switching Player Modes
+
+o - 1.0 Complete Release
 
 
 ## ToDo
@@ -14,7 +16,7 @@ o  1.0 Complete Release
 ### Code
 
 - Auxiliaries.py mit `readImagePathList()`
-- WorldObject -> currentImg hinzuf¸gen
+- WorldObject -> currentImg hinzuf√ºgen
 - Methode des Level-Designs entwerfen
 
 
@@ -34,8 +36,8 @@ erster Visual-Test
 ### Music/Sound
 
 - Laufschritte
-- Springger‰usch
-- Flatterger‰usch
+- Springger√§usch
+- Flatterger√§usch
 - Geraschel der Schlange auf dem Boden
 - Musik (Trommeln!)
 
