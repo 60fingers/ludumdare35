@@ -2,6 +2,7 @@ import pygame, os
 
 import WorldView
 import World
+import Auxiliaries
 
 class MainControl:
 

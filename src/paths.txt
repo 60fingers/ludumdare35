@@ -1,8 +1,8 @@
 Ground1
-..\img\ground1.png
+../img/ground1.png
 Ground2
-..\img\ground2.png
+../img/ground2.png
 Player1
-..\img\player1.png
+../img/player1.png
 Player2
-..\img\player2.png
+../img/player2.png

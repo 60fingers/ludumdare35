@@ -4,14 +4,14 @@ class WorldView:
 
 	images = {} 
 	size = width, heigth = 500,300
-	screen = none
-	world = none
+	screen = None
+	world = None
 
 	def __init__(self, world):
 		print("World View initialised")
 		self.world = world
 		pygame.init()
-		self.screen = pygame.display.set_mode(size)
+		self.screen = pygame.display.set_mode(self.size)
 	
 
 	def loadImages(self, pathlist):
