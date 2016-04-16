@@ -1,4 +1,5 @@
 import pygame, os
+import WorldObject from WorldObject
 
 class StaticObject (WorldObject):
 

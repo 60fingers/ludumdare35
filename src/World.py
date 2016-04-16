@@ -2,8 +2,8 @@ import pygame, os
 
 class World:
 
-def __init__(self):
+	def __init__(self):
 
-def objectsSurrounding(self,x,y):
+	def objectsSurrounding(self,x,y):
 
-def nextStep():
+	def nextStep():
