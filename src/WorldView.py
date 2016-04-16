@@ -3,12 +3,12 @@ import pygame, os
 class WorldView:
 
 	images = {} 
-	size = width, heigth = 1280,900
 	screen = None
 	world = None
 
 	def __init__(self, world):
 		print("World View initialised")
+		self.size = self.width, self.heigth = 1280,900
 		self.world = world
 		pygame.init()
 		self.screen = pygame.display.set_mode(self.size)
