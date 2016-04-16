@@ -15,7 +15,7 @@ class MainControl:
 
 		self.view.loadImages(Auxiliaries.readImagePathList())
 
-		self.running = true
+		self.running = True
 
 	def main(self):
 
@@ -29,8 +29,8 @@ class MainControl:
 			# input for player control
 			keys = pygame.key.get_pressed()
 
-			world.nextStep(keys)
-			view.show()
+			self.world.nextStep(keys)
+			self.view.show()
 			time.sleep(0.01)
 
 		#end while

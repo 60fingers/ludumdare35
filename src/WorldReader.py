@@ -15,7 +15,7 @@ class WorldReader:
 	def __init__(self):
 		print("world reader in action")
 	
-	def readImage(self, pathStatic, pathMovable)
+	def readImage(self, pathStatic, pathMovable):
 		
 		staticObjects = []
 		movableObjects = []
@@ -49,3 +49,5 @@ class WorldReader:
 		#end for
 
 		# TODO insert moving objects
+
+		return [staticObjects, movableObjects]

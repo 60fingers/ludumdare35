@@ -10,7 +10,7 @@ def readImagePathList():
 	#write lines in the dictionary
 	i = 0
 	while (i < len(lines)):
-		pathlist.update({lines[i]:lines[i+1]})
+		pathlist.update({lines[i]:lines[i+1][:-1]})	# cut eol
 		i = i+2
 	
 	return pathlist

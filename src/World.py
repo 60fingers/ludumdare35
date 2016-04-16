@@ -1,13 +1,19 @@
 import pygame, os
+import WorldReader
 
 class World:
 
+	player = None
+	movables = []
+	stativs = []
+	#TODO: test wich values to take
+	levelheight = 10
+	surroundarea = 10
+
 	def __init__(self):
+		worldobjects = WorldReader.readImage("../maps/world1stat.png","../world1mov.png")
 		self.movables = ""
 		self.statics = ""
-		#TODO: test wich values to take
-		self.levelheight = 10
-		self.surroundarea = 10
 	
 	def objectsSurrounding(self,position):
 		surroundings = []

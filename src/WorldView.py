@@ -17,12 +17,14 @@ class WorldView:
 	def loadImages(self, pathlist):
 		for p in pathlist:
 			img = pygame.image.load(pathlist[p]).convert()
-			self.images.Update({p:img})
+			self.images.update({p:img})
 				
 
-	def show(self, playerPosition):
+	def show(self):
+
+		playerPosition = self.world.player.position
 		
-		objs_in_range = world.objecsSurrounding(playerPositon)
+		objs_in_range = self.world.objecsSurrounding(playerPositon)
 		
 		screen.fill((0,0,0))
 
