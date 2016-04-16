@@ -31,17 +31,17 @@ class WorldReader:
 		pxmapStat = staImg.load()
 		pxmapMove = movImg.load()
 
-		for x in range(staImg.size(0)):
-			for y in range(movImg.size(1)):
+		for x in range(staImg.size[0]):
+			for y in range(movImg.size[1]):
 				
-				px = pxsmapStat[x,y]
+				px = pxmapStat[x,y]
 
-				if (px == AIR):
-					staticObjects.Append(AirObject([100*x, 100*y]))
-				elif (px == GROUND):
-					staticObjects.Append(GroundObject([100*x, 100*y]))
-				elif (px == WALL):
-					staticObjects.Append(WallObject([100*x, 100*y]))
+				if (px == self.AIR):
+					staticObjects.append(AirObject([100*x, 100*y]))
+				elif (px == self.GROUND):
+					staticObjects.append(GroundObject([100*x, 100*y]))
+				elif (px == self.WALL):
+					staticObjects.append(WallObject([100*x, 100*y]))
 				else:
 					raise Exception("Tile type unknown")
 				#endif
