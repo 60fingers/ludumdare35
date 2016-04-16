@@ -26,7 +26,7 @@ class WorldView:
 		
 		playerPosition = self.world.player.position
 		
-		objs_in_range = self.world.objecsSurrounding(playerPositon)
+		objs_in_range = self.world.objectsSurrounding(playerPosition)
 		
 		#screen.fill((0,0,0))
 
