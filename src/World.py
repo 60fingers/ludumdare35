@@ -25,5 +25,5 @@ class World:
 			
 		return surroundings
 		
-	def nextStep():
+	def nextStep(self,keys):
 		print("not implemented")
