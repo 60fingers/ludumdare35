@@ -4,9 +4,10 @@ import WorldView
 import World
 import Auxiliaries
 
+import CONFIG
+
 class MainControl:
 
-	fps = 10
 
 	world = None
 	view = None
@@ -33,7 +34,7 @@ class MainControl:
 
 			self.world.nextStep(keys)
 			self.view.show()
-			time.sleep(1/self.fps)
+			time.sleep(1/CONFIG.FPS)
 			
 
 		#end while

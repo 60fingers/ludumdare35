@@ -1,15 +1,30 @@
 import pygame, os
 
+import CONFIG
+
+
 class WorldView:
 
 	images = {} 
 	screen = None
 	world = None
+	pxwidth = None # window width
+	pxheight = None # window height
+	bgShiftV = None # vertical background image shift
+	bgShiftH = None # horizontal background image shift
 
 	def __init__(self, world):
 
 		print("World View initialised")
-		self.size = self.width, self.heigth = 1280,900
+		
+		self.pxwidth  = CONFIG.VISIBLE_TILES_H*CONFIG.TILE_WIDTH
+		self.pxheight = CONFIG.VISIBLE_TILES_V*CONFIG.TILE_HEIGHT
+		
+		self.size = self.pxwidth, self.pxheight
+		
+		self.bgShiftV = (self.pxheight - CONFIG.BG_IMG_HEIGHT) / 2
+		self.bgShiftH = (self.pxwidth - CONFIG.BG_IMG_WIDTH) / 2
+		
 		self.world = world
 
 		pygame.init()
@@ -36,19 +51,20 @@ class WorldView:
 		
 		objs_in_range = self.world.objectsSurrounding(playerPosition)
 		
-		self.screen.blit(self.images["Background"],(0,0))
-
 		# debug msg
 		#print("Objects in range: " + str(len(objs_in_range)))
+		
+		self.screen.blit(self.images["Background"],(self.bgShiftH, self.bgShiftV))
+
 		
 		for obj in objs_in_range:
 			
 			if (obj.visible):
 				
-				plotx = obj.position[0] - playerPosition[0] + self.width/2
+				plotx = obj.position[0] - playerPosition[0] + self.pxwidth/2
 				ploty = obj.position[1] 
 				
-				self.screen.blit(self.images[obj.currentImg], pygame.Rect(plotx, ploty, 100,100))
+				self.screen.blit(self.images[obj.currentImg], pygame.Rect(plotx, ploty, CONFIG.TILE_WIDTH,CONFIG.TILE_HEIGHT))
 
 		pygame.display.flip()
 

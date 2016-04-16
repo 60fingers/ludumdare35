@@ -6,6 +6,8 @@ import Image
 from StaticObject import *
 from MovableObject import *
 
+import CONFIG
+
 class WorldReader:
 
 	AIR = (255,255,255) 
@@ -37,11 +39,11 @@ class WorldReader:
 				px = pxmapStat[x,y]
 
 				if (px == self.AIR):
-					staticObjects.append(AirObject([100*x, 100*y]))
+					staticObjects.append(AirObject([CONFIG.TILE_WIDTH*x, CONFIG.TILE_HEIGHT*y]))
 				elif (px == self.GROUND):
-					staticObjects.append(GroundObject([100*x, 100*y]))
+					staticObjects.append(GroundObject([CONFIG.TILE_WIDTH*x, CONFIG.TILE_HEIGHT*y]))
 				elif (px == self.WALL):
-					staticObjects.append(WallObject([100*x, 100*y]))
+					staticObjects.append(WallObject([CONFIG.TILE_WIDTH*x, CONFIG.TILE_HEIGHT*y]))
 				else:
 					raise Exception("Tile type unknown")
 				#endif
@@ -70,11 +72,11 @@ class WorldReader:
 				j = 0
 				while (j < (len(lines[i])-1)):
 					if (lines[i][j] == "0"):
-						staticObjects.append(AirObject([100*i, 100*j]))
+						staticObjects.append(AirObject([CONFIG.TILE_WIDTH*i, CONFIG.TILE_HEIGHT*j]))
 					elif (lines[i][j] == "1"):
-						staticObjects.append(GroundObject([100*x, 100*y]))
+						staticObjects.append(GroundObject([CONFIG.TILE_WIDTH*x, CONFIG.TILE_HEIGHT*y]))
 					elif (lines[i][j] == "2"):
-						staticObjects.append(WallObject([100*x, 100*y]))
+						staticObjects.append(WallObject([CONFIG.TILE_WIDTH*x, CONFIG.TILE_HEIGHT*y]))
 					else:
 						raise Exception("Tile type unknown")
 					j = j+1
