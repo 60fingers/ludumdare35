@@ -68,12 +68,12 @@ class WorldReader:
 			if(not lines[i]=="\n"):
 				# iterating over every char in one string
 				j = 0
-				while (j < (len(lines[i])-1)
-					if (lines[i][j] == "0")
+				while (j < (len(lines[i])-1)):
+					if (lines[i][j] == "0"):
 						staticObjects.append(AirObject([100*i, 100*j]))
-					elif (lines[i][j] == "1")
+					elif (lines[i][j] == "1"):
 						staticObjects.append(GroundObject([100*x, 100*y]))
-					elif (lines[i][j] == "2")
+					elif (lines[i][j] == "2"):
 						staticObjects.append(WallObject([100*x, 100*y]))
 					else:
 						raise Exception("Tile type unknown")
