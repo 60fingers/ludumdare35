@@ -2,6 +2,8 @@ import pygame, os
 
 class MovableObject(WorldObject):
 	
+	speed = [0,0]
+
 	def __init__ (self):
 		self.speed = [0,0]
 	
