@@ -6,6 +6,8 @@ import Auxiliaries
 
 class MainControl:
 
+	fps = 10
+
 	world = None
 	view = None
 
@@ -31,7 +33,7 @@ class MainControl:
 
 			self.world.nextStep(keys)
 			self.view.show()
-			time.sleep(0.01)
+			time.sleep(1/self.fps)
 			
 
 		#end while
