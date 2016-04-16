@@ -20,7 +20,7 @@ class World:
 		self.movables = worldobjects[0]
 		self.statics = worldobjects[1]
 
-		self.player = Player()
+		self.player = Player([0,0])	# TODO echte Spielerposition verwenden!
 	
 	def objectsSurrounding(self,position):
 		surroundings = []

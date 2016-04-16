@@ -3,7 +3,7 @@ import pygame, os
 class WorldObject:
 
 	def __init__(self, position, collision, imglist, animated, visible=True):
-		print("created new world object")
+		#print("created new world object")
 		self.position = position
 		self.collision = collision
 		self.imglist = imglist
