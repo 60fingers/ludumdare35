@@ -1,15 +1,26 @@
 # Ludum Dare 35 Roadmap
 
-## Code
+## Quality Gates / Versions
+
+x  0.1 First visual results
+o  0.2 Moving player
+o  0.3 Switching Player Modes
+
+o  1.0 Complete Release
+
+
+## ToDo
+
+### Code
 
 - Auxiliaries.py mit `readImagePathList()`
 - WorldObject -> currentImg hinzufügen
 - Methode des Level-Designs entwerfen
 
----
+
 erster Visual-Test
 
-## Artwork
+### Artwork
 
 - Spieler
 	1. Mensch
@@ -20,7 +31,7 @@ erster Visual-Test
 - Hindernisse
 - Boden Variation
 
-## Music/Sound
+### Music/Sound
 
 - Laufschritte
 - Springgeräusch
