@@ -39,7 +39,7 @@ class WorldView:
 		self.screen.blit(self.images["Background"],(0,0))
 
 		# debug msg
-		print("Objects in range: " + str(len(objs_in_range)))
+		#print("Objects in range: " + str(len(objs_in_range)))
 		
 		for obj in objs_in_range:
 			

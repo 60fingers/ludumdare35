@@ -22,8 +22,8 @@ class World:
 		print("reading maps")
 		
 		worldobjects = WorldReader().readImage("../maps/world1stat.png","../maps/world1mov.png")
-		self.movables = worldobjects[0]
-		self.statics = worldobjects[1]
+		self.statics = worldobjects[0]
+		self.movables = worldobjects[1]
 
 		#TODO: test wich values to take / read height from map
 		self.levelheight = 10
@@ -42,9 +42,20 @@ class World:
 		# add every static object in range
 		i = (self.levelheight * (x - self.surroundarea))
 
+		# no indices <0 would result in searching from the other end (eg. list[-3])
+		# -> left edge of the map
+		if(i<0):
+			i = 0
+
 		while (i < (self.levelheight * (x + self.surroundarea))):
-			surroundings.append(self.movables[i])
+			print(i)
+			surroundings.append(self.statics[i])
 			i+=1
+
+			# right edge of the map
+			if(i >= len(self.statics)):
+				break
+
 		
 		# add every movable object in range
 		for m in self.movables:
