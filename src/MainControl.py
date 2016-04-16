@@ -32,7 +32,7 @@ class MainControl:
 			self.world.nextStep(keys)
 			self.view.show()
 			time.sleep(0.01)
-			world.screen.blit(world.images[Background],(0,0))
+			
 
 		#end while
 

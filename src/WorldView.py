@@ -22,11 +22,13 @@ class WorldView:
 
 	def show(self):
 
+		self.screen.blit(self.images[Background],(0,0))
+		
 		playerPosition = self.world.player.position
 		
 		objs_in_range = self.world.objecsSurrounding(playerPositon)
 		
-		screen.fill((0,0,0))
+		#screen.fill((0,0,0))
 
 		for obj in objs_in_range:
 			

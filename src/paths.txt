@@ -7,4 +7,4 @@ Player1
 Player2
 ../img/player2.png
 Background
-../img/Hintergrund1.png
+../img/Background.png
