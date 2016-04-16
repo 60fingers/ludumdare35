@@ -1,0 +1,26 @@
+# static objects
+
+Air: 		0
+ground:		1
+wall:		2
+
+
+# movable objects
+
+
+
+Example:
+
+
+1000000
+1200000
+1000000
+1000000
+1000000
+1200000
+1000000
+1000000
+1000000
+1000000
+
+---> Level with a length of 10 Blocks and a height of 7 Blocks, flat ground with 2 walls, the rest is air

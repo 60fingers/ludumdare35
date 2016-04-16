@@ -51,3 +51,36 @@ class WorldReader:
 		# TODO insert moving objects
 
 		return [staticObjects, movableObjects]
+		
+		
+	def readFile(self, pathFile):
+		
+		staticObjects = []
+		movableObjects = []
+		
+		file = open(pathStatic,"r")
+		lines = file.readlines()
+		file.close()
+		
+		# iterating over all lines
+		i = 0
+		while (i < len(lines)):
+			if(not lines[i]=="\n"):
+				# iterating over every char in one string
+				j = 0
+				while (j < (len(lines[i])-1)):
+					if (lines[i][j] == "0"):
+						staticObjects.append(AirObject([100*i, 100*j]))
+					elif (lines[i][j] == "1"):
+						staticObjects.append(GroundObject([100*x, 100*y]))
+					elif (lines[i][j] == "2"):
+						staticObjects.append(WallObject([100*x, 100*y]))
+					else:
+						raise Exception("Tile type unknown")
+					j = j+1
+				
+			i = i+1
+
+		# TODO insert moving objects
+
+		return [staticObjects, movableObjects]
