@@ -48,7 +48,7 @@ class World:
 			i = 0
 
 		while (i < (self.levelheight * (x + self.surroundarea))):
-			print(i)
+			print(position)
 			surroundings.append(self.statics[i])
 			i+=1
 
@@ -68,7 +68,7 @@ class World:
 	def nextStep(self,keys):
 		
 		if(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]):
-			if(self.player.position[0] >= 0):
+			if(self.player.position[0] >= self.player.maxSpeed):
 				self.player.position[0] -= self.player.maxSpeed
 		if(keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]):
 			self.player.position[0] += self.player.maxSpeed
