@@ -1,0 +1,10 @@
+# static objects
+
+Air: 		255 255 255
+ground:		034 177 076
+wall:		120 120 120
+
+
+# movable objects
+
+
