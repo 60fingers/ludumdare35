@@ -22,7 +22,7 @@ class WorldView:
 
 	def show(self):
 
-		self.screen.blit(self.images[Background],(0,0))
+		self.screen.blit(self.images["Background"],(0,0))
 		
 		playerPosition = self.world.player.position
 		
