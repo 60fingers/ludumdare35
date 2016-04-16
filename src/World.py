@@ -1,5 +1,10 @@
 import pygame, os
+from Player import Player
+from StaticObject import *
+from MovableObject import *
+
 from WorldReader import WorldReader
+
 
 class World:
 
@@ -14,6 +19,8 @@ class World:
 		worldobjects = WorldReader().readImage("../maps/world1stat.png","../maps/world1mov.png")
 		self.movables = worldobjects[0]
 		self.statics = worldobjects[1]
+
+		self.player = Player()
 	
 	def objectsSurrounding(self,position):
 		surroundings = []
