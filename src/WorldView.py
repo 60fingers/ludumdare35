@@ -3,7 +3,7 @@ import pygame, os
 class WorldView:
 
 	images = {} 
-	size = width, heigth = 500,300
+	size = width, heigth = 1280,900
 	screen = None
 	world = None
 
