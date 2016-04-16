@@ -55,5 +55,9 @@ class World:
 		return surroundings
 		
 	def nextStep(self,keys):
-		#print("not implemented")
-		int(3.14) # damit in dieser methode auch etwas passiert
+		
+		if(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]):
+			if(self.player.position[0] >= 0):
+				self.player.position[0] -= self.player.maxSpeed
+		if(keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]):
+			self.player.position[0] += self.player.maxSpeed
