@@ -1,7 +1,7 @@
 import pygame, os
 
 def readImagePathList():
-	paths = open("paths.txt","r")
+	paths = open("../img/paths.txt","r")
 	pathlist = {}
 	
 	lines = paths.readlines()

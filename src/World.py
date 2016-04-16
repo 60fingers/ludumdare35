@@ -12,8 +12,8 @@ class World:
 
 	def __init__(self):
 		worldobjects = WorldReader().readImage("../maps/world1stat.png","../maps/world1mov.png")
-		self.movables = ""
-		self.statics = ""
+		self.movables = worldobjects[0]
+		self.statics = worldobjects[1]
 	
 	def objectsSurrounding(self,position):
 		surroundings = []
