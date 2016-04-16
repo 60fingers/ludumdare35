@@ -71,5 +71,5 @@ class World:
 			if(self.player.position[0] < len(self.statics)):
 				self.player.position[0] += self.player.maxSpeed
 		if(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]):
-			if(self.player.position[0] >=0):
+			if(self.player.position[0] >= self.player.maxSpeed):
 				self.player.position[0] -= self.player.maxSpeed
