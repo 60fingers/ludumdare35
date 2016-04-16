@@ -5,9 +5,11 @@ class WorldView:
 	images = {} 
 	size = width, heigth = 500,300
 	screen = none
+	world = none
 
-	def __init__(self):
+	def __init__(self, world):
 		print("World View initialised")
+		self.world = world
 		pygame.init()
 		self.screen = pygame.display.set_mode(size)
 	
@@ -31,7 +33,7 @@ class WorldView:
 				plotx = obj.position[0] - playerPosition[0] + self.width/2
 				ploty = obj.position[1] + self.heigh/2
 				
-				screen.blit(self.images[img], pygame.Rect(plotx, ploty, 128,128))
+				screen.blit(self.images[img], pygame.Rect(plotx, ploty, 100,100))
 
 		pygame.display.flip()
 
