@@ -14,7 +14,7 @@ class WorldView:
 		self.screen = pygame.display.set_mode(size)
 	
 
-	def loadImages(pathlist):
+	def loadImages(self, pathlist):
 		for p in pathlist:
 			img = pygame.image.load(pathlist[p]).convert()
 			self.images.Update({p:img})
