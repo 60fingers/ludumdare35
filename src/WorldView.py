@@ -3,37 +3,47 @@ import pygame, os
 class WorldView:
 
 	images = {} 
-	size = width, heigth = 500,300
-	screen = none
-	world = none
+	screen = None
+	world = None
 
 	def __init__(self, world):
 		print("World View initialised")
+		self.size = self.width, self.heigth = 1280,900
 		self.world = world
 		pygame.init()
-		self.screen = pygame.display.set_mode(size)
+		self.screen = pygame.display.set_mode(self.size)
 	
 
 	def loadImages(self, pathlist):
 		for p in pathlist:
 			img = pygame.image.load(pathlist[p]).convert()
-			self.images.Update({p:img})
+			self.images.update({p:img})
 				
 
-	def show(self, playerPosition):
+	def show(self):
+
+		self.screen.blit(self.images["Background"],(0,0))
 		
-		objs_in_range = world.objecsSurrounding(playerPositon)
+		playerPosition = self.world.player.position
 		
-		screen.fill((0,0,0))
+		objs_in_range = self.world.objectsSurrounding(playerPosition)
+		
+		#screen.fill((0,0,0))
 
 		for obj in objs_in_range:
 			
 			if (obj.visible):
 				
 				plotx = obj.position[0] - playerPosition[0] + self.width/2
-				ploty = obj.position[1] + self.heigh/2
+				ploty = obj.position[1] + self.heigth/2
 				
-				screen.blit(self.images[img], pygame.Rect(plotx, ploty, 100,100))
+				self.screen.blit(self.images[obj.currentImg], pygame.Rect(plotx, ploty, 100,100))
 
 		pygame.display.flip()
 
+
+	def setObjectImage (self,worldObject,image):
+		worldObject.currentImg = self.images[image]
+		
+		
+		

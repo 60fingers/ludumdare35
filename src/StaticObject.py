@@ -1,8 +1,37 @@
 import pygame, os
-import WorldObject from WorldObject
+from  WorldObject import WorldObject
 
 class StaticObject (WorldObject):
 
-	def __init__(self, position, collision, imglist, animated, visible=True):
-		super(StaticObject, self).__init__(position, collision, imglist, animated, visible)
+	def __init__(self, position, collision, imglist, animated, currentImg=None, visible=True):
+		WorldObject.__init__(self, position, collision, imglist, animated, currentImg, visible)
 
+
+class AirObject(StaticObject):
+	
+	def __init__(self, position):
+		StaticObject.__init__(self, position,
+			collision=False,
+			imglist=[],
+			animated=False,
+			visible=False)
+
+class GroundObject(StaticObject):
+	
+	def __init__(self, position):
+		StaticObject.__init__(self, position,
+			collision=True,
+			imglist=["Ground1", "Ground2"],
+			animated=False,
+			currentImg="Ground1",
+			visible=True)
+
+class WallObject(StaticObject):
+	
+	def __init__(self, position):
+		WallObject.__init__(self, position,
+			collision=True,
+			imglist=["Wall1", "Wall2"],
+			animated=False,
+			visible=True)
+			
