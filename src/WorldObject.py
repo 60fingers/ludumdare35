@@ -9,12 +9,9 @@ class WorldObject:
 		self.imglist = imglist
 		self.animated = animated
 		self.visible = visible
+		self.currentImg = None
 
-	position = ""
-	collision = ""
-	imglist = ""
-	animated = ""
-	visible = ""
+	
 
 	def nextStep(self):
 		print("worldobject: next step")

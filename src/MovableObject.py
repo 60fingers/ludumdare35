@@ -1,6 +1,6 @@
 import pygame, os
 
-from MovableObject import MovableObject
+from WorldObject import WorldObject
 
 class MovableObject(WorldObject):
 	

@@ -39,3 +39,9 @@ class WorldView:
 
 		pygame.display.flip()
 
+
+	def setObjectImage (self,worldObject,image):
+		worldObject.currentImg = self.images[image]
+		
+		
+		
