@@ -3,8 +3,8 @@ from  WorldObject import WorldObject
 
 class StaticObject (WorldObject):
 
-	def __init__(self, position, collision, imglist, animated, visible=True):
-		WorldObject.__init__(self, position, collision, imglist, animated, visible)
+	def __init__(self, position, collision, imglist, animated, currentImg=None, visible=True):
+		WorldObject.__init__(self, position, collision, imglist, animated, currentImg, visible)
 
 
 class AirObject(StaticObject):
@@ -23,6 +23,7 @@ class GroundObject(StaticObject):
 			collision=True,
 			imglist=["Ground1", "Ground2"],
 			animated=False,
+			currentImg="Ground1",
 			visible=True)
 
 class WallObject(StaticObject):

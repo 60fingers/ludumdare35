@@ -35,9 +35,9 @@ class WorldView:
 			if (obj.visible):
 				
 				plotx = obj.position[0] - playerPosition[0] + self.width/2
-				ploty = obj.position[1] + self.heigh/2
+				ploty = obj.position[1] + self.heigth/2
 				
-				screen.blit(self.images[obj.img], pygame.Rect(plotx, ploty, 100,100))
+				self.screen.blit(self.images[obj.currentImg], pygame.Rect(plotx, ploty, 100,100))
 
 		pygame.display.flip()
 
