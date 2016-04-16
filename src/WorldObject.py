@@ -2,11 +2,11 @@ import pygame, os
 
 class WorldObject:
 
-def __init__(self):
+	def __init__(self):
 
-position = ""
-collision = ""
-visible = ""
-img = ""
+	position = ""
+	collision = ""
+	visible = ""
+	img = ""
 
-def nextStep(self):
+	def nextStep(self):
