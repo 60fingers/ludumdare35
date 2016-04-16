@@ -3,6 +3,9 @@ import pygame, os
 import World
 import Image
 
+from StaticObject import *
+from MovableObject import *
+
 class WorldReader:
 
 	AIR = (255,255,255) 
@@ -34,11 +37,11 @@ class WorldReader:
 				px = pxsmapStat[x,y]
 
 				if (px == AIR):
-					staticObjects.Append(AirObject())
+					staticObjects.Append(AirObject([100*x, 100*y]))
 				elif (px == GROUND):
-					staticObjects.Append(GroundObject())
+					staticObjects.Append(GroundObject([100*x, 100*y]))
 				elif (px == WALL):
-					staticObjects.Append(Wallobject())
+					staticObjects.Append(WallObject([100*x, 100*y]))
 				else:
 					raise Exception("Tile type unknown")
 				#endif

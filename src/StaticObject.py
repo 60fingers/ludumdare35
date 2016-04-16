@@ -21,7 +21,7 @@ class GroundObject(StaticObject):
 	def __init__(self, position):
 		super(WallObject, self).__init__(position,
 			collision=True,
-			imglist=["ground1", "ground2"]
+			imglist=["Ground1", "Ground2"]
 			animated=False,
 			visible=True)
 
@@ -30,7 +30,7 @@ class WallObject(StaticObject):
 	def __init__(self, position):
 		super(StaticObject, self).__init__(position,
 			collision=True,
-			imglist=["wall1", "wall2"]
+			imglist=["Wall1", "Wall2"]
 			animated=False,
 			visible=True)
 			
