@@ -11,7 +11,7 @@ class World:
 	surroundarea = 10
 
 	def __init__(self):
-		worldobjects = WorldReader().readImage("../maps/world1stat.png","../world1mov.png")
+		worldobjects = WorldReader().readImage("../maps/world1stat.png","../maps/world1mov.png")
 		self.movables = ""
 		self.statics = ""
 	

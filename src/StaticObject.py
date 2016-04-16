@@ -4,13 +4,13 @@ from  WorldObject import WorldObject
 class StaticObject (WorldObject):
 
 	def __init__(self, position, collision, imglist, animated, visible=True):
-		super(StaticObject, self).__init__(position, collision, imglist, animated, visible)
+		WorldObject.__init__(self, position, collision, imglist, animated, visible)
 
 
 class AirObject(StaticObject):
 	
 	def __init__(self, position):
-		super(AirObject, self).__init__(position,
+		StaticObject.__init__(self, position,
 			collision=False,
 			imglist=[],
 			animated=False,
@@ -19,7 +19,7 @@ class AirObject(StaticObject):
 class GroundObject(StaticObject):
 	
 	def __init__(self, position):
-		super(WallObject, self).__init__(position,
+		StaticObject.__init__(self, position,
 			collision=True,
 			imglist=["Ground1", "Ground2"],
 			animated=False,
@@ -28,7 +28,7 @@ class GroundObject(StaticObject):
 class WallObject(StaticObject):
 	
 	def __init__(self, position):
-		super(StaticObject, self).__init__(position,
+		WallObject.__init__(self, position,
 			collision=True,
 			imglist=["Wall1", "Wall2"],
 			animated=False,
