@@ -1,10 +1,13 @@
 import pygame, os
 
+from MovableObject import MovableObject
+
 class MovableObject(WorldObject):
 	
 	speed = [0,0]
 
-	def __init__ (self):
+	def __init__ (self, position, collision, imglist, animated, visible=True):
+		super(MovableObject).__init__(position, collision, imglist, animated, visible)
 		self.speed = [0,0]
 	
 	def move (self):
