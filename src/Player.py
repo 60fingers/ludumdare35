@@ -1,6 +1,7 @@
-import pygame, os, datetime 
+import pygame, os, datetime, random
 
 from MovableObject import MovableObject
+from PlayerModes import PlayerHuman, PlayerGepard, PlayerSnake, PlayerBird
 
 import CONFIG
 
@@ -9,28 +10,47 @@ class Player (MovableObject):
 	currentKeys = "" # leerer String, wird durch passenden String ersetzt
 	lastKeys = "" # siehe oben
 	lastKeyTime = "" # siehe oben, TODO welches Zeitformat verwenden wir hier?	
-
+	
+			
 	def __init__ (self, position):
 		MovableObject.__init__(self,
 			position,
 			collision=True,
-			imglist=["Player1", "Player2"],
-			animated=True,
+			imglist=["PlayerRunningLeft1", "PlayerRunningLeft2", "PlayerRunnungRight1", "PlayerRunnungRight2", "PlayerStandingLeft", "PlayerStandingRight"],
+			animated=False,
 			frameDuration = 10,
 			currentImg = None,
 			visible=True,
 			maxSpeed=CONFIG.PLAYER_SPEED_HUMAN)
+		self.lastShift = 0 # cooldown timer
+		self.currentShape = 0 # Shapes 0=human, 1=gepard, 2=snake, 3=bird
+		self.currentPlayermode = PlayerHuman(self)
+		self.jumpSpeed = CONFIG.PLAYER_JUMP_SPEED_HUMAN
 	
 	def nextStep(self, keys):
 		
-		if(keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]):
-			self.position[0] += self.maxSpeed
-		if(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]):
-			self.position[0] -= self.maxSpeed
-		if(keys[pygame.K_UP] and not keys[pygame.K_DOWN]):
-			self.position[1] -= self.maxSpeed
-		if(keys[pygame.K_DOWN] and not keys[pygame.K_UP]):
-			self.position[1] += self.maxSpeed
+		# Shapeshift
+		timeSinceLastShift = (pygame.time.get_ticks() - self.lastShift)/1000
+		if(timeSinceLastShift >= CONFIG.PLAYER_SHAPESHIFT_COOLDOWN):
 		
-		self.nextFrame()
-
+			if(keys[pygame.K_SPACE]):
+			
+				self.currentShape=random.randint(0,3)
+				if(self.currentShape == 0):
+					self.currentPlayermode = PlayerHuman(self)
+				elif(self.currentShape == 1):
+					self.currentPlayermode = PlayerGepard(self)
+				elif(self.currentShape == 2):
+					self.currentPlayermode = PlayerSnake(self)
+				elif(self.currentShape == 3):
+					self.currentPlayermode = PlayerBird(self)
+						
+				print("Shift into shape " + str(self.currentShape))
+				# Cooldown
+				self.lastShift = pygame.time.get_ticks()
+			
+		self.currentPlayermode.nextStep(keys)
+		MovableObject.nextStep(self)
+		
+		
+		

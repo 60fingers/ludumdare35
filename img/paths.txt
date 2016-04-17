@@ -4,10 +4,18 @@ Wall1
 ../img/wall1.png
 Wall2
 ../img/wall2.png
-Player1
-../img/player1.png
-Player2
-../img/player2.png
+PlayerRunningLeft1
+../img/playerRunningLeft1.png
+PlayerRunningLeft2
+../img/playerRunningLeft2.png
+PlayerRunnungRight1
+../img/playerRunningRight1.png
+PlayerRunnungRight2
+../img/playerRunningRight2.png
+PlayerStandingLeft
+../img/playerStandingLeft.png
+PlayerStandingRight
+../img/playerStandingRight.png
 Background
 ../img/Background.png
 
