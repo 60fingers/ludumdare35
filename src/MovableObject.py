@@ -50,5 +50,8 @@ class MovableObject(WorldObject):
 		# predict new position
 		self.position[0] += self.speed[0]
 		self.position[1] += self.speed[1]
-
+	
+	# TODO !!!
+	def correctCollision(self, world):
+		surroundings = world.objectsSurrounding(self.position, CONFIG.RADIUS_COLLISION_CHECK)
 
