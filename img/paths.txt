@@ -20,6 +20,24 @@ PlayerJumpingLeft
 ../img/playerJumpingLeft.png
 PlayerJumpingRight
 ../img/playerJumpingRight.png
+SnakeJumping
+../img/snakeJump.png
+SnakeMovingLeft
+../img/snakeMovingLeft.png
+SnakeMovingRight
+../img/snakeMovingRight.png
+GepardStandingLeft
+../img/gepardStandingLeft.png
+GepardStandingRight
+../img/gepardStandingRight.png
+GepardRunningLeft
+../img/gepardRunningLeft1.png
+GepardRunningRight
+../img/gepardRunningRight1.png
+GepardJumpingLeft
+../img/gepardJumpingLeft.png
+GepardJumpingRight
+../img/gepardJumpingRight.png
 Background
 ../img/Background.png
 
