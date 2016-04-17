@@ -65,7 +65,7 @@ class WorldView:
 
 		# show player in the middle of the screen
 		self.screen.blit(self.images[self.world.player.currentImg],
-				pygame.Rect(self.pxwidth/2 - CONFIG.TILE_WIDTH / 2,
+				pygame.Rect(self.pxwidth/2 - ( self.world.player.hsize * CONFIG.TILE_WIDTH) / 2,
 					playerPosition[1],
 					CONFIG.TILE_WIDTH, # deleted factor 2, i think it might be a bug, Till 17.04., 23:11
 					CONFIG.TILE_HEIGHT * 2))
