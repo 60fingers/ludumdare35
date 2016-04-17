@@ -8,6 +8,7 @@ class StaticObject (WorldObject):
 			collision,
 			imglist,
 			animated,
+			world,
 			frameDuration=1,
 			currentImg=None,
 			visible=True):
@@ -17,6 +18,7 @@ class StaticObject (WorldObject):
 				collision = collision,
 				imglist = imglist,
 				animated = animated,
+				world = None,
 				frameDuration = frameDuration,
 				currentImg = currentImg,
 				visible = visible)
@@ -29,6 +31,7 @@ class AirObject(StaticObject):
 			collision=False,
 			imglist=[],
 			animated=False,
+			world=None,
 			visible=False)
 
 class GroundObject(StaticObject):
@@ -38,6 +41,7 @@ class GroundObject(StaticObject):
 			collision=True,
 			imglist=["Ground1"],
 			animated=False,
+			world=None,
 			visible=True)
 
 class WallObject(StaticObject):
@@ -47,6 +51,7 @@ class WallObject(StaticObject):
 			collision=True,
 			imglist=["Wall1", "Wall2"],
 			animated=True,
+			world=None,
 			frameDuration=30,
 			visible=True)
 			

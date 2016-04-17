@@ -15,7 +15,8 @@ class MovableObject(WorldObject):
 			position,
 			collision,
 			imglist,
-			animated, 
+			animated,
+			world,			
 			frameDuration = 1,
 			currentImg = None,
 			visible=True,
@@ -30,6 +31,7 @@ class MovableObject(WorldObject):
 			collision = collision,
 			imglist = imglist,
 			animated = animated,
+			world = world,
 			frameDuration = frameDuration,
 			currentImg = currentImg,
 			hsize=hsize,
@@ -47,36 +49,55 @@ class MovableObject(WorldObject):
 		if (not self.canHover):
 			self.speed[1] += CONFIG.GRAVITATION
 
-		# predict new position
-		self.position[0] += self.speed[0]
-		self.position[1] += self.speed[1]
-	
-	# TODO !!!
-	def correctCollision(self, world):
-		surroundings = world.objectsSurrounding(self.position, CONFIG.RADIUS_COLLISION_CHECK)
+		self.updateRect()
 		
-		for o in surroundings:
-			
-			if (not o.collision):
+		# moving to the new position axis after axis
+		self.moveAndCheck(self.world,self.speed[0],0)
+		self.moveAndCheck(self.world,0,self.speed[1])
+		
+		
+
+	# moving with collision check
+	def moveAndCheck(self, world, speedx, speedy):
+	
+		# Move the rect first
+		self.rect.left += speedx
+		self.rect.top += speedy
+		
+		for object in world.objectsSurrounding(self.position, CONFIG.RADIUS_COLLISION_CHECK):
+			if (not object.collision):
 				continue
 			
-			#print(o.position)
-			
-			# not in horizontal range
-			if (abs(o.position[0] - self.position[0]) > CONFIG.LEGAL_OVERHANG):
-				continue
-
-			#  too far above player
-			if (o.lowerBounding() < self.lowerBounding() - CONFIG.TILE_HEIGHT):
-				continue
-
-			# too far below player
-			if (o.upperBounding() > self.lowerBounding()):
-				continue
-
-			if (o.upperBounding() < self.lowerBounding()):
-				self.speed[1] = 0
-				print(abs(o.position[0] - self.position[0]))
-				self.position[1] = o.upperBounding() - (CONFIG.TILE_HEIGHT * self.vsize)
-
-
+			if self.rect.colliderect(object.rect):
+				#print("collision")
+				
+				# Moving right and hit the left side of the object --> stand on the left side of the object
+				if speedx > 0: 
+					self.rect.right = object.rect.left
+					self.speed[0] = 0
+					#print("right blocked")
+					
+				# Moving left and hit the right side of the object --> stand on the right side of the object
+				if speedx < 0:
+					self.rect.left = object.rect.right
+					self.speed[0] = 0
+					#print("left blocked")
+					
+				# Moving down and hit the top side of the object --> stand on top of the object
+				if speedy > 0:
+					self.rect.bottom = object.rect.top
+					self.speed[1] = 0
+					#print("down blocked")
+					
+				# Moving up and hit the bottom side of the object --> stand below the object
+				if speedy < 0:
+					self.rect.top = object.rect.bottom
+					self.speed[1] = 0
+					#print("up blocked")
+	
+	
+		#synchronise the rect position with the objects position
+		self.position[0] = self.rect.x
+		self.position[1] = self.rect.y
+		
+		
