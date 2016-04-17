@@ -87,8 +87,8 @@ class World:
 		# TODO HACK Testzwecke:
 		if(self.player.position[0] < 0):
 			self.player.position[0] = 0
-		if(self.player.position[0] >= len(self.statics)):
-			self.player.position[0] = len(self.statics)-1
+		if(self.player.position[0] >= (len(self.statics) * CONFIG.TILE_WIDTH)):
+			self.player.position[0] = (len(self.statics)-1) * CONFIG.TILE_WIDTH
 		if(self.player.position[1] < 0):
 			self.player.position[1] = 0
 		if(self.player.position[1] >= (self.levelheight * CONFIG.TILE_HEIGHT)):

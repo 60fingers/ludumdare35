@@ -14,7 +14,7 @@ LEVEL_HEIGHT = 10 # level height in tiles
 
 # window sizes
 #--------------
-VISIBLE_TILES_V = 7
+VISIBLE_TILES_V = 8
 VISIBLE_TILES_H = 10
 
 # game design
