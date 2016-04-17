@@ -6,14 +6,14 @@ class PlayerHuman ():
 	
 	def __init__ (self, player):
 		self.player = player
-		self.hsize = 2
-		self.vsize = 1
+		self.player.hsize = 1
+		self.player.vsize = 2
 		self.player.maxSpeed=CONFIG.PLAYER_SPEED_HUMAN
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_HUMAN
 		
 	def nextStep(self,keys):
 	
-	# Mensch wird normal mit Pfeiltasten gesteuert, er bleibt stehen, wenn nichts gedrueckt wird
+	#  Der Mensch wird normal mit Pfeiltasten gesteuert, er bleibt stehen, wenn nichts gedrueckt wird
 		
 		if(keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]):
 			self.player.speed[0] = self.player.maxSpeed
@@ -37,14 +37,14 @@ class PlayerGepard ():
 	
 	def __init__ (self, player):
 		self.player = player
-		self.hsize = 1
-		self.vsize = 2
+		self.player.hsize = 2
+		self.player.vsize = 1
 		player.maxSpeed=CONFIG.PLAYER_SPEED_GEPARD
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_GEPARD
 		
 	def nextStep(self,keys):
 	
-	# Gepard bewegt sich immer vorwaerts, mit Pfeiltasten wird richtung veraendert
+	# Der Gepard bewegt sich immer vorwaerts, mit Pfeiltasten wird richtung veraendert
 	
 		if(self.player.facingForward):
 			self.player.speed[0] = self.player.maxSpeed
@@ -68,8 +68,8 @@ class PlayerSnake ():
 	
 	def __init__ (self, player):
 		self.player = player
-		self.hsize = 1
-		self.vsize = 1
+		self.player.hsize = 1
+		self.player.vsize = 1
 		player.maxSpeed=CONFIG.PLAYER_SPEED_SNAKE
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_SNAKE
 		self.leftArrowNext = False
@@ -115,18 +115,36 @@ class PlayerBird ():
 	
 	def __init__ (self, player):
 		self.player = player
-		self.hsize = 1
-		self.vsize = 1
+		self.player.hsize = 1
+		self.player.vsize = 1
 		player.maxSpeed=CONFIG.PLAYER_SPEED_BIRD
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_BIRD
-		self.lastDirectionInput = 0
 		self.lastJumpInput = 0
 		
 	def nextStep(self,keys):
+	
+		# Der Vogel bewegt sich nur wenn er in der Luft ist. Mit Richtungstaten wird die Richtung geaendert und
+		# mit statt zu springen kann er mit Fluegelschlagen an Hoehe gewinnen. Er kann nur am Boden stehenbleiben
+		
+		if(self.player.facingForward and (self.player.speed[1] != 0) ):
+			self.player.speed[0] = self.player.maxSpeed
+		elif( not self.player.facingForward and (self.player.speed[1] != 0) ):
+			self.player.speed[0] = -self.player.maxSpeed
+		else:
+			self.player.speed[0] = 0
+		
+		if(keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]):
+			self.player.facingForward = True
+			
+		if(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]):
+			self.player.facingForward = False
+						
 		timeSinceLastJump = (pygame.time.get_ticks() - self.lastJumpInput)/1000
 		if(keys[pygame.K_UP] and (timeSinceLastJump >= CONFIG.PLAYER_BIRD_FLAP_COOLDOWN)):
+		
 			self.player.speed[1] = -self.player.jumpSpeed
 			self.lastJumpInput = pygame.time.get_ticks()
+			
 		print(str(self.player.speed) + " as Bird")
 
 
