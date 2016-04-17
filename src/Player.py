@@ -12,24 +12,24 @@ class Player (MovableObject):
 		MovableObject.__init__(self,
 			position,
 			collision=True,
-			imglist=["PlayerRunningLeft1",
-					"PlayerRunningLeft2",
-					"PlayerRunningRight1",
-					"PlayerRunningRight2",
-					"PlayerStandingLeft",
-					"PlayerStandingRight"],
+			imglist=["PlayerStandingLeft"],
 			animated=True,
 			frameDuration = 10,
 			currentImg = None,
 			visible=True,
 			maxSpeed=CONFIG.PLAYER_SPEED_HUMAN)
 
+		self.canHover = False
+			
 		self.lastShift = 0 # cooldown timer
 		self.currentShape = 0 # Shapes 0=human, 1=gepard, 2=snake, 3=bird
 		self.currentPlayermode = PlayerHuman(self)
 		self.jumpSpeed = CONFIG.PLAYER_JUMP_SPEED_HUMAN
 		self.facingForward = True
-		self.canHover = False
+		
+		self.currentAction = "sr" # possible: jr, jl, rl, rr, sr, sl
+		
+		
 	
 	def nextStep(self, keys):
 		
@@ -64,4 +64,54 @@ class Player (MovableObject):
 		MovableObject.nextStep(self)
 		
 		
+	def updateImageSet(self):
 		
+		oldAction = self.currentAction
+		
+		# standing right
+		if (self.speed == [0,0] and
+				self.currentAction[0] != "s" and
+				self.currentAction[-1] == "r"):
+				
+			self.currentAction = "sr"
+
+		# standing left
+		if (self.speed == [0,0] and
+				self.currentAction[0] != "s" and
+				self.currentAction[-1] == "l"):
+
+			self.currentAction = "sl"
+
+		# running right
+		if (self.speed[0] > 0 and
+				self.speed[1] == 0 and
+				self.currentAction != "rr"):
+
+			self.currentAction = "rr"
+
+		# running left
+		if (self.speed[0] < 0 and
+				self.speed[1] == 0 and
+				self.currentAction != "rl"):
+
+			self.currentAction = "rl"
+	
+		# jumping right
+		if (self.speed[0] > 0 and
+				self.speed[1] != 0 and
+				self.currentAction != "jr"):
+
+			self.currentAction = "jr"
+		
+		# jumping left
+		if (self.speed[0] < 0 and
+				self.speed[1] != 0 and
+				self.currentAction != "jl"):
+
+			self.currentAction = "jl"
+		
+		if (oldAction != self.currentAction):
+			self.imglist = self.currentPlayermode.imagesets[self.currentAction]
+			self.currentImg = self.imglist[0]
+		
+		print(self.currentAction)
