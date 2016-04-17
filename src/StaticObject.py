@@ -43,6 +43,16 @@ class GroundObject(StaticObject):
 			animated=False,
 			world=None,
 			visible=True)
+			
+class GroundDeepObject(StaticObject):
+	
+	def __init__(self, position):
+		StaticObject.__init__(self, position,
+			collision=True,
+			imglist=["GroundDeep1"],
+			animated=False,
+			world=None,
+			visible=True)
 
 class WallObject(StaticObject):
 	
