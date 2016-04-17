@@ -32,6 +32,7 @@ o - 1.0 Complete Release
 
 - Hindernisse
 - Boden Variation
+- morph animation
 
 ### Music/Sound
 

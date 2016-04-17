@@ -31,7 +31,14 @@ class MainControl:
 
 			# input for player control
 			keys = pygame.key.get_pressed()
-
+			
+			## DEBUG FUNC ##
+			if(keys[pygame.K_ESCAPE]):
+				sys.exit()
+			if(keys[pygame.K_BACKSPACE]):
+				self.world.player.position[1] = 0
+			## END DEBUG FUNC ##
+				
 			self.world.nextStep(keys)
 			self.view.show()
 			time.sleep(1/float(CONFIG.FPS))
