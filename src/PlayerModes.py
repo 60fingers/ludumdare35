@@ -11,6 +11,7 @@ class PlayerHuman ():
 		self.player.vsize = 2
 		self.player.maxSpeed=CONFIG.PLAYER_SPEED_HUMAN
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_HUMAN
+		self.lastTickVelY = 0
 		
 		self.imagesets = {
 			"sr" : ["PlayerStandingRight"],
@@ -38,12 +39,13 @@ class PlayerHuman ():
 		else:	
 			self.player.speed[0] = 0
 		
-		if(keys[pygame.K_UP] and (self.player.speed[1] == 0)):
+		if(keys[pygame.K_UP] and (self.player.speed[1] == 0) and (self.lastTickVelY >= 0) ):
 			self.player.speed[1] = -self.player.jumpSpeed
 			self.lastJumpInput = pygame.time.get_ticks()
 
+		self.lastTickVelY = self.player.speed[1]
 		
-		print(str(self.player.speed) + " as Human")
+		#print(str(self.player.speed) + " as Human")
 	
 #-------------------------------------------------------------------
 
@@ -56,6 +58,7 @@ class PlayerGepard ():
 		self.player.vsize = 1
 		player.maxSpeed=CONFIG.PLAYER_SPEED_GEPARD
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_GEPARD
+		self.lastTickVelY = 0
 		
 		self.imagesets = {
 			"sr" : ["GepardStandingRight"],
@@ -82,9 +85,12 @@ class PlayerGepard ():
 		if(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]):
 			self.player.facingForward = False
 			
-		if(keys[pygame.K_UP] and (self.player.speed[1] == 0)):
-			self.player.speed[1] = self.player.jumpSpeed
+		if(keys[pygame.K_UP] and (self.player.speed[1] == 0) and (self.lastTickVelY >= 0) ):
+			self.player.speed[1] = -self.player.jumpSpeed
+			self.lastJumpInput = pygame.time.get_ticks()
 	
+		self.lastTickVelY = self.player.speed[1]
+		
 		#print(str(self.player.speed) + " as Gepard")
 
 #-------------------------------------------------------------------
@@ -98,6 +104,7 @@ class PlayerSnake ():
 		self.player.vsize = 1
 		self.player.maxSpeed=CONFIG.PLAYER_SPEED_SNAKE
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_SNAKE
+		self.lastTickVelY = 0
 
 		self.leftArrowNext = False
 		self.lastDirectionInput = 0
@@ -107,8 +114,8 @@ class PlayerSnake ():
 			"sl" : ["SnakeStandingLeft"],
 			"rr" : ["SnakeMovingRight"],
 			"rl" : ["SnakeMovingLeft"],
-			"jr" : ["SnakeJump"],
-			"jl" : ["SnakeJump"]}
+			"jr" : ["SnakeJumping"],
+			"jl" : ["SnakeJumping"]}
 
 
 	def nextStep(self,keys):
@@ -159,11 +166,12 @@ class PlayerSnake ():
 
 		# jump to flip move direction
 		if (keys[pygame.K_UP] and 
-				(self.player.speed[1] == 0)):
+				(self.player.speed[1] == 0) and (self.lastTickVelY >= 0)):
 
 			self.player.speed[1] = -self.player.jumpSpeed
 			self.player.facingForward =  (not self.player.facingForward)
 			
+		self.lastTickVelY = self.player.speed[1]
 		
 		#print(str(self.player.speed) + " as Snake")
 		
@@ -178,6 +186,7 @@ class PlayerBird ():
 		self.player.vsize = 1
 		self.player.maxSpeed=CONFIG.PLAYER_SPEED_BIRD
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_BIRD
+		self.lastTickVelY = 0
 		
 		self.lastJumpInput = 0
 	
@@ -236,7 +245,9 @@ class PlayerBird ():
 		
 			self.player.speed[1] = -self.player.jumpSpeed
 			self.lastJumpInput = pygame.time.get_ticks()
-			
+		
+		self.lastTickVelY = self.player.speed[1]
+		
 		#print(str(self.player.speed) + " as Bird")
 
 
