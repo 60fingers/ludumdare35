@@ -58,7 +58,7 @@ class WorldReader:
 
 		# TODO insert moving objects
 
-		return [staticObjects, movableObjects]
+		return [staticObjects, movableObjects, staImg.size]
 		
 		
 	def readFile(self, pathFile):

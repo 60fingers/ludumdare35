@@ -8,10 +8,6 @@ TILE_WIDTH = 100
 BG_IMG_HEIGHT = 900
 BG_IMG_WIDTH = 1280
 
-# level sizes
-#--------------
-LEVEL_HEIGHT = 10 # level height in tiles
-
 # window sizes
 #--------------
 VISIBLE_TILES_V = 8

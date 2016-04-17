@@ -19,13 +19,15 @@ class World:
 		# debug msg
 		print("reading maps")
 		
-		worldobjects = WorldReader().readImage("../maps/world1stat.png",
+		# map information: list: [static object list, mob list, map size]
+		mapInformations = WorldReader().readImage("../maps/world1stat.png",
 			"../maps/world1mov.png")
-		self.statics = worldobjects[0]
-		self.movables = worldobjects[1]
+		self.statics = mapInformations[0]
+		self.movables = mapInformations[1]
 
-		#TODO: test wich values to take / read height from map
-		self.levelheight = 10
+		# pixelheight of the map
+		self.levelheight = mapInformations[2][1]
+
 
 		self.player = Player([0,0],self)	# TODO echte Spielerposition verwenden!
 	
