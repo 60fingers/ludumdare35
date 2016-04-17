@@ -15,7 +15,7 @@ class Player (MovableObject):
 			world = world,
 			imglist=["PlayerStandingLeft"],
 			animated=True,
-			frameDuration = 10,
+			frameDuration = 5,
 			currentImg = None,
 			visible=True,
 			maxSpeed=CONFIG.PLAYER_SPEED_HUMAN)
