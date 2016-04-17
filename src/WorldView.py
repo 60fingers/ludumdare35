@@ -37,7 +37,7 @@ class WorldView:
 		print("world view loading images")
 
 		for p in pathlist:
-			img = pygame.image.load(pathlist[p]).convert()
+			img = pygame.image.load(pathlist[p]).convert_alpha()
 			self.images.update({p:img})
 
 		# debug msg
@@ -52,7 +52,7 @@ class WorldView:
 		objs_in_range = self.world.objectsSurrounding(playerPosition)
 		
 		# debug msg
-		#print("Objects in range: " + str(len(objs_in_range)))
+		print("Objects in range: " + str(len(objs_in_range)))
 		
 		self.screen.blit(self.images["Background"],(self.bgShiftH, self.bgShiftV))
 

@@ -44,15 +44,15 @@ class World:
 		# add every static object in range
 		#------------- BEGIN ----------------
 
-		i = (self.levelheight * (x - self.surroundarea))
+		i = int(self.levelheight * (x - self.surroundarea)/CONFIG.TILE_WIDTH)
 
 		# no indices <0 would result in searching from the other end (eg. list[-3])
 		# -> left edge of the map
 		if(i<0):
 			i = 0
 
-		while (i < (self.levelheight * (x + self.surroundarea))):
-			print(position)
+		while (i < int(self.levelheight * (x + self.surroundarea)/CONFIG.TILE_WIDTH)):
+
 			surroundings.append(self.statics[i])
 			i+=1
 
