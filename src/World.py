@@ -5,6 +5,7 @@ from MovableObject import *
 
 from WorldReader import WorldReader
 
+import CONFIG
 
 class World:
 
@@ -13,7 +14,7 @@ class World:
 	stativs = []
 
 	# range for -> objectsSurrounding
-	surroundarea = 3
+	surroundarea = CONFIG.TILE_WIDTH * CONFIG.RANGE_OF_VIEW
 	
 	# read maps and mob positions
 	def __init__(self):
@@ -21,7 +22,8 @@ class World:
 		# debug msg
 		print("reading maps")
 		
-		worldobjects = WorldReader().readImage("../maps/world1stat.png","../maps/world1mov.png")
+		worldobjects = WorldReader().readImage("../maps/world1stat.png",
+			"../maps/world1mov.png")
 		self.statics = worldobjects[0]
 		self.movables = worldobjects[1]
 
@@ -40,6 +42,8 @@ class World:
 		x = position[0]
 
 		# add every static object in range
+		#------------- BEGIN ----------------
+
 		i = (self.levelheight * (x - self.surroundarea))
 
 		# no indices <0 would result in searching from the other end (eg. list[-3])
@@ -56,13 +60,19 @@ class World:
 			if(i >= len(self.statics)):
 				break
 
+		#------------- END -----------------
 		
+
 		# add every movable object in range
+		#------------ BEGIN ----------------
+
 		for m in self.movables:
 			if (m.position[0] >= (x - self.surroundarea) and
 					m.position[0] <= (x + self.surroundarea)):
 				surroundings.append(m)
 			
+		#------------- END -----------------
+
 		return surroundings
 		
 	def nextStep(self,keys):

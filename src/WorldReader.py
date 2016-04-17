@@ -38,12 +38,15 @@ class WorldReader:
 				
 				px = pxmapStat[x,y]
 
+				posX = CONFIG.TILE_WIDTH * x
+				posY = CONFIG.TILE_WIDTH * y
+
 				if (px == self.AIR):
-					staticObjects.append(AirObject([CONFIG.TILE_WIDTH*x, CONFIG.TILE_HEIGHT*y]))
+					staticObjects.append(AirObject([posX, posY]))
 				elif (px == self.GROUND):
-					staticObjects.append(GroundObject([CONFIG.TILE_WIDTH*x, CONFIG.TILE_HEIGHT*y]))
+					staticObjects.append(GroundObject([posX, posY]))
 				elif (px == self.WALL):
-					staticObjects.append(WallObject([CONFIG.TILE_WIDTH*x, CONFIG.TILE_HEIGHT*y]))
+					staticObjects.append(WallObject([posX, posY]))
 				else:
 					raise Exception("Tile type unknown")
 				#endif
@@ -71,12 +74,16 @@ class WorldReader:
 				# iterating over every char in one string
 				j = 0
 				while (j < (len(lines[i])-1)):
+					
+					posX = CONFIG.TILE_WIDTH * i
+					posY = CONFIG.TILE_WIDTH * j
+
 					if (lines[i][j] == "0"):
-						staticObjects.append(AirObject([CONFIG.TILE_WIDTH*i, CONFIG.TILE_HEIGHT*j]))
+						staticObjects.append(AirObject([posX, posY]))
 					elif (lines[i][j] == "1"):
-						staticObjects.append(GroundObject([CONFIG.TILE_WIDTH*x, CONFIG.TILE_HEIGHT*y]))
+						staticObjects.append(GroundObject([posX, posY]))
 					elif (lines[i][j] == "2"):
-						staticObjects.append(WallObject([CONFIG.TILE_WIDTH*x, CONFIG.TILE_HEIGHT*y]))
+						staticObjects.append(WallObject([posX, posY]))
 					else:
 						raise Exception("Tile type unknown")
 					j = j+1

@@ -26,4 +26,5 @@ PLAYER_SPEED_SNAKE = 1
 
 # settings
 #--------------
-FPS = 10
+FPS = 30
+RANGE_OF_VIEW = 3
