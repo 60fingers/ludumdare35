@@ -44,7 +44,7 @@ class MovableObject(WorldObject):
 		WorldObject.nextStep(self)
 
 		# gravitation!
-		if (not canHover):
+		if (not self.canHover):
 			self.speed[1] += CONFIG.GRAVITATION
 
 		# predict new position
