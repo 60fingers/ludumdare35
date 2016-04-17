@@ -69,35 +69,31 @@ class MovableObject(WorldObject):
 				continue
 			
 			if self.rect.colliderect(object.rect):
-				#print("collision")
+				
+				object.updateRect()
 				
 				# Moving right and hit the left side of the object --> stand on the left side of the object
 				if speedx > 0: 
 					self.rect.right = object.rect.left
 					self.speed[0] = 0
-					#print("right blocked")
 					
 				# Moving left and hit the right side of the object --> stand on the right side of the object
 				if speedx < 0:
 					self.rect.left = object.rect.right
 					self.speed[0] = 0
-					#print("left blocked")
 					
 				# Moving down and hit the top side of the object --> stand on top of the object
 				if speedy > 0:
 					self.rect.bottom = object.rect.top
 					self.speed[1] = 0
-					#print("down blocked")
 					
 				# Moving up and hit the bottom side of the object --> stand below the object
 				if speedy < 0:
 					self.rect.top = object.rect.bottom
 					self.speed[1] = 0
-					#print("up blocked")
-	
 	
 		#synchronise the rect position with the objects position
-		self.position[0] = self.rect.x
-		self.position[1] = self.rect.y
+		self.position[0] = self.rect.left
+		self.position[1] = self.rect.top
 		
 		

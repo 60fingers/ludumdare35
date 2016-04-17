@@ -12,6 +12,7 @@ class WorldReader:
 
 	AIR = (255,255,255) 
 	GROUND = (34,177,76)
+	GROUNDDEEP = (44,123,19)
 	WALL = (120,120,120)
 	
 	def __init__(self):
@@ -45,6 +46,8 @@ class WorldReader:
 					staticObjects.append(AirObject([posX, posY]))
 				elif (px == self.GROUND):
 					staticObjects.append(GroundObject([posX, posY]))
+				elif (px == self.GROUNDDEEP):
+					staticObjects.append(GroundDeepObject([posX, posY]))
 				elif (px == self.WALL):
 					staticObjects.append(WallObject([posX, posY]))
 				else:
