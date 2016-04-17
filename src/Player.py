@@ -64,6 +64,8 @@ class Player (MovableObject):
 
 		self.currentPlayermode.nextStep(keys)
 
+		self.updateImageSet()
+
 		MovableObject.nextStep(self)
 		
 		
@@ -117,4 +119,4 @@ class Player (MovableObject):
 			self.imglist = self.currentPlayermode.imagesets[self.currentAction]
 			self.currentImg = self.imglist[0]
 		
-		print(self.currentAction)
+		#print(self.currentAction)

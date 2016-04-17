@@ -42,7 +42,6 @@ class PlayerHuman ():
 			self.player.speed[1] = -self.player.jumpSpeed
 			self.lastJumpInput = pygame.time.get_ticks()
 
-		self.player.updateImageSet()
 		
 		print(str(self.player.speed) + " as Human")
 	
@@ -58,6 +57,15 @@ class PlayerGepard ():
 		player.maxSpeed=CONFIG.PLAYER_SPEED_GEPARD
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_GEPARD
 		
+		self.imagesets = {
+			"sr" : ["GepardStandingRight"],
+			"sl" : ["GepardStandingLeft"],
+			"rr" : ["GepardRunningRight1"],
+			"rl" : ["GepardRunningLeft1"],
+			"jr" : ["GepardJumpingRight"],
+			"jl" : ["GepardJumpingLeft"]}
+
+
 	def nextStep(self,keys):
 	
 		#  Der Gepard bewegt sich immer vorwaerts, mit Pfeil-
@@ -94,6 +102,15 @@ class PlayerSnake ():
 		self.leftArrowNext = False
 		self.lastDirectionInput = 0
 		
+		self.imagesets = {
+			"sr" : ["SnakeStandingRight"],
+			"sl" : ["SnakeStandingLeft"],
+			"rr" : ["SnakeMovingRight"],
+			"rl" : ["SnakeMovingLeft"],
+			"jr" : ["SnakeJump"],
+			"jl" : ["SnakeJump"]}
+
+
 	def nextStep(self,keys):
 	
 		#  Bei der Schlange muessen die Richtungstasten immer
@@ -163,6 +180,16 @@ class PlayerBird ():
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_BIRD
 		
 		self.lastJumpInput = 0
+	
+		self.imagesets = {
+			"sr" : ["BirdStandingRight"],
+			"sl" : ["BirdStandingLeft"],
+			"rr" : ["BirdRunningRight1"],
+			"rl" : ["BirdRunningLeft1"],
+			"jr" : ["BirdJumpingRight"],
+			"jl" : ["BirdJumpingLeft"]}
+
+
 		
 	def nextStep(self,keys):
 	

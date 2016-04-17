@@ -1,43 +1,61 @@
+# World objects
+
 Ground1
-../img/ground1.png
+	../img/ground1.png
 Wall1
-../img/wall1.png
+	../img/wall1.png
 Wall2
-../img/wall2.png
+	../img/wall2.png
+
+
+# Human Models
 PlayerRunningLeft1
-../img/playerRunningLeft1.png
+		../img/playerRunningLeft1.png
 PlayerRunningLeft2
-../img/playerRunningLeft2.png
+		../img/playerRunningLeft2.png
 PlayerRunningRight1
-../img/playerRunningRight1.png
+		../img/playerRunningRight1.png
 PlayerRunningRight2
-../img/playerRunningRight2.png
+		../img/playerRunningRight2.png
 PlayerStandingLeft
-../img/playerStandingLeft.png
+		../img/playerStandingLeft.png
 PlayerStandingRight
-../img/playerStandingRight.png
+		../img/playerStandingRight.png
 PlayerJumpingLeft
-../img/playerJumpingLeft.png
+		../img/playerJumpingLeft.png
 PlayerJumpingRight
-../img/playerJumpingRight.png
+		../img/playerJumpingRight.png
+
+# Snake Models
 SnakeJumping
-../img/snakeJump.png
+		../img/snakeJump.png
 SnakeMovingLeft
-../img/snakeMovingLeft.png
+		../img/snakeMovingLeft.png
 SnakeMovingRight
-../img/snakeMovingRight.png
+		../img/snakeMovingRight.png
+SnakeStandingRight
+		../img/snakeStandingRight.png
+SnakeStandingLeft
+		../img/snakeStandingLeft.png
+
+
+# Gepard Models
 GepardStandingLeft
-../img/gepardStandingLeft.png
+		../img/gepardStandingLeft.png
 GepardStandingRight
-../img/gepardStandingRight.png
-GepardRunningLeft
-../img/gepardRunningLeft1.png
-GepardRunningRight
-../img/gepardRunningRight1.png
+		../img/gepardStandingRight.png
+GepardRunningLeft1
+		../img/gepardRunningLeft1.png
+GepardRunningRight1
+		../img/gepardRunningRight1.png
 GepardJumpingLeft
-../img/gepardJumpingLeft.png
+		../img/gepardJumpingLeft.png
 GepardJumpingRight
-../img/gepardJumpingRight.png
+		../img/gepardJumpingRight.png
+
+# Bird Models
+
+# Misc.
 Background
-../img/Background.png
+		../img/Background.png
 
