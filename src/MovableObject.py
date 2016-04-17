@@ -7,12 +7,25 @@ class MovableObject(WorldObject):
 	speed = [0,0]
 	maxSpeed = 0
 
-	def __init__ (self, position, collision,
-			imglist, animated, maxSpeed=0,
-			visible=True, speed=[0,0]):
+	def __init__ (self,
+			position,
+			collision,
+			imglist,
+			animated, 
+			frameDuration = 1,
+			currentImg = None,
+			visible=True,
+			speed=[0,0],
+			maxSpeed=0):
 	
-		WorldObject.__init__(self, position, collision,
-			imglist, animated, visible)
+		WorldObject.__init__(self,
+			position = position,
+			collision = collision,
+			imglist = imglist,
+			animated = animated,
+			frameDuration = frameDuration,
+			visible = visible,
+			currentImg = currentImg)
 
 		self.speed = speed
 		self.maxSpeed = maxSpeed

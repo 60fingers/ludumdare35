@@ -16,6 +16,8 @@ class Player (MovableObject):
 			collision=True,
 			imglist=["Player1", "Player2"],
 			animated=True,
+			frameDuration = 10,
+			currentImg = None,
 			visible=True,
 			maxSpeed=CONFIG.PLAYER_SPEED_HUMAN)
 	
@@ -29,5 +31,6 @@ class Player (MovableObject):
 			self.position[1] -= self.maxSpeed
 		if(keys[pygame.K_DOWN] and not keys[pygame.K_UP]):
 			self.position[1] += self.maxSpeed
-			
+		
+		self.nextFrame()
 

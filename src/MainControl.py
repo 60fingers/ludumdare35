@@ -34,7 +34,7 @@ class MainControl:
 
 			self.world.nextStep(keys)
 			self.view.show()
-			time.sleep(1/CONFIG.FPS)
+			time.sleep(1/float(CONFIG.FPS))
 			
 
 		#end while
