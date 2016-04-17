@@ -78,7 +78,7 @@ class WorldView:
 			if (obj.visible):
 				
 				# show everything relatively to player, player is always in center
-				plotx = obj.position[0] - playerPosition[0] + self.pxwidth/2
+				plotx = obj.position[0] - playerPosition[0] + self.pxwidth/2 - CONFIG.TILE_WIDTH/2
 				ploty = obj.position[1] 
 				
 				# show corresponding image from imagelist
