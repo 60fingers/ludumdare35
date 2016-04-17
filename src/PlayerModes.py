@@ -6,20 +6,20 @@ class PlayerHuman ():
 	
 	def __init__ (self, player):
 		self.player = player
-		player.maxSpeed=CONFIG.PLAYER_SPEED_HUMAN
+		self.player.maxSpeed=CONFIG.PLAYER_SPEED_HUMAN
+		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_HUMAN
 		
 	def nextStep(self,keys):
 	
 		if(keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]):
-			self.position[0] += self.maxSpeed
+			self.player.speed[0] = self.player.maxSpeed
 		if(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]):
-			self.position[0] -= self.maxSpeed
-		if(keys[pygame.K_UP] and not keys[pygame.K_DOWN]):
-			self.position[1] -= self.maxSpeed
-		if(keys[pygame.K_DOWN] and not keys[pygame.K_UP]):
-			self.position[1] += self.maxSpeed
+			self.player.speed[0] = -self.player.maxSpeed
+			
+		if(keys[pygame.K_UP]):
+			self.player.speed[1] = self.player.jumpSpeed
 	
-	
+		print(self.player.speed)
 	
 	
 	
