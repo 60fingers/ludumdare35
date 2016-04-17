@@ -27,7 +27,7 @@ class Player (MovableObject):
 		self.currentPlayermode = PlayerHuman(self)
 		self.jumpSpeed = CONFIG.PLAYER_JUMP_SPEED_HUMAN
 		self.facingForward = True
-		self.canHover = True
+		self.canHover = False
 	
 	def nextStep(self, keys):
 		
