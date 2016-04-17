@@ -13,9 +13,6 @@ class World:
 	movables = []
 	statics = []
 
-	# range for -> objectsSurrounding
-	surroundarea = CONFIG.TILE_WIDTH * CONFIG.RANGE_OF_VIEW
-	
 	# read maps and mob positions
 	def __init__(self):
 		
@@ -34,24 +31,24 @@ class World:
 	
 
 	# find stativ objects and mobs within defined range around a position
-	def objectsSurrounding(self, position):
+	def objectsSurrounding(self, position, radius):
 
 		# list of map objects within range
 		surroundings = []
 
-		x = position[0]
+		x = position[0]/CONFIG.TILE_WIDTH
 
 		# add every static object in range
 		#------------- BEGIN ----------------
 
-		i = int(self.levelheight * (x - self.surroundarea)/CONFIG.TILE_WIDTH)
+		i = (self.levelheight * (x - radius))
 
 		# no indices <0 would result in searching from the other end (eg. list[-3])
 		# -> left edge of the map
 		if(i<0):
 			i = 0
 
-		while (i < int(self.levelheight * (x + self.surroundarea)/CONFIG.TILE_WIDTH)):
+		while (i < self.levelheight * (x + radius)):
 
 			surroundings.append(self.statics[i])
 			i+=1
@@ -67,22 +64,49 @@ class World:
 		#------------ BEGIN ----------------
 
 		for m in self.movables:
-			if (m.position[0] >= (x - self.surroundarea) and
-					m.position[0] <= (x + self.surroundarea)):
+			
+			mx = m.position[0] / CONFIG.TILE_WIDTH
+
+			if (mx >= (x - radius) and
+					mx <= (x + radius)):
 				surroundings.append(m)
 			
 		#------------- END -----------------
 
 		return surroundings
 		
+
+
 	def nextStep(self,keys):
 		
+
 		for s in self.statics:
 			s.nextStep()
+
 		for m in self.movables:
-			m.nextstep()
+			m.nextStep()
+			surroundings = self.objectsSurrounding(m.position, CONFIG.RADIUS_COLLISION_CHECK)
 			
+			for o in surroundings:
+				
+				if (o.collision):
+					
+					m.correctOverlapping(o)
+				
+			# end for each surrounding
+
+
 		self.player.nextStep(keys)
+		
+		surroundings = self.objectsSurrounding(self.player.position, CONFIG.RADIUS_COLLISION_CHECK)
+			
+		for o in surroundings:
+			
+			if (o.collision):
+				
+				self.player.correctOverlapping(o)
+			
+		# end for each surrounding
 		
 		# TODO HACK Testzwecke:
 		if(self.player.position[0] < 0):

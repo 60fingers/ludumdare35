@@ -3,10 +3,17 @@ from  WorldObject import WorldObject
 
 class StaticObject (WorldObject):
 
-	def __init__(self, position, collision, imglist, animated,
-				frameDuration=1, currentImg=None, visible=True):
+	def __init__(self,
+			position,
+			collision,
+			imglist,
+			animated,
+			frameDuration=1,
+			currentImg=None,
+			visible=True):
 
-		WorldObject.__init__(self, position=position,
+		WorldObject.__init__(self,
+				position=position,
 				collision = collision,
 				imglist = imglist,
 				animated = animated,

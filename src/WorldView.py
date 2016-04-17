@@ -49,10 +49,10 @@ class WorldView:
 		
 		playerPosition = self.world.player.position
 		
-		objs_in_range = self.world.objectsSurrounding(playerPosition)
+		objs_in_range = self.world.objectsSurrounding(playerPosition, CONFIG.RANGE_OF_VIEW)
 		
 		# debug msg
-		print("Objects in range: " + str(len(objs_in_range)))
+		#print("Objects in range: " + str(len(objs_in_range)))
 		
 		# background
 		self.screen.blit(self.images["Background"],(self.bgShiftH, self.bgShiftV))
