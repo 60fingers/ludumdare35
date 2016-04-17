@@ -28,6 +28,8 @@ class PlayerHuman ():
 		
 		if(keys[pygame.K_UP] and (self.player.speed[1] == 0)):
 			self.player.speed[1] = -self.player.jumpSpeed
+			self.lastJumpInput = pygame.time.get_ticks()
+	
 	
 		print(str(self.player.speed) + " as Human")
 	

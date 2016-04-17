@@ -54,4 +54,29 @@ class MovableObject(WorldObject):
 	# TODO !!!
 	def correctCollision(self, world):
 		surroundings = world.objectsSurrounding(self.position, CONFIG.RADIUS_COLLISION_CHECK)
+		
+		for o in surroundings:
+			
+			if (not o.collision):
+				continue
+			
+			#print(o.position)
+			
+			# not in horizontal range
+			if (abs(o.position[0] - self.position[0]) > CONFIG.LEGAL_OVERHANG):
+				continue
+
+			#  too far above player
+			if (o.lowerBounding() < self.lowerBounding() - CONFIG.TILE_HEIGHT):
+				continue
+
+			# too far below player
+			if (o.upperBounding() > self.lowerBounding()):
+				continue
+
+			if (o.upperBounding() < self.lowerBounding()):
+				self.speed[1] = 0
+				print(abs(o.position[0] - self.position[0]))
+				self.position[1] = o.upperBounding() - (CONFIG.TILE_HEIGHT * self.vsize)
+
 
