@@ -10,7 +10,6 @@ class PlayerHuman ():
 		self.vsize = 1
 		self.player.maxSpeed=CONFIG.PLAYER_SPEED_HUMAN
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_HUMAN
-		self.lastJumpInput = 0
 		
 	def nextStep(self,keys):
 	
@@ -27,14 +26,12 @@ class PlayerHuman ():
 		else:	
 			self.player.speed[0] = 0
 		
-		timeSinceLastJump = (pygame.time.get_ticks() - self.lastJumpInput)/1000
-		if(keys[pygame.K_UP] and (timeSinceLastJump >= CONFIG.PLAYER_JUMP_COOLDOWN)):
+		if(keys[pygame.K_UP] and (self.player.speed[1] == 0)):
 			self.player.speed[1] = -self.player.jumpSpeed
-			self.lastJumpInput = pygame.time.get_ticks()
 	
-		print(self.player.speed)
+		print(str(self.player.speed) + " as Human")
 	
-	
+#-------------------------------------------------------------------------------------------------
 	
 class PlayerGepard ():
 	
@@ -44,7 +41,6 @@ class PlayerGepard ():
 		self.vsize = 2
 		player.maxSpeed=CONFIG.PLAYER_SPEED_GEPARD
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_GEPARD
-		self.lastJumpInput = 0
 		
 	def nextStep(self,keys):
 	
@@ -57,16 +53,16 @@ class PlayerGepard ():
 		
 		if(keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]):
 			self.player.facingForward = True
+			
 		if(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]):
 			self.player.facingForward = False
 			
-		if(keys[pygame.K_UP]):
+		if(keys[pygame.K_UP] and (self.player.speed[1] == 0)):
 			self.player.speed[1] = self.player.jumpSpeed
-			self.lastJumpInput = pygame.time.get_ticks()
 	
-		print(self.player.speed)
+		print(str(self.player.speed) + " as Gepard")
 
-
+#-------------------------------------------------------------------------------------------------
 
 class PlayerSnake ():
 	
@@ -76,12 +72,44 @@ class PlayerSnake ():
 		self.vsize = 1
 		player.maxSpeed=CONFIG.PLAYER_SPEED_SNAKE
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_SNAKE
+		self.leftArrowNext = False
+		self.lastDirectionInput = 0
 		
 	def nextStep(self,keys):
-		print("snake movement")
-		self.lastDirectionInput = pygame.time.get_ticks()
+	
+		# Bei der Schlange muessen die Richtungstasten immer abwechselnd gedruekt werden, um vorran zu kommen
+		# Die Schlange wechselt im Sprung die Richtung
 		
+		if(keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT] and not self.leftArrowNext):
+			if(self.player.facingForward):
+				self.player.speed[0] = self.player.maxSpeed
+			else:
+				self.player.speed[0] = -self.player.maxSpeed
+			
+			self.lastDirectionInput = pygame.time.get_ticks()
+			self.leftArrowNext = True
+			
+		elif(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT] and self.leftArrowNext):
+			if(self.player.facingForward):
+				self.player.speed[0] = self.player.maxSpeed
+			else:
+				self.player.speed[0] = -self.player.maxSpeed
+				
+			self.lastDirectionInput = pygame.time.get_ticks()
+			self.leftArrowNext = False
+			
+		else:
+			if(((pygame.time.get_ticks() - self.lastDirectionInput)) > 100 ):
+				self.player.speed[0] = 0
 		
+		if(keys[pygame.K_UP] and (self.player.speed[1] == 0)):
+			self.player.speed[1] = -self.player.jumpSpeed
+			self.player.facingForward =  (not self.player.facingForward)
+			
+		
+		print(str(self.player.speed) + " as Snake")
+		
+#-------------------------------------------------------------------------------------------------		
 				
 class PlayerBird ():
 	
@@ -95,6 +123,10 @@ class PlayerBird ():
 		self.lastJumpInput = 0
 		
 	def nextStep(self,keys):
-		print("bird movemend")
+		timeSinceLastJump = (pygame.time.get_ticks() - self.lastJumpInput)/1000
+		if(keys[pygame.K_UP] and (timeSinceLastJump >= CONFIG.PLAYER_BIRD_FLAP_COOLDOWN)):
+			self.player.speed[1] = -self.player.jumpSpeed
+			self.lastJumpInput = pygame.time.get_ticks()
+		print(str(self.player.speed) + " as Bird")
 
 
