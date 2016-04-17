@@ -72,22 +72,26 @@ class MovableObject(WorldObject):
 				
 				object.updateRect()
 				
-				# Moving right and hit the left side of the object --> stand on the left side of the object
+				# Moving right and hit the left side of the object 
+				# --> stand on the left side of the object
 				if speedx > 0: 
 					self.rect.right = object.rect.left
 					self.speed[0] = 0
 					
-				# Moving left and hit the right side of the object --> stand on the right side of the object
+				# Moving left and hit the right side of the object 
+				# --> stand on the right side of the object
 				if speedx < 0:
 					self.rect.left = object.rect.right
 					self.speed[0] = 0
 					
-				# Moving down and hit the top side of the object --> stand on top of the object
+				# Moving down and hit the top side of the object 
+				# --> stand on top of the object
 				if speedy > 0:
 					self.rect.bottom = object.rect.top
 					self.speed[1] = 0
 					
-				# Moving up and hit the bottom side of the object --> stand below the object
+				# Moving up and hit the bottom side of the object 
+				# --> stand below the object
 				if speedy < 0:
 					self.rect.top = object.rect.bottom
 					self.speed[1] = 0

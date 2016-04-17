@@ -49,7 +49,10 @@ class WorldObject:
 		self.curFrameTime = random.randint(0,frameDuration-1)	
 
 	def updateRect(self):
-		self.rect = pygame.Rect(self.position[0], self.position[1], (self.hsize*CONFIG.TILE_WIDTH), (self.vsize*CONFIG.TILE_HEIGHT))
+		self.rect = pygame.Rect(self.position[0],
+				self.position[1],
+				(self.hsize*CONFIG.TILE_WIDTH),
+				(self.vsize*CONFIG.TILE_HEIGHT))
 	
 	def nextStep(self):
 		
