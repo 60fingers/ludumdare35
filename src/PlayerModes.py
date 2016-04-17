@@ -191,12 +191,12 @@ class PlayerBird ():
 		self.lastJumpInput = 0
 	
 		self.imagesets = {
-			"sr" : ["BirdStandingRight"],
-			"sl" : ["BirdStandingLeft"],
-			"rr" : ["BirdRunningRight1"],
-			"rl" : ["BirdRunningLeft1"],
-			"jr" : ["BirdJumpingRight"],
-			"jl" : ["BirdJumpingLeft"]}
+			"sr" : ["BirdStandRight"],
+			"sl" : ["BirdStandLeft"],
+			"rr" : ["BirdGlideRight"],
+			"rl" : ["BirdGlideLeft"],
+			"jr" : ["BirdGlideRight"],
+			"jl" : ["BirdGlideLeft"]}
 
 
 		
@@ -207,6 +207,7 @@ class PlayerBird ():
 		#  mit statt zu springen kann er mit Fluegelschlagen 
 		#  an Hoehe gewinnen. Er kann nur am Boden stehenbleiben
 		
+				
 		# forward, in the air
 		if (self.player.facingForward and
 				(self.player.speed[1] != 0) ):
@@ -240,6 +241,11 @@ class PlayerBird ():
 		# cooldown for jump
 		timeSinceLastJump = (pygame.time.get_ticks() - self.lastJumpInput)/1000
 
+		# HACK TODO
+		# gravitation reduction
+		if(self.player.speed[1] != 0):
+			self.player.speed[1] -= int(0.5 * CONFIG.GRAVITATION) 
+		
 		if (keys[pygame.K_UP] and
 				(timeSinceLastJump >= CONFIG.PLAYER_BIRD_FLAP_COOLDOWN)):
 		

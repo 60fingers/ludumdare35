@@ -48,3 +48,9 @@ o - 1.0 Complete Release
 ### Sonstiges
 
 - Export & Release
+
+## BUG LIST
+
+- bilder werden direkt nach morph nicht aktualisiert
+- sinnfreies rumwarpen
+

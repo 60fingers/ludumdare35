@@ -56,6 +56,18 @@ GepardJumpingRight
 		../img/gepardJumpingRight.png
 
 # Bird Models
+BirdStandRight
+		../img/birdStandRight.png
+BirdStandLeft
+		../img/birdStandLeft.png
+BirdGlideRight
+		../img/birdGlideRight.png
+BirdGlideLeft
+		../img/birdGlideLeft.png
+BirdFlapLeft
+		../img/birdFlapLeft.png
+BirdFlapRight
+		../img/birdFlapRight.png
 
 # Misc.
 Background

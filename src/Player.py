@@ -102,14 +102,14 @@ class Player (MovableObject):
 			self.currentAction = "rl"
 	
 		# jumping right
-		if (self.currentAction[1] == "r" and
+		if ((self.currentAction[1] == "r" or self.speed[0] > 0) and
 				self.speed[1] != 0 and
 				self.currentAction != "jr"):
 
 			self.currentAction = "jr"
 		
 		# jumping left
-		if (self.currentAction[1] == "l" and
+		if ((self.currentAction[1] == "l" or self.speed[0] < 0) and
 				self.speed[1] != 0 and
 				self.currentAction != "jl"):
 
