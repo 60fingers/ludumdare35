@@ -26,6 +26,8 @@ class Player (MovableObject):
 		self.currentShape = 0 # Shapes 0=human, 1=gepard, 2=snake, 3=bird
 		self.currentPlayermode = PlayerHuman(self)
 		self.jumpSpeed = CONFIG.PLAYER_JUMP_SPEED_HUMAN
+		self.facingForward = True
+		self.canHover = True
 	
 	def nextStep(self, keys):
 		
