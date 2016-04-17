@@ -28,7 +28,7 @@ class WorldObject:
 		self.currentImg = currentImg
 
 		# choose a current frame time randomly -> global sync. animation would look like crap
-		curFrameTime = random.randint(0,frameDuration-1)	
+		self.curFrameTime = random.randint(0,frameDuration-1)	
 
 	def nextStep(self):
 		
