@@ -4,9 +4,9 @@
 
 x - 0.1 First visual results
 
-o - 0.2 Moving player
+x - 0.2 Moving player
 
-o - 0.3 Switching Player Modes
+x - 0.3 Switching Player Modes
 
 o - 1.0 Complete Release
 
@@ -15,12 +15,12 @@ o - 1.0 Complete Release
 
 ### Code
 
-- Auxiliaries.py mit `readImagePathList()`
-- WorldObject -> currentImg hinzufÃ¼gen
-- Methode des Level-Designs entwerfen
-
-
-erster Visual-Test
+- Kartenrand verstecken
+- Kollision fixen
+- Flügelschlagen des Vogels visualisieren
+- HUD + Hauptmenü
+- Schließen mit ESC
+- Spielertod & Fallen
 
 ### Artwork
 
@@ -41,3 +41,10 @@ erster Visual-Test
 - Geraschel der Schlange auf dem Boden
 - Musik (Trommeln!)
 
+### Leveldesign
+
+- Ziel des Spiels
+
+### Sonstiges
+
+- Export & Release
