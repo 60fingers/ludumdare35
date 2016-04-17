@@ -12,6 +12,7 @@ class PlayerHuman ():
 		self.player.maxSpeed=CONFIG.PLAYER_SPEED_HUMAN
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_HUMAN
 		
+		self.currentAction = "sr" # possible: jr, jl, rl, rr, sr, sl
 
 	def nextStep(self,keys):
 	
@@ -33,10 +34,73 @@ class PlayerHuman ():
 			self.player.speed[1] = -self.player.jumpSpeed
 			self.lastJumpInput = pygame.time.get_ticks()
 	
-	
+		
+		self.updateImageSet()
+		
 		print(str(self.player.speed) + " as Human")
 	
+
+	
+	def updateImageSet(self):
+		
+		oldAction = self.currentAction
+		
+		# standing right
+		if (self.player.speed == [0,0] and
+				self.currentAction[0] != "s" and
+				self.currentAction[-1] == "r"):
+
+			self.player.imglist = ["PlayerStandingRight"]
+			self.currentAction = "sr"
+
+		# standing left
+		if (self.player.speed == [0,0] and
+				self.currentAction[0] != "s" and
+				self.currentAction[-1] == "l"):
+
+			self.player.imglist = ["PlayerStandingLeft"]
+			self.currentAction = "sl"
+
+		# running right
+		if (self.player.speed[0] > 0 and
+				self.player.speed[1] == 0 and
+				self.currentAction != "rr"):
+
+			self.player.imglist = ["PlayerRunningRight1",
+					"PlayerRunningRight2"]
+			self.currentAction = "rr"
+
+		# running left
+		if (self.player.speed[0] < 0 and
+				self.player.speed[1] == 0 and
+				self.currentAction != "rl"):
+
+			self.player.imglist = ["PlayerRunningLeft1",
+					"PlayerRunningLeft2"]
+			self.currentAction = "rl"
+	
+		# jumping right
+		if (self.player.speed[0] > 0 and
+				self.player.speed[1] != 0 and
+				self.currentAction != "jl"):
+
+			self.player.imglist = ["PlayerJumpingRight"]
+			self.currentAction = "jl"
+		
+		# jumping left
+		if (self.player.speed[0] < 0 and
+				self.player.speed[1] != 0 and
+				self.currentAction != "jl"):
+
+			self.player.imglist = ["PlayerJumpingLeft"]
+			self.currentAction = "jl"
+		
+		if (oldAction != self.currentAction):
+			self.player.currentImg = self.player.imglist[0]
+
+
 #-------------------------------------------------------------------
+
 	
 class PlayerGepard ():
 	
