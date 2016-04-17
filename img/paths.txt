@@ -8,14 +8,18 @@ PlayerRunningLeft1
 ../img/playerRunningLeft1.png
 PlayerRunningLeft2
 ../img/playerRunningLeft2.png
-PlayerRunnungRight1
+PlayerRunningRight1
 ../img/playerRunningRight1.png
-PlayerRunnungRight2
+PlayerRunningRight2
 ../img/playerRunningRight2.png
 PlayerStandingLeft
 ../img/playerStandingLeft.png
 PlayerStandingRight
 ../img/playerStandingRight.png
+PlayerJumpingLeft
+../img/playerJumpingLeft.png
+PlayerJumpingRight
+../img/playerJumpingRight.png
 Background
 ../img/Background.png
 
