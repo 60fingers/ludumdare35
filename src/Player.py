@@ -12,16 +12,19 @@ class Player (MovableObject):
 	lastKeyTime = "" # siehe oben, TODO welches Zeitformat verwenden wir hier?	
 	
 			
-	def __init__ (self, position):
+	def __init__ (self, position, world):
 		MovableObject.__init__(self,
 			position,
 			collision=True,
 			imglist=["PlayerRunningLeft1", "PlayerRunningLeft2", "PlayerRunnungRight1", "PlayerRunnungRight2", "PlayerStandingLeft", "PlayerStandingRight"],
 			animated=False,
+			world = world,
 			frameDuration = 10,
 			currentImg = None,
 			visible=True,
 			maxSpeed=CONFIG.PLAYER_SPEED_HUMAN)
+		self.vsize = 1
+		self.hsize = 2
 		self.lastShift = 0 # cooldown timer
 		self.currentShape = 0 # Shapes 0=human, 1=gepard, 2=snake, 3=bird
 		self.currentPlayermode = PlayerHuman(self)

@@ -21,7 +21,8 @@ class WorldObject:
 			position,
 			collision,
 			imglist,
-			animated, 
+			animated,
+			world,
 			frameDuration=1,
 			currentImg=None,
 			hsize=1,
@@ -32,8 +33,11 @@ class WorldObject:
 		self.collision = collision
 		self.imglist = imglist
 		self.animated = animated
+		self.world = world
 		self.frameDuration = frameDuration
 		self.visible = visible
+		# rect for collision detection
+		self.rect = pygame.Rect(self.position[0], self.position[1], (self.hsize*CONFIG.TILE_WIDTH), (self.vsize*CONFIG.TILE_HEIGHT))
 
 		# choose an image from imagelist randomly -> for variation
 		if (currentImg == None and not len(imglist) == 0):
@@ -44,6 +48,9 @@ class WorldObject:
 		# choose a current frame time randomly -> global sync. animation would look like crap
 		self.curFrameTime = random.randint(0,frameDuration-1)	
 
+	def updateRect(self):
+		self.rect = pygame.Rect(self.position[0], self.position[1], (self.hsize*CONFIG.TILE_WIDTH), (self.vsize*CONFIG.TILE_HEIGHT))
+	
 	def nextStep(self):
 		
 		if(self.animated):
@@ -71,19 +78,4 @@ class WorldObject:
 		
 		#end if
 	
-	def leftBounding(self):
-		return self.position[0]
 	
-	def rightBounding(self):
-		return self.position[0] + self.hsize * CONFIG.TILE_WIDTH
-
-	def upperBounding(self):
-		return self.position[1]
-	
-	def lowerBounding(self):
-		return self.position[1] + self.vsize * CONFIG.TILE_HEIGHT
-		
-		
-
-
-
