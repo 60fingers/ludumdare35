@@ -6,8 +6,8 @@ class PlayerHuman ():
 	
 	def __init__ (self, player):
 		self.player = player
-		self.hsize = 2
-		self.vsize = 1
+		self.player.hsize = 1
+		self.player.vsize = 2
 		self.player.maxSpeed=CONFIG.PLAYER_SPEED_HUMAN
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_HUMAN
 		self.lastJumpInput = 0
@@ -32,7 +32,7 @@ class PlayerHuman ():
 			self.player.speed[1] = -self.player.jumpSpeed
 			self.lastJumpInput = pygame.time.get_ticks()
 	
-		print(self.player.speed)
+		#print(self.player.speed)
 	
 	
 	
@@ -40,8 +40,8 @@ class PlayerGepard ():
 	
 	def __init__ (self, player):
 		self.player = player
-		self.hsize = 1
-		self.vsize = 2
+		self.player.hsize = 2
+		self.player.vsize = 1
 		player.maxSpeed=CONFIG.PLAYER_SPEED_GEPARD
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_GEPARD
 		self.lastJumpInput = 0
@@ -72,8 +72,8 @@ class PlayerSnake ():
 	
 	def __init__ (self, player):
 		self.player = player
-		self.hsize = 1
-		self.vsize = 1
+		self.player.hsize = 1
+		self.player.vsize = 1
 		player.maxSpeed=CONFIG.PLAYER_SPEED_SNAKE
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_SNAKE
 		
@@ -87,8 +87,8 @@ class PlayerBird ():
 	
 	def __init__ (self, player):
 		self.player = player
-		self.hsize = 1
-		self.vsize = 1
+		self.player.hsize = 1
+		self.player.vsize = 1
 		player.maxSpeed=CONFIG.PLAYER_SPEED_BIRD
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_BIRD
 		self.lastDirectionInput = 0
