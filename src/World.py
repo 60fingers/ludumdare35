@@ -85,28 +85,12 @@ class World:
 
 		for m in self.movables:
 			m.nextStep()
-			surroundings = self.objectsSurrounding(m.position, CONFIG.RADIUS_COLLISION_CHECK)
+			m.correctCollision(self)
 			
-			for o in surroundings:
-				
-				if (o.collision):
-					
-					m.correctOverlapping(o)
-				
-			# end for each surrounding
-
 
 		self.player.nextStep(keys)
 		
-		surroundings = self.objectsSurrounding(self.player.position, CONFIG.RADIUS_COLLISION_CHECK)
-			
-		for o in surroundings:
-			
-			if (o.collision):
-				
-				self.player.correctOverlapping(o)
-			
-		# end for each surrounding
+		self.player.correctCollision(self)
 		
 		# TODO HACK Testzwecke:
 		if(self.player.position[0] < 0):
@@ -118,4 +102,3 @@ class World:
 		if(self.player.position[1] >= (self.levelheight * CONFIG.TILE_HEIGHT)):
 			self.player.position[1] = (self.levelheight * CONFIG.TILE_HEIGHT)-1
 
-		# TODO check for all movable object, if they are standing at a legal position
