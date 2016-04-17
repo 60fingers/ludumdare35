@@ -14,7 +14,7 @@ LEVEL_HEIGHT = 10 # level height in tiles
 
 # window sizes
 #--------------
-VISIBLE_TILES_V = 5
+VISIBLE_TILES_V = 7
 VISIBLE_TILES_H = 10
 
 # game design
@@ -27,4 +27,4 @@ PLAYER_SPEED_SNAKE = 1
 # settings
 #--------------
 FPS = 30
-RANGE_OF_VIEW = 2
+RANGE_OF_VIEW = 20

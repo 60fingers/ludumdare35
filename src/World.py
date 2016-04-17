@@ -81,12 +81,17 @@ class World:
 			s.nextStep()
 		for m in self.movables:
 			m.nextstep()
+			
 		self.player.nextStep(keys)
+		
+		# TODO HACK Testzwecke:
+		if(self.player.position[0] < 0):
+			self.player.position[0] = 0
+		if(self.player.position[0] >= len(self.statics)):
+			self.player.position[0] = len(self.statics)-1
+		if(self.player.position[1] < 0):
+			self.player.position[1] = 0
+		if(self.player.position[1] >= (self.levelheight * CONFIG.TILE_HEIGHT)):
+			self.player.position[1] = (self.levelheight * CONFIG.TILE_HEIGHT)-1
 
-		# HACK TODO move controls to player class
-		if(keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]):
-			if(self.player.position[0] < len(self.statics)):
-				self.player.position[0] += self.player.maxSpeed
-		if(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]):
-			if(self.player.position[0] >= self.player.maxSpeed):
-				self.player.position[0] -= self.player.maxSpeed
+		# TODO check for all movable object, if they are standing at a legal position

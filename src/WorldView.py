@@ -54,8 +54,15 @@ class WorldView:
 		# debug msg
 		print("Objects in range: " + str(len(objs_in_range)))
 		
+		# background
 		self.screen.blit(self.images["Background"],(self.bgShiftH, self.bgShiftV))
 
+		# player
+		self.screen.blit(self.images[self.world.player.currentImg],
+				pygame.Rect(self.pxwidth/2 - CONFIG.TILE_WIDTH / 2,
+					playerPosition[1],
+					CONFIG.TILE_WIDTH  * 2,
+					CONFIG.TILE_HEIGHT * 2))
 		
 		for obj in objs_in_range:
 			

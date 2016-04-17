@@ -14,12 +14,20 @@ class Player (MovableObject):
 		MovableObject.__init__(self,
 			position,
 			collision=True,
-			imglist=["player1", "player2"],
-			animated=False,
+			imglist=["Player1", "Player2"],
+			animated=True,
 			visible=True,
 			maxSpeed=CONFIG.PLAYER_SPEED_HUMAN)
 	
 	def nextStep(self, keys):
-		a = int(3.14) # TODO bullshit to enable method
+		
+		if(keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]):
+			self.position[0] += self.maxSpeed
+		if(keys[pygame.K_LEFT] and not keys[pygame.K_RIGHT]):
+			self.position[0] -= self.maxSpeed
+		if(keys[pygame.K_UP] and not keys[pygame.K_DOWN]):
+			self.position[1] -= self.maxSpeed
+		if(keys[pygame.K_DOWN] and not keys[pygame.K_UP]):
+			self.position[1] += self.maxSpeed
 			
 
