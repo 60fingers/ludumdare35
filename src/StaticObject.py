@@ -21,17 +21,16 @@ class GroundObject(StaticObject):
 	def __init__(self, position):
 		StaticObject.__init__(self, position,
 			collision=True,
-			imglist=["Ground1", "Ground2"],
+			imglist=["Ground1"],
 			animated=False,
-			currentImg="Ground1",
 			visible=True)
 
 class WallObject(StaticObject):
 	
 	def __init__(self, position):
-		WallObject.__init__(self, position,
+		StaticObject.__init__(self, position,
 			collision=True,
 			imglist=["Wall1", "Wall2"],
-			animated=False,
+			animated=True,
 			visible=True)
 			

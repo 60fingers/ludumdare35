@@ -11,7 +11,7 @@ class World:
 
 	player = None
 	movables = []
-	stativs = []
+	statics = []
 
 	# range for -> objectsSurrounding
 	surroundarea = CONFIG.TILE_WIDTH * CONFIG.RANGE_OF_VIEW
@@ -77,6 +77,13 @@ class World:
 		
 	def nextStep(self,keys):
 		
+		for s in self.statics:
+			s.nextStep()
+		for m in self.movables:
+			m.nextstep()
+		self.player.nextStep(keys)
+
+		# HACK TODO move controls to player class
 		if(keys[pygame.K_RIGHT] and not keys[pygame.K_LEFT]):
 			if(self.player.position[0] < len(self.statics)):
 				self.player.position[0] += self.player.maxSpeed

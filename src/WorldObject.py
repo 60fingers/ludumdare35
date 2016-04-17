@@ -1,4 +1,4 @@
-import pygame, os
+import pygame, os, random
 
 class WorldObject:
 
@@ -16,9 +16,27 @@ class WorldObject:
 		self.imglist = imglist
 		self.animated = animated
 		self.visible = visible
+
+		if (currentImg == None and not len(imglist) == 0):
+			cimg_index = random.randint(0, len(imglist)-1)
+			currentImg = imglist[cimg_index]
 		self.currentImg = currentImg
 
 	
 
 	def nextStep(self):
-		print("worldobject: next step")
+		
+		if(self.animated):
+			self.nextFrame()
+
+	
+	# for animated objects: sets currentImg to next img in imglist
+	def nextFrame(self):
+		cimg_index = self.imglist.index(self.currentImg)
+		
+		if (cimg_index == len(self.imglist)-1):
+			cimg_index = 0
+		else:
+			cimg_index += 1
+
+		self.currentImg = self.imglist[cimg_index]

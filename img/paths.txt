@@ -1,7 +1,9 @@
 Ground1
 ../img/ground1.png
-Ground2
-../img/ground2.png
+Wall1
+../img/wall1.png
+Wall2
+../img/wall2.png
 Player1
 ../img/player1.png
 Player2

@@ -48,7 +48,7 @@ class WorldReader:
 				elif (px == self.WALL):
 					staticObjects.append(WallObject([posX, posY]))
 				else:
-					raise Exception("Tile type unknown")
+					raise Exception("Tile type unknown: " + str(px))
 				#endif
 			#end for
 		#end for
