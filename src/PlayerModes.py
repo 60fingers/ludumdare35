@@ -41,13 +41,11 @@ class PlayerHuman ():
 		if(keys[pygame.K_UP] and (self.player.speed[1] == 0)):
 			self.player.speed[1] = -self.player.jumpSpeed
 			self.lastJumpInput = pygame.time.get_ticks()
-	
+
 		self.player.updateImageSet()
 		
 		print(str(self.player.speed) + " as Human")
 	
-
-
 #-------------------------------------------------------------------
 
 	
@@ -79,7 +77,7 @@ class PlayerGepard ():
 		if(keys[pygame.K_UP] and (self.player.speed[1] == 0)):
 			self.player.speed[1] = self.player.jumpSpeed
 	
-		print(str(self.player.speed) + " as Gepard")
+		#print(str(self.player.speed) + " as Gepard")
 
 #-------------------------------------------------------------------
 
@@ -150,7 +148,7 @@ class PlayerSnake ():
 			self.player.facingForward =  (not self.player.facingForward)
 			
 		
-		print(str(self.player.speed) + " as Snake")
+		#print(str(self.player.speed) + " as Snake")
 		
 #------------------------------------------------------------------		
 				
@@ -212,6 +210,6 @@ class PlayerBird ():
 			self.player.speed[1] = -self.player.jumpSpeed
 			self.lastJumpInput = pygame.time.get_ticks()
 			
-		print(str(self.player.speed) + " as Bird")
+		#print(str(self.player.speed) + " as Bird")
 
 

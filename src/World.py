@@ -27,7 +27,7 @@ class World:
 		#TODO: test wich values to take / read height from map
 		self.levelheight = 10
 
-		self.player = Player([0,0])	# TODO echte Spielerposition verwenden!
+		self.player = Player([0,0],self)	# TODO echte Spielerposition verwenden!
 	
 
 	# find stativ objects and mobs within defined range around a position
@@ -90,7 +90,7 @@ class World:
 
 		self.player.nextStep(keys)
 		
-		self.player.correctCollision(self)
+		#self.player.correctCollision(self)
 		
 		# TODO HACK Testzwecke:
 		if(self.player.position[0] < 0):

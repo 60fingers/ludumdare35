@@ -8,17 +8,20 @@ import CONFIG
 class Player (MovableObject):
 			
 			
-	def __init__ (self, position):
+	def __init__ (self, position, world):
 		MovableObject.__init__(self,
 			position,
 			collision=True,
+			world = world,
 			imglist=["PlayerStandingLeft"],
 			animated=True,
 			frameDuration = 10,
 			currentImg = None,
 			visible=True,
 			maxSpeed=CONFIG.PLAYER_SPEED_HUMAN)
-
+			
+		self.vsize = 1
+		self.hsize = 2
 		self.canHover = False
 			
 		self.lastShift = 0 # cooldown timer
