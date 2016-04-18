@@ -44,7 +44,11 @@ class Player (MovableObject):
 		
 			if(keys[pygame.K_SPACE]):
 			
-				self.currentShape=random.randint(0,3)
+				#self.currentShape=random.randint(0,3)
+				if ( self.currentShape < 3):
+					self.currentShape += 1
+				else:
+					self.currentShape = 0
 				
 				if(self.currentShape == 0):
 					self.currentPlayermode = PlayerHuman(self)

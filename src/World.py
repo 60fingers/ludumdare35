@@ -32,7 +32,6 @@ class World:
 		self.legalX_min = CONFIG.TILE_WIDTH * (CONFIG.VISIBLE_TILES_H/2 +1)
 		self.legalX_max = (CONFIG.TILE_WIDTH * mapInformations[2][0] ) - self.legalX_min
 
-		print(self.legalX_min, self.legalX_max)
 		
 		# initial position -> set to minimum if the one set by the map file isn't a
 		# legal one
@@ -103,7 +102,7 @@ class World:
 		
 		#self.player.correctCollision(self)
 		
-		# TODO HACK Testzwecke:
+		# dont leave the world
 		if(self.player.position[0] < self.legalX_min):
 			self.player.position[0] = self.legalX_min
 		if(self.player.position[0] >= self.legalX_max):
