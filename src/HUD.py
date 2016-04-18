@@ -138,10 +138,12 @@ class DebugElement(HUD_Element):
 		
 		self.size = (300,100)
 		
+		
 		HUD_Element.__init__(self, hud, position,
 				self.size, visible)
 	
 	def show(self):
+		if (not CONFIG.DEBUGMODE): return
 		
 		self.clear()
 		

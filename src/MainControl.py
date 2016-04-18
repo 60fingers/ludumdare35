@@ -33,6 +33,8 @@ class MainControl:
 			keys = pygame.key.get_pressed()
 			
 			## DEBUG FUNC ##
+			if(keys[pygame.K_c]):
+				CONFIG.DEBUGMODE = not CONFIG.DEBUGMODE
 			if(keys[pygame.K_ESCAPE]):
 				sys.exit()
 			if(keys[pygame.K_BACKSPACE]):
