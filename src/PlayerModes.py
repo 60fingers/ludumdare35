@@ -292,6 +292,15 @@ class PlayerBird ():
 			self.lastJumpInput = pygame.time.get_ticks()
 			self.lastWasFlap = True
 			self.timeSinceLastFlap = 0
+			
+			r=random.randint(0,2)
+			if(r == 0):
+				self.player.world.sounds["MoveEagle1"].play()
+			if(r == 1):
+				self.player.world.sounds["MoveEagle2"].play()
+			if(r == 2):
+				self.player.world.sounds["MoveEagle3"].play()
+					
 		
 		self.timeSinceLastFlap = (pygame.time.get_ticks() - self.lastJumpInput)
 		

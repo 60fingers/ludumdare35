@@ -48,10 +48,16 @@ Walking
 WalkingStone
 		../sounds/player/walkingstone.ogg
 MoveEagle
-	./player/eaglefly.ogg
+		../sounds/player/eaglefly.ogg
+MoveEagle1
+		../sounds/player/eaglefly1.ogg
+MoveEagle2
+		../sounds/player/eaglefly2.ogg
+MoveEagle3
+		../sounds/player/eaglefly3.ogg
 MoveGepard
-	./player/gepardwalking.ogg
+		../sounds/player/gepardwalking.ogg
 MoveSnake
-	./player/snakewalk.ogg
+		../sounds/player/snakewalk.ogg
 
 
