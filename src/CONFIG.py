@@ -16,7 +16,6 @@ VISIBLE_TILES_H = 10
 # game design
 #--------------
 GRAVITATION = 2
-MAX_STEP_HEIGHT = 5
 
 PLAYER_SHAPESHIFT_COOLDOWN = 300 #ms
 PLAYER_BIRD_FLAP_COOLDOWN = 1000 #ms
@@ -31,8 +30,8 @@ PLAYER_JUMP_SPEED_BIRD = 20
 PLAYER_JUMP_SPEED_GEPARD = 20
 PLAYER_JUMP_SPEED_SNAKE = 40
 
-# settings
-#--------------
+# advanced settings (better don't touch)
+#---------------------------------------
 FPS = 30
 RANGE_OF_VIEW = 20
 
@@ -40,5 +39,7 @@ RADIUS_COLLISION_CHECK = 3 # in tiles
 LEGAL_OVERHANG = 15
 MAX_CAVING_IN = 2
 MIN_CAVING_IN = 1
+MAX_STEP_HEIGHT = 5
+TOLERANCE_HEADHEIGHT = 10
 
 DEBUGMODE = False

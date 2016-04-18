@@ -132,7 +132,6 @@ class World:
 
 		self.player.nextStep(keys)
 		
-		#self.player.correctCollision(self)
 		
 		# dont leave the world
 		if(self.player.position[0] < self.legalX_min):

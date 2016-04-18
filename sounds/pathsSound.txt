@@ -1,11 +1,11 @@
 # Animal Movement
 
 MoveEagle
-	./animals/bewegung/eaglefly.ogg
+	./player/eaglefly.ogg
 MoveGepard
-	./animals/bewegung/gepardwalking.ogg
+	./player/gepardwalking.ogg
 MoveSnake
-	./animals/bewegung/snakewalk.ogg
+	./player/snakewalk.ogg
 
 
 
