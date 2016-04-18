@@ -63,6 +63,10 @@ class WorldReader:
 				
 				px = pxmapStat[x,y]
 
+				# delete alpha channel
+				if(len(px) > 3):
+					px = px[:3]
+
 				posX = CONFIG.TILE_WIDTH * x
 				posY = CONFIG.TILE_WIDTH * y
 
