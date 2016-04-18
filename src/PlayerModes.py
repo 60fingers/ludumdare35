@@ -1,4 +1,4 @@
-import pygame, os, CONFIG
+import pygame, os, CONFIG, random
 
 
 
@@ -49,7 +49,15 @@ class PlayerHuman ():
 				and time_since_last_jump >= CONFIG.PLAYER_JUMP_COOLDOWN_HUMAN ):
 
 			self.player.speed[1] = -self.player.jumpSpeed
+			
 			self.time_last_jump = pygame.time.get_ticks()
+
+			r=random.randint(0,1)
+			if(r == 0):
+				self.player.world.sounds["JumpHuman1"].play()
+			if(r == 1):
+				self.player.world.sounds["JumpHuman2"].play()
+					
 		
 		#for debugging
 		if(keys[pygame.K_DOWN] and self.player.canHover ):
