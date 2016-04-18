@@ -56,10 +56,10 @@ class MovableObject(WorldObject):
 		# moving to the new position axis after axis
 		if(self.speed[0] != 0):
 			self.lastHCollision = "not h. blocked"
-			self.moveAndCheckX(self.world,self.speed[0])
+			self.moveAndCheckY(self.world,self.speed[1])
 		if(self.speed[1] != 0):
 			self.lastVCollision = "not v. blocked"
-			self.moveAndCheckY(self.world,self.speed[1])
+			self.moveAndCheckX(self.world,self.speed[0])
 		
 		
 		
@@ -68,7 +68,8 @@ class MovableObject(WorldObject):
 	def moveAndCheckX(self, world, speedx):
 	
 		# Move the rect first
-		self.rect.left += speedx
+		self.rect.move([speedx,0])
+		resSpeedX= 0
 		
 		for obj in world.objectsSurrounding(self.position, CONFIG.RADIUS_COLLISION_CHECK):
 			if (not obj.collision):
@@ -84,27 +85,29 @@ class MovableObject(WorldObject):
 				# --> stand on the left side of the object
 				
 				if speedx > 0: 
-					self.rect.left = obj.rect.left - (obj.hsize*CONFIG.TILE_WIDTH)
+					resSpeedX = obj.rect.left-self.rect.right
 					self.speed[0] = 0
 					self.lastHCollision = "right h. blocked"
 					
 				# Moving left and hit the right side of the object 
 				# --> stand on the right side of the object
 				elif speedx < 0:
-					self.rect.left = obj.rect.right
+					resSpeedX = obj.rect.right-self.rect.left
 					self.speed[0] = 0
 					self.lastHCollision = "left h. blocked"
-					
+				
+				
 				
 		#synchronise the rect position with the objects position
-		self.position[0] = self.rect.left
+		self.position[0] += (speedx - resSpeedX)
 		obj.updateRect()
 	
 	# moving on Y axis with collision check
 	def moveAndCheckY(self, world, speedy):
 	
 		# Move the rect first
-		self.rect.top += speedy
+		self.rect.move([0, speedy])
+		resSpeedY = 0
 		
 		for obj in world.objectsSurrounding(self.position, CONFIG.RADIUS_COLLISION_CHECK):
 			if (not obj.collision):
@@ -116,24 +119,24 @@ class MovableObject(WorldObject):
 				
 				obj.updateRect()
 				
-				# Moving down and hit the top side of the object 
-				# --> stand on top of the object
+				# Moving right and hit the left side of the object 
+				# --> stand on the left side of the object
 				
-				if speedy > 0:
-					self.rect.bottom = obj.rect.top
+				if speedy > 0: 
+					resSpeedY = self.rect.bottom-obj.rect.top
 					self.speed[1] = 0
-					self.lastVCollision = "down v. blocked"
+					self.lastHCollision = "down v. blocked"
 					
-				# Moving up and hit the bottom side of the object 
-				# --> stand below the object
+				# Moving left and hit the right side of the object 
+				# --> stand on the right side of the object
 				elif speedy < 0:
-					self.rect.top = obj.rect.bottom
+					resSpeedY = obj.rect.top-self.rect.bottom
 					self.speed[1] = 0
-					self.lastVCollision = "up v. blocked"
+					self.lastHCollision = "up v. blocked"
 				
 				
 		#synchronise the rect position with the objects position
-		self.position[1] = self.rect.top
+		self.position[1] += (speedy - resSpeedY)
 		obj.updateRect()
 		
 		
