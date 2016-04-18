@@ -22,7 +22,7 @@ class Player (MovableObject):
 			
 		self.vsize = 1
 		self.hsize = 2
-		self.canHover = False
+		self.canHover = True
 			
 		self.lastShift = -1 # cooldown timer
 		self.currentShape = 0 # Shapes 0=human, 1=gepard, 2=snake, 3=bird
@@ -74,8 +74,11 @@ class Player (MovableObject):
 		self.currentPlayermode.nextStep(keys)
 
 		self.updateImageSet()
-
+		
 		MovableObject.nextStep(self)
+		
+# -----> Spam debug output !!!!!!!!!!!!!!!!!!!!!!!!!!!
+		#print("P: " + str(self.position) + " S: " + str(self.speed) + " - " + self.lastHCollision + " - " + self.lastVCollision)
 		
 		
 	def updateImageSet(self):
