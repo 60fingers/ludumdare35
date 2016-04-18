@@ -85,26 +85,33 @@ class MovableObject(WorldObject):
 						if (self.speed[1] > 0):
 							self.speed[1] = 0
 
-						if( self.cbox.bottom - obj.cbox.top > 2):
-							self.move([0, obj.cbox.top - self.cbox.bottom +1])
+						# correct caving into ground - MUST be > 0
+						if( self.cbox.bottom - obj.cbox.top > CONFIG.MAX_CAVING_IN):
+							self.move([0, obj.cbox.top - self.cbox.bottom + CONFIG.MIN_CAVING_IN])
 							
 					else:
 						# get out of the wall, you idiot!
-						
-						if (self.cbox.bottom - obj.cbox.top < 5):
+
+
+						# ignore stubbing the toes						
+						if (self.cbox.bottom - obj.cbox.top < CONFIG.MAX_STEP_HEIGHT):
 							continue
 						
+						# ran into the wall on the right side
 						if(self.cbox.left < obj.cbox.left):
 							# move back left
-							self.move([obj.cbox.left - self.cbox.right +1, 0])
+							self.move([obj.cbox.left - self.cbox.right + CONFIG.MIN_CAVING_IN, 0])
 							
+							# prevent from running again
 							if (self.speed[0] > 0):
 								self.speed[0] = 0
 
+						# ran into the wall on the left side
 						elif(self.cbox.right > obj.cbox.right):
 							# move back right	
-							self.move([obj.cbox.right - self.cbox.left -1, 0])
+							self.move([obj.cbox.right - self.cbox.left - CONFIG.MIN_CAVING_IN, 0])
 							
+							# prevent from running again
 							if (self.speed[0] < 0):
 								self.speed[0] = 0
 					# end if
