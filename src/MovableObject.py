@@ -8,6 +8,8 @@ class MovableObject(WorldObject):
 	
 	speed = [0,0]
 	maxSpeed = 0
+	coll = " "
+	groundBefore
 
 	canHover = False
 
@@ -47,10 +49,6 @@ class MovableObject(WorldObject):
 		
 		WorldObject.nextStep(self)
 
-		# gravitation!
-		if (not self.canHover):
-			self.speed[1] += CONFIG.GRAVITATION
-
 		self.physicMove()
 		
 	def move (self, speed):
@@ -68,7 +66,8 @@ class MovableObject(WorldObject):
 
 		self.move(self.speed)
 
-
+		nowground = False
+		
 		for obj in surrobjs:
 
 			if ( not obj.collision):
@@ -81,9 +80,11 @@ class MovableObject(WorldObject):
 					# from above or from the side!
 					
 					if (self.cbox.bottom - self.speed[1] > obj.cbox.top):
+						nowground = True
 						
+						self.coll = "down"
 						# landed on object - haha, lucky
-						self.move([0, obj.cbox.top - self.cbox.bottom])
+						self.move([0, obj.cbox.top - self.cbox.bottom ])
 						self.speed[1] = 0
 					
 					else:
@@ -92,17 +93,26 @@ class MovableObject(WorldObject):
 						self.speed[0] = 0
 						
 						if(self.cbox.left < obj.cbox.left):
+							self.coll = "right"
 							# move back left
 							self.move([obj.cbox.left - self.cbox.right, 0])
 
-						else:
+						elif(self.cbox.right > obj.cbox.right):
+							self.coll = "left"
 							# move back right	
 							self.move([obj.cbox.right - self.cbox.left, 0])
 					# end if
 				# end if
 			# end if
+			
 		# end for
-
+		
+		if (not nowground):
+			# gravitation!
+			if (not self.canHover):
+				self.speed[1] += CONFIG.GRAVITATION
+		
+		#end method physic movements
 
 		
 

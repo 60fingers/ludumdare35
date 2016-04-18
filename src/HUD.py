@@ -147,7 +147,8 @@ class DebugElement(HUD_Element):
 		
 		self.clear()
 		
-		text = str(self.world.player.position)
+		#text = str(self.world.player.position)
+		text = self.world.player.coll
 		label = self.hud.font.render(text, 1, (5,5,5))
 		self.surf.blit(label,(0,0))
 		
