@@ -8,8 +8,6 @@ class MovableObject(WorldObject):
 	
 	speed = [0,0]
 	maxSpeed = 0
-	coll = " "
-	groundBefore
 
 	canHover = False
 
@@ -64,9 +62,10 @@ class MovableObject(WorldObject):
 		surrobjs = self.world.objSurr_H_static(self.position,
 				CONFIG.RADIUS_COLLISION_CHECK)
 
-		self.move(self.speed)
+		if (not self.canHover):
+			self.speed[1] += CONFIG.GRAVITATION
 
-		nowground = False
+		ground = False
 		
 		for obj in surrobjs:
 
@@ -79,39 +78,43 @@ class MovableObject(WorldObject):
 
 					# from above or from the side!
 					
-					if (self.cbox.bottom - self.speed[1] > obj.cbox.top):
-						nowground = True
-						
-						self.coll = "down"
+					if (self.cbox.bottom - self.speed[1] < obj.cbox.top):
 						# landed on object - haha, lucky
-						self.move([0, obj.cbox.top - self.cbox.bottom ])
-						self.speed[1] = 0
-					
+						ground = True
+						
+						if (self.speed[1] > 0):
+							self.speed[1] = 0
+
+						if( self.cbox.bottom - obj.cbox.top > 2):
+							self.move([0, obj.cbox.top - self.cbox.bottom +1])
+							
 					else:
 						# get out of the wall, you idiot!
-
-						self.speed[0] = 0
+						
+						if (self.cbox.bottom - obj.cbox.top < 5):
+							continue
 						
 						if(self.cbox.left < obj.cbox.left):
-							self.coll = "right"
 							# move back left
-							self.move([obj.cbox.left - self.cbox.right, 0])
+							self.move([obj.cbox.left - self.cbox.right +1, 0])
+							
+							if (self.speed[0] > 0):
+								self.speed[0] = 0
 
 						elif(self.cbox.right > obj.cbox.right):
-							self.coll = "left"
 							# move back right	
-							self.move([obj.cbox.right - self.cbox.left, 0])
+							self.move([obj.cbox.right - self.cbox.left -1, 0])
+							
+							if (self.speed[0] < 0):
+								self.speed[0] = 0
 					# end if
 				# end if
 			# end if
 			
 		# end for
+			
 		
-		if (not nowground):
-			# gravitation!
-			if (not self.canHover):
-				self.speed[1] += CONFIG.GRAVITATION
-		
+		self.move(self.speed)
 		#end method physic movements
 
 		
