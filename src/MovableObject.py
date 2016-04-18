@@ -74,7 +74,8 @@ class MovableObject(WorldObject):
 			
 			if (self.cbox.colliderect(obj.cbox)):
 				
-				if (self.cbox.top <= obj.cbox.top):
+				# the tolerance is needed because of the caving in
+				if (self.cbox.top <= obj.cbox.top - CONFIG.TOLERANCE_HEADHEIGHT):
 
 					# the player's coming from above or from above or from the side!
 					
@@ -123,7 +124,12 @@ class MovableObject(WorldObject):
 				else:
 					# now checking top
 
-					speedComponentRelation = float(self.speed[0]) / self.speed[1]
+					crashfromrightbelow = False 	# hack...
+
+					if (not self.speed[1] == 0):
+						speedComponentRelation = float(self.speed[0]) / -self.speed[1]
+					else:
+						crashfromrightbelow = True
 
 					crashvector = [0,0]
 					
@@ -147,20 +153,24 @@ class MovableObject(WorldObject):
 
 					crashvector[1] = obj.cbox.bottom - self.cbox.top
 
-					crashComponentRelation = float(crashvector[0]) / crashvector[1]
+					if (not crashvector[1] == 0):
+						crashComponentRelation = float(crashvector[0]) / crashvector[1]
+					else:
+						crashComponentRelation = 99999 # another huge number
 
 
 					# check if the player crashed into the ceiling or into the wall
-					if (speedComponentRelation > crashComponentRelation):
+					if (speedComponentRelation > crashComponentRelation 
+							and not crashfromrightbelow):
 						
 						# horizontal correction
 						if (crashedFromLeft):
 							
-							self.move([obj.cbox.left - self.cbox.right, 0])
+							self.move([obj.cbox.left - self.cbox.right + CONFIG.MIN_CAVING_IN, 0])
 
 						else:
 							
-							self.move([obj.cbox.right - self.cbox.left, 0])
+							self.move([obj.cbox.right - self.cbox.left - CONFIG.MIN_CAVING_IN, 0])
 
 
 						self.speed[0] = 0

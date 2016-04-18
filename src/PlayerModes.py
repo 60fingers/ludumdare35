@@ -23,6 +23,8 @@ class PlayerHuman ():
 			"jr" : ["PlayerJumpingRight"],
 			"jl" : ["PlayerJumpingLeft"]}
 
+		self.time_last_jump = 0
+
 	def nextStep(self,keys):
 	
 		#  Der Mensch wird normal mit Pfeiltasten gesteuert,
@@ -39,15 +41,23 @@ class PlayerHuman ():
 		else:	
 			self.player.speed[0] = 0
 		
-		if(keys[pygame.K_UP] and (self.player.speed[1] == 0) and (self.lastTickVelY >= 0) ):
+
+		time_since_last_jump = pygame.time.get_ticks() - self.time_last_jump
+
+		if(keys[pygame.K_UP] and (self.player.speed[1] == 0)
+				and (self.lastTickVelY >= 0) 
+				and time_since_last_jump >= CONFIG.PLAYER_JUMP_COOLDOWN_HUMAN ):
+
 			self.player.speed[1] = -self.player.jumpSpeed
+			
+			self.time_last_jump = pygame.time.get_ticks()
+
 			r=random.randint(0,1)
 			if(r == 0):
 				self.player.world.sounds["JumpHuman1"].play()
 			if(r == 1):
 				self.player.world.sounds["JumpHuman2"].play()
 					
-			self.lastJumpInput = pygame.time.get_ticks()
 		
 		#for debugging
 		if(keys[pygame.K_DOWN] and self.player.canHover ):

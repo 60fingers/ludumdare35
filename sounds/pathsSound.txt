@@ -1,14 +1,3 @@
-# Animal Movement
-
-MoveEagle
-	../sounds/animals/bewegung/eaglefly.ogg
-MoveGepard
-	../sounds/animals/bewegung/gepardwalking.ogg
-MoveSnake
-	../sounds/animals/bewegung/snakewalk.ogg
-
-
-
 # Environment
 
 Dying
@@ -58,3 +47,11 @@ Walking
 		../sounds/player/walking.ogg
 WalkingStone
 		../sounds/player/walkingstone.ogg
+MoveEagle
+	./player/eaglefly.ogg
+MoveGepard
+	./player/gepardwalking.ogg
+MoveSnake
+	./player/snakewalk.ogg
+
+

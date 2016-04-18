@@ -20,8 +20,8 @@ class Player (MovableObject):
 			visible=True,
 			maxSpeed=CONFIG.PLAYER_SPEED_HUMAN)
 			
-		self.vsize = 1
-		self.hsize = 2
+		#self.vsize = 1
+		#self.hsize = 2
 		self.canHover = False
 			
 		self.lastShift = -1 # cooldown timer
@@ -80,11 +80,11 @@ class Player (MovableObject):
 			# end if
 		# end if
 
-		self.currentPlayermode.nextStep(keys)
-
 		self.updateImageSet()
-		
+
 		MovableObject.nextStep(self)
+
+		self.currentPlayermode.nextStep(keys)
 		
 	def updateImageSet(self):
 		
@@ -164,3 +164,4 @@ class Player (MovableObject):
 				self.position[1],
 				(self.hsize*CONFIG.TILE_WIDTH - 2 * CONFIG.LEGAL_OVERHANG),
 				(self.vsize*CONFIG.TILE_HEIGHT))
+
