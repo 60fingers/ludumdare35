@@ -61,6 +61,10 @@ class Player (MovableObject):
 						
 				print("Shift into shape " + str(self.currentShape))
 
+				# reset action, so that the imglist will be reloaded
+				# facial direction needs to be stored
+				self.currentAction = "m" + self.currentAction[-1]
+
 				# Cooldown
 				self.lastShift = pygame.time.get_ticks()
 
