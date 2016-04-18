@@ -14,6 +14,22 @@ class WorldReader:
 	GROUND = (34,177,76)
 	GROUNDDEEP = (44,123,19)
 	WALL = (120,120,120)
+
+	# World Reader returns an array of informations given by the map files
+	# the return array has this format:
+	# 
+	#
+	# [ <array of static objects>,
+	#
+	#	<array of movable objects>,
+	#
+	#	[<map width>, <map height>],
+	#
+	#	[<playerX_init>, <playerY_init>] ]
+	#
+	#
+	# If world decides, that the player position is too close to the rim of
+	# the map, it will define a new one.
 	
 	def __init__(self):
 		print("world reader in action")
@@ -57,8 +73,14 @@ class WorldReader:
 		#end for
 
 		# TODO insert moving objects
+		# TODO initial player position
+		
+		initial_player_position = [0,0]
 
-		return [staticObjects, movableObjects, staImg.size]
+		return [staticObjects,
+				movableObjects,
+				staImg.size,
+				initial_player_position]
 		
 		
 	def readFile(self, pathFile):

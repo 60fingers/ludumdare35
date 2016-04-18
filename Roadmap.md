@@ -19,8 +19,8 @@ o - 1.0 Complete Release
 - Kollision fixen
 - Flügelschlagen des Vogels visualisieren
 - HUD + Hauptmenü
-- Schließen mit ESC
 - Spielertod & Fallen
+- Spielermodell vertikal verschiebbar machen (schwebt noch)
 
 ### Artwork
 
@@ -32,7 +32,7 @@ o - 1.0 Complete Release
 
 - Hindernisse
 - Boden Variation
-- morph animation
+- morph animation (Blitz?)
 
 ### Music/Sound
 

@@ -28,8 +28,18 @@ class World:
 		# pixelheight of the map
 		self.levelheight = mapInformations[2][1]
 
+		# extreme x coordinates, so that the player wont see the end of the world
+		self.legalX_min = CONFIG.TILE_WIDTH * (CONFIG.VISIBLE_TILES_H/2 +1)
+		self.legalX_max = (CONFIG.TILE_WIDTH * mapInformations[2][0] ) - self.legalX_min
 
-		self.player = Player([0,0],self)	# TODO echte Spielerposition verwenden!
+		print(self.legalX_min, self.legalX_max)
+		
+		# initial position -> set to minimum if the one set by the map file isn't a
+		# legal one
+		if ( mapInformations[3][0] < self.legalX_min or
+				mapInformations[3][0] > self.legalX_max):
+
+			self.player = Player([self.legalX_min,0],self)
 	
 
 	# find stativ objects and mobs within defined range around a position
@@ -59,8 +69,7 @@ class World:
 			if(i >= len(self.statics)):
 				break
 
-		#------------- END -----------------
-		
+		#------------- END ----------------- 
 
 		# add every movable object in range
 		#------------ BEGIN ----------------
@@ -95,10 +104,10 @@ class World:
 		#self.player.correctCollision(self)
 		
 		# TODO HACK Testzwecke:
-		if(self.player.position[0] < 0):
-			self.player.position[0] = 0
-		if(self.player.position[0] >= (len(self.statics) * CONFIG.TILE_WIDTH)):
-			self.player.position[0] = (len(self.statics)-1) * CONFIG.TILE_WIDTH
+		if(self.player.position[0] < self.legalX_min):
+			self.player.position[0] = self.legalX_min
+		if(self.player.position[0] >= self.legalX_max):
+			self.player.position[0] = self.legalX_max
 		if(self.player.position[1] < 0):
 			self.player.position[1] = 0
 		if(self.player.position[1] >= (self.levelheight * CONFIG.TILE_HEIGHT)):
