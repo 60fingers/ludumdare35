@@ -19,6 +19,8 @@ class MainControl:
 		self.view.loadImages(Auxiliaries.readImagePathList())
 
 		self.running = True
+		
+		self.debugToggle = 0
 
 	def main(self):
 
@@ -33,8 +35,9 @@ class MainControl:
 			keys = pygame.key.get_pressed()
 			
 			## DEBUG FUNC ##
-			if(keys[pygame.K_c]):
+			if(keys[pygame.K_c] and (pygame.time.get_ticks() - self.debugToggle > 100)):
 				CONFIG.DEBUGMODE = not CONFIG.DEBUGMODE
+				self.debugToggle = pygame.time.get_ticks()
 			if(keys[pygame.K_ESCAPE]):
 				sys.exit()
 			if(keys[pygame.K_BACKSPACE]):

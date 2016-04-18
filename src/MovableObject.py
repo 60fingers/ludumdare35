@@ -125,14 +125,14 @@ class MovableObject(WorldObject):
 				if speedy > 0: 
 					resSpeedY = self.rect.bottom-obj.rect.top
 					self.speed[1] = 0
-					self.lastHCollision = "down v. blocked"
+					self.lastVCollision = "down v. blocked"
 					
 				# Moving left and hit the right side of the object 
 				# --> stand on the right side of the object
 				elif speedy < 0:
 					resSpeedY = obj.rect.top-self.rect.bottom
 					self.speed[1] = 0
-					self.lastHCollision = "up v. blocked"
+					self.lastVCollision = "up v. blocked"
 				
 				
 		#synchronise the rect position with the objects position

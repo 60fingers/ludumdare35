@@ -26,6 +26,7 @@ class Player (MovableObject):
 			
 		self.lastShift = -1 # cooldown timer
 		self.currentShape = 0 # Shapes 0=human, 1=gepard, 2=snake, 3=bird
+		self.shapeString = "Human"
 		self.currentPlayermode = PlayerHuman(self)
 		self.jumpSpeed = CONFIG.PLAYER_JUMP_SPEED_HUMAN
 		self.facingForward = True
@@ -52,12 +53,16 @@ class Player (MovableObject):
 				
 				if(self.currentShape == 0):
 					self.currentPlayermode = PlayerHuman(self)
+					self.shapeString = "Human"
 				elif(self.currentShape == 1):
 					self.currentPlayermode = PlayerGepard(self)
+					self.shapeString = "Gepard"
 				elif(self.currentShape == 2):
 					self.currentPlayermode = PlayerSnake(self)
+					self.shapeString = "Snake"
 				elif(self.currentShape == 3):
 					self.currentPlayermode = PlayerBird(self)
+					self.shapeString = "Bird"
 						
 				print("Shift into shape " + str(self.currentShape))
 
@@ -76,10 +81,7 @@ class Player (MovableObject):
 		self.updateImageSet()
 		
 		MovableObject.nextStep(self)
-		
-# -----> Spam debug output !!!!!!!!!!!!!!!!!!!!!!!!!!!
-		#print("P: " + str(self.position) + " S: " + str(self.speed) + " - " + self.lastHCollision + " - " + self.lastVCollision)
-		
+			
 		
 	def updateImageSet(self):
 		

@@ -15,7 +15,7 @@ class HUD():
 				)
 				
 		self.elements.append(
-				DebugElement(self,(700,50))
+				DebugElement(self,(700,10))
 				)
 	
 	def show(self):
@@ -136,7 +136,7 @@ class DebugElement(HUD_Element):
 			position,
 			visible = True):
 		
-		self.size = (300,100)
+		self.size = (500,100)
 		
 		
 		HUD_Element.__init__(self, hud, position,
@@ -147,9 +147,15 @@ class DebugElement(HUD_Element):
 		
 		self.clear()
 		
-		text = str(self.world.player.position)
-		label = self.hud.font.render(text, 1, (5,5,5))
-		self.surf.blit(label,(0,0))
+		text = "Pos:" + str(self.world.player.position) + " Spe:" + str(self.world.player.speed)
+		text2 = str(self.world.player.lastHCollision) + " - " + str(self.world.player.lastVCollision)
+		text3 = "Currend shape: " + self.world.player.shapeString
+		positionAndSpeed = self.hud.font.render(text, 1, (5,5,5))
+		collision = self.hud.font.render(text2, 1, (5,5,5))
+		shape = self.hud.font.render(text3, 1, (5,5,5))
+		self.surf.blit(positionAndSpeed,(0,0))
+		self.surf.blit(collision,(0,20))
+		self.surf.blit(shape,(0,40))
 		
 		# call super show
 		HUD_Element.show(self)
