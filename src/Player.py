@@ -74,8 +74,11 @@ class Player (MovableObject):
 		self.currentPlayermode.nextStep(keys)
 
 		self.updateImageSet()
-
+		
 		MovableObject.nextStep(self)
+		
+# -----> Spam debug output !!!!!!!!!!!!!!!!!!!!!!!!!!!
+		print(str(self.position) + " - " + str(self.speed) + " - " + self.lastHCollision + " - " + self.lastVCollision)
 		
 		
 	def updateImageSet(self):

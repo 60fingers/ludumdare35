@@ -40,6 +40,8 @@ class MovableObject(WorldObject):
 
 		self.speed = speed
 		self.maxSpeed = maxSpeed
+		self.lastHCollision = "not h. blocked"
+		self.lastVCollision = "not v. blocked"
 	
 	def nextStep (self):
 		
@@ -52,8 +54,12 @@ class MovableObject(WorldObject):
 		self.updateRect()
 		
 		# moving to the new position axis after axis
+		self.lastHCollision = "not h. blocked"
 		self.moveAndCheck(self.world,self.speed[0],0)
+		self.lastVCollision = "not v. blocked"
 		self.moveAndCheck(self.world,0,self.speed[1])
+		
+		
 		
 		
 
@@ -74,28 +80,38 @@ class MovableObject(WorldObject):
 				
 				# Moving right and hit the left side of the object 
 				# --> stand on the left side of the object
-				if speedx > 0: 
-					self.rect.right = object.rect.left
-					self.speed[0] = 0
+				if(speedy == 0):
+				
+					if speedx > 0: 
+						self.rect.right = object.rect.left
+						self.speed[0] = 0
+						self.lastHCollision = "right h. blocked"
 					
-				# Moving left and hit the right side of the object 
-				# --> stand on the right side of the object
-				if speedx < 0:
-					self.rect.left = object.rect.right
-					self.speed[0] = 0
+					# Moving left and hit the right side of the object 
+					# --> stand on the right side of the object
+					elif speedx < 0:
+						self.rect.left = object.rect.right
+						self.speed[0] = 0
+						self.lastHCollision = "left h. blocked"
 					
+				
 				# Moving down and hit the top side of the object 
 				# --> stand on top of the object
-				if speedy > 0:
-					self.rect.bottom = object.rect.top
-					self.speed[1] = 0
+				if(speedx == 0):
+				
+					if speedy > 0:
+						self.rect.bottom = object.rect.top
+						self.speed[1] = 0
+						self.lastVCollision = "down v. blocked"
 					
-				# Moving up and hit the bottom side of the object 
-				# --> stand below the object
-				if speedy < 0:
-					self.rect.top = object.rect.bottom
-					self.speed[1] = 0
-	
+					# Moving up and hit the bottom side of the object 
+					# --> stand below the object
+					elif speedy < 0:
+						self.rect.top = object.rect.bottom
+						self.speed[1] = 0
+						self.lastVCollision = "up v. blocked"
+				
+				
 		#synchronise the rect position with the objects position
 		self.position[0] = self.rect.left
 		self.position[1] = self.rect.top
