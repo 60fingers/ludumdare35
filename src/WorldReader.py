@@ -12,7 +12,15 @@ class WorldReader:
 
 	AIR = (255,255,255) 
 	GROUND = (34,177,76)
+	
 	GROUNDDEEP = (44,123,19)
+	GROUNDDEEPLEFT = (33,90,14)
+	GROUNDDEEPRIGHT= (53,146,22)
+	
+	GROUNDEDGELEFT = (13,155,95)
+	GROUNDEDGERIGHT = (15,193,118)
+	GROUNDEDGEBOTH = (14,175,106)
+	
 	WALL = (120,120,120)
 
 	# World Reader returns an array of informations given by the map files
@@ -60,12 +68,31 @@ class WorldReader:
 
 				if (px == self.AIR):
 					staticObjects.append(AirObject([posX, posY]))
+					
 				elif (px == self.GROUND):
 					staticObjects.append(GroundObject([posX, posY]))
+				
+				elif (px == self.GROUNDEDGELEFT):
+					staticObjects.append(GroundELObject([posX, posY]))
+				
+				elif (px == self.GROUNDEDGERIGHT):
+					staticObjects.append(GroundERObject([posX, posY]))
+				
+				elif (px == self.GROUNDEDGEBOTH):
+					staticObjects.append(GroundEBObject([posX, posY]))
+					
 				elif (px == self.GROUNDDEEP):
 					staticObjects.append(GroundDeepObject([posX, posY]))
+				
+				elif (px == self.GROUNDDEEPLEFT):
+					staticObjects.append(GroundDeepLObject([posX, posY]))
+				
+				elif (px == self.GROUNDDEEPRIGHT):
+					staticObjects.append(GroundDeepRObject([posX, posY]))
+					
 				elif (px == self.WALL):
 					staticObjects.append(WallObject([posX, posY]))
+					
 				else:
 					raise Exception("Tile type unknown: " + str(px))
 				#endif

@@ -2,79 +2,138 @@
 
 Ground1
 	../img/ground1.png
+	
 GroundDeep1
 	../img/groundDeep1.png
+	
+GroundEdgeLeft
+	../img/groundedgeleft.png
+	
+GroundEdgeRight
+	../img/groundedgeright.png
+
+GroundEdgeBoth
+	../img/groundedgeboth.png
+
+GroundDeepLeft
+	../img/grounddeepleft.png
+
+GroundDeepRight
+	../img/grounddeepright.png
+	
 Wall1
 	../img/wall1.png
+	
 Wall2
 	../img/wall2.png
 
 
+	
 # Human Models
+# ------------
+
 PlayerRunningLeft1
 		../img/playerRunningLeft1.png
+		
 PlayerRunningLeft2
 		../img/playerRunningLeft2.png
+		
 PlayerRunningRight1
 		../img/playerRunningRight1.png
+		
 PlayerRunningRight2
 		../img/playerRunningRight2.png
+		
 PlayerStandingLeft
 		../img/playerStandingLeft.png
+		
 PlayerStandingRight
 		../img/playerStandingRight.png
+		
 PlayerJumpingLeft
 		../img/playerJumpingLeft.png
+		
 PlayerJumpingRight
 		../img/playerJumpingRight.png
 
+		
 # Snake Models
+# ------------
+
 SnakeJumping
 		../img/snakeJump.png
+		
 SnakeMovingLeft
 		../img/snakeMovingLeft.png
+		
 SnakeMovingRight
 		../img/snakeMovingRight.png
+		
 SnakeStandingRight
 		../img/snakeStandingRight.png
+		
 SnakeStandingLeft
 		../img/snakeStandingLeft.png
+		
 
 
 # Gepard Models
+# -------------
+
 GepardStandingLeft
 		../img/gepardStandingLeft.png
+		
 GepardStandingRight
 		../img/gepardStandingRight.png
+		
 GepardRunningLeft1
 		../img/gepardRunningLeft1.png
+		
 GepardRunningRight1
 		../img/gepardRunningRight1.png
+		
 GepardJumpingLeft
 		../img/gepardJumpingLeft.png
+		
 GepardJumpingRight
 		../img/gepardJumpingRight.png
 
+
 # Bird Models
+# -----------
+
 BirdStandRight
 		../img/birdStandRight.png
+		
 BirdStandLeft
 		../img/birdStandLeft.png
+		
 BirdGlideRight
 		../img/birdGlideRight.png
+		
 BirdGlideLeft
 		../img/birdGlideLeft.png
+		
 BirdFlapLeft
 		../img/birdFlapLeft.png
+		
 BirdFlapRight
 		../img/birdFlapRight.png
 
+		
+		
 # game elements
+#--------------
+
 Morph
 		../img/morph.png
+		
 Background
 		../img/Background.png
 
+		
+		
 # UI
+# -----
 CoolDownFrame
 		../img/ui/cooldownframe.png

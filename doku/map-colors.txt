@@ -1,9 +1,18 @@
 # static objects
 
-Air: 		255 255 255
-ground:		034 177 076
-grounddeep:	044 123 019
-wall:		120 120 120
+Air 		255 255 255
+
+ground		034 177 076
+
+groundedgel	013 155 095
+groundedger	015 193 118
+groundedgeb 014 175 106
+
+grounddeep	044 123 019
+grounddeepl	033 090 014
+grounddeepr	053 146 022
+
+wall		120 120 120
 
 
 # movable objects

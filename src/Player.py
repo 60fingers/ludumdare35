@@ -109,7 +109,6 @@ class Player (MovableObject):
 			# stop the bird to standing during flight
 			if(self.currentShape == 3 and not self.lastTickVelY >= 0):
 				self.currentAction = "rl"
-				print("stop")
 
 		# running right
 		if (self.speed[0] > 0 and

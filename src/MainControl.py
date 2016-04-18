@@ -25,8 +25,9 @@ class MainControl:
 
 		# load sounds and music
 		#self.sounds = Auxiliaries.readSoundPathList()
-		pygame.mixer.music.load('../sounds/music/gameplaymusic.ogg')
-		pygame.mixer.music.play(-1)
+
+		# pygame.mixer.music.load('../sounds/music/gameplaymusic.ogg')
+		# pygame.mixer.music.play(-1)
 		
 		while self.running:
 			
