@@ -1,60 +1,60 @@
 # Animal Movement
 
 MoveEagle
-	./animals/bewegung/eaglefly.ogg
+	../sounds/animals/bewegung/eaglefly.ogg
 MoveGepard
-	./animals/bewegung/gepardwalking.ogg
+	../sounds/animals/bewegung/gepardwalking.ogg
 MoveSnake
-	./animals/bewegung/snakewalk.ogg
+	../sounds/animals/bewegung/snakewalk.ogg
 
 
 
 # Environment
 
 Dying
-		./env/dying.ogg
+		../sounds/env/dying.ogg
 
 
 
 # Game Events
 
 Death
-		./game_events/death.ogg
+		../sounds/game_events/death.ogg
 Saving
-		./game_events/saving.ogg
+		../sounds/game_events/saving.ogg
 Start
-		./game_events/start.ogg
+		../sounds/game_events/start.ogg
 
 
 
 # Music
 
 Gameplay1
-		./music/gameplaymusic.ogg
+		../sounds/music/gameplaymusic.ogg
 Main1
-		./music/mainmusic.ogg
+		../sounds/music/mainmusic.ogg
 Main2
-		./music/mainmusictwo.ogg
+		../sounds/music/mainmusictwo.ogg
 
 
 
 # Player
 
 ShiftEagle
-		./player/eagleshapeshift.ogg
+		../sounds/player/eagleshapeshift.ogg
 ShiftGepard
-		./player/gepardshapeshift.ogg
+		../sounds/player/gepardshapeshift.ogg
 ShiftSnake
-		./player/snakeshapeshift.ogg
+		../sounds/player/snakeshapeshift.ogg
 Fight1
-		./player/fight.ogg
+		../sounds/player/fight.ogg
 JumpHuman1
-		./player/humanJump1.ogg
+		../sounds/player/humanJump1.ogg
 JumpHuman2
-		./player/humanJump2.ogg
+		../sounds/player/humanJump2.ogg
 Running
-		./player/running.ogg
+		../sounds/player/running.ogg
 Walking
-		./player/walking.ogg
+		../sounds/player/walking.ogg
 WalkingStone
-		./player/walkingstone.ogg
+		../sounds/player/walkingstone.ogg

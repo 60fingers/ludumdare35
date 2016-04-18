@@ -16,18 +16,16 @@ class MainControl:
 		self.world = World.World()
 		self.view = WorldView.WorldView(self.world)
 		self.view.loadImages(Auxiliaries.readImagePathList())
-		#self.sounds = {}
+		self.world.loadSounds(Auxiliaries.readSoundPathList())
 		self.running = True
 		
 		self.debugToggle = 0
 
 	def main(self):
 
-		# load sounds and music
-		#self.sounds = Auxiliaries.readSoundPathList()
 
-		# pygame.mixer.music.load('../sounds/music/gameplaymusic.ogg')
-		# pygame.mixer.music.play(-1)
+		pygame.mixer.music.load(self.world.sounds["Start"])
+		pygame.mixer.music.play(0)
 		
 		while self.running:
 			
