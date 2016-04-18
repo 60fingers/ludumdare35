@@ -259,7 +259,7 @@ class PlayerBird ():
 						
 
 		# cooldown for jump
-		timeSinceLastJump = (pygame.time.get_ticks() - self.lastJumpInput)/1000
+		timeSinceLastJump = (pygame.time.get_ticks() - self.lastJumpInput)
 
 		# HACK TODO
 		# gravitation reduction

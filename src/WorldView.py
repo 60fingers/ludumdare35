@@ -1,5 +1,7 @@
 import pygame, os
 
+import HUD
+
 import CONFIG
 
 
@@ -34,6 +36,9 @@ class WorldView:
 		# pygame initialisation
 		pygame.init()
 		self.screen = pygame.display.set_mode(self.size)
+
+		# ui hud
+		self.hud = HUD.HUD(self)
 	
 
 	# is run once, before the game starts
@@ -93,7 +98,14 @@ class WorldView:
 				ploty = obj.position[1] 
 				
 				# show corresponding image from imagelist
-				self.screen.blit(self.images[obj.currentImg], pygame.Rect(plotx, ploty, CONFIG.TILE_WIDTH,CONFIG.TILE_HEIGHT))
+				self.screen.blit(self.images[obj.currentImg],
+						pygame.Rect(plotx, ploty,
+								CONFIG.TILE_WIDTH, CONFIG.TILE_HEIGHT))
+
+			# end if
+		# end for
+
+		self.hud.show()
 
 		pygame.display.flip()
 
