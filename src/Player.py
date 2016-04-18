@@ -38,7 +38,7 @@ class Player (MovableObject):
 	def nextStep(self, keys):
 		
 		# Shapeshift
-		timeSinceLastShift = (pygame.time.get_ticks() - self.lastShift)/1000.0
+		timeSinceLastShift = (pygame.time.get_ticks() - self.lastShift)
 
 		if(timeSinceLastShift >= CONFIG.PLAYER_SHAPESHIFT_COOLDOWN):
 		

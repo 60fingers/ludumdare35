@@ -69,9 +69,12 @@ BirdFlapLeft
 BirdFlapRight
 		../img/birdFlapRight.png
 
-# Misc.
+# game elements
 Morph
 		../img/morph.png
 Background
 		../img/Background.png
 
+# UI
+CoolDownFrame
+		../img/ui/cooldownframe.png
