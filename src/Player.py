@@ -31,6 +31,8 @@ class Player (MovableObject):
 		self.jumpSpeed = CONFIG.PLAYER_JUMP_SPEED_HUMAN
 		self.facingForward = True
 		self.lastTickVelY = 0
+		self.dead = False
+		self.timeOfDead = 0
 		
 		self.currentAction = "sr" # possible: jr, jl, rl, rr, sr, sl
 		
@@ -85,6 +87,18 @@ class Player (MovableObject):
 		MovableObject.nextStep(self)
 
 		self.currentPlayermode.nextStep(keys)
+		
+		# Die if under the world
+		if(self.position[1] >= 799 and not self.dead):
+			self.world.sounds["Death"].play()
+			self.dead = True
+			self.timeOfDead = pygame.time.get_ticks()
+		
+		# revive after 5 sec on top of the level
+		if(self.dead == True and pygame.time.get_ticks() - self.timeOfDead > 5000):
+			self.dead = False
+			self.position[1] = 2
+			
 		
 	def updateImageSet(self):
 		
