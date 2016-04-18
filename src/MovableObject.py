@@ -129,6 +129,7 @@ class MovableObject(WorldObject):
 					if (not self.speed[1] == 0):
 						speedComponentRelation = float(self.speed[0]) / -self.speed[1]
 					else:
+						speedComponentRelation = 99999 # just a huge number...
 						crashfromrightbelow = True
 
 					crashvector = [0,0]
