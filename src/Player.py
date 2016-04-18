@@ -82,10 +82,8 @@ class Player (MovableObject):
 			self.currentAction = "sr"
 			
 			# stop the bird to standing during flight
-			print(self.currentPlayermode.lastTickVelY)
 			if(self.currentShape == 3 and not self.lastTickVelY >= 0):
 				self.currentAction = "rr"
-				print("stop")
 			
 			
 		# standing left
