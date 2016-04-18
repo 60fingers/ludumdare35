@@ -65,10 +65,21 @@ class WorldView:
 
 		# show player in the middle of the screen
 		self.screen.blit(self.images[self.world.player.currentImg],
-				pygame.Rect(self.pxwidth/2 - ( self.world.player.hsize * CONFIG.TILE_WIDTH) / 2,
-					playerPosition[1],
-					CONFIG.TILE_WIDTH, # deleted factor 2, i think it might be a bug, Till 17.04., 23:11
-					CONFIG.TILE_HEIGHT * 2))
+				(self.pxwidth/2 - ( self.world.player.hsize * CONFIG.TILE_WIDTH) / 2,
+				playerPosition[1]))
+
+		# show morph image
+		if (pygame.time.get_ticks()- self.world.player.lastShift < 300):
+
+			curMorph = pygame.transform.scale(self.images["Morph"],
+					(int(CONFIG.TILE_WIDTH * self.world.player.hsize * 1.3),
+					 int(CONFIG.TILE_WIDTH * self.world.player.vsize * 1.3)))
+	
+			self.screen.blit(curMorph,
+					(self.pxwidth/2 - ( self.world.player.hsize * CONFIG.TILE_WIDTH * 1.3) / 2,
+					playerPosition[1] - CONFIG.TILE_HEIGHT * 0.3))
+
+		# end show morph
 
 		
 
