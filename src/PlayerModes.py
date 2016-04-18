@@ -1,4 +1,4 @@
-import pygame, os, CONFIG
+import pygame, os, CONFIG, random
 
 
 
@@ -41,6 +41,12 @@ class PlayerHuman ():
 		
 		if(keys[pygame.K_UP] and (self.player.speed[1] == 0) and (self.lastTickVelY >= 0) ):
 			self.player.speed[1] = -self.player.jumpSpeed
+			r=random.randint(0,1)
+			if(r == 0):
+				self.player.world.sounds["JumpHuman1"].play()
+			if(r == 1):
+				self.player.world.sounds["JumpHuman2"].play()
+					
 			self.lastJumpInput = pygame.time.get_ticks()
 		
 		#for debugging
