@@ -81,7 +81,6 @@ class Player (MovableObject):
 		self.updateImageSet()
 		
 		MovableObject.nextStep(self)
-			
 		
 	def updateImageSet(self):
 		
@@ -155,3 +154,10 @@ class Player (MovableObject):
 		self.lastTickVelY = self.currentPlayermode.lastTickVelY
 		
 		#print(self.currentAction)
+
+	# override, make player slim
+	def updateCollisionBox(self):
+		self.cbox = pygame.Rect(self.position[0] + CONFIG.LEGAL_OVERHANG,
+				self.position[1],
+				(self.hsize*CONFIG.TILE_WIDTH - 2 * CONFIG.LEGAL_OVERHANG),
+				(self.vsize*CONFIG.TILE_HEIGHT))

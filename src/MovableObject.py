@@ -22,7 +22,7 @@ class MovableObject(WorldObject):
 			visible=True,
 			hsize=1,
 			vsize=1,
-			conHover=False,
+			canHover=False,
 			speed=[0,0],
 			maxSpeed=0):
 	
@@ -47,91 +47,139 @@ class MovableObject(WorldObject):
 		
 		WorldObject.nextStep(self)
 
-		# gravitation!
+		self.physicMove()
+		
+	def move (self, speed):
+		
+		self.position[0] += speed[0]
+		self.position[1] += speed[1]
+
+		self.updateCollisionBox()
+
+	
+	def physicMove (self):
+		
+		surrobjs = self.world.objSurr_H_static(self.position,
+				CONFIG.RADIUS_COLLISION_CHECK)
+
 		if (not self.canHover):
 			self.speed[1] += CONFIG.GRAVITATION
 
-		self.updateRect()
+		ground = False
 		
-		# moving to the new position axis after axis
-		if(self.speed[0] != 0):
-			self.lastHCollision = "not h. blocked"
-			self.moveAndCheckX(self.world,self.speed[0])
-		if(self.speed[1] != 0):
-			self.lastVCollision = "not v. blocked"
-			self.moveAndCheckY(self.world,self.speed[1])
-		
-		
-		
+		for obj in surrobjs:
 
-	# moving on X axis with collision check
-	def moveAndCheckX(self, world, speedx):
-	
-		# Move the rect first
-		self.rect.left += speedx
-		
-		for obj in world.objectsSurrounding(self.position, CONFIG.RADIUS_COLLISION_CHECK):
-			if (not obj.collision):
+			if ( not obj.collision):
 				continue
 			
-			obj.updateRect()
+			if (self.cbox.colliderect(obj.cbox)):
+				
+				if (self.cbox.top <= obj.cbox.top):
+
+					# the player's coming from above or from above or from the side!
+					
+					if (self.cbox.bottom - self.speed[1] < obj.cbox.top):
+						# landed on object - haha, lucky
+						ground = True
+						
+						if (self.speed[1] > 0):
+							self.speed[1] = 0
+
+						# correct caving into ground - MUST be > 0
+						if( self.cbox.bottom - obj.cbox.top > CONFIG.MAX_CAVING_IN):
+							self.move([0, obj.cbox.top - self.cbox.bottom + CONFIG.MIN_CAVING_IN])
+							
+					else:
+						# get out of the wall, you idiot!
+
+
+						# ignore stubbing the toes						
+						if (self.cbox.bottom - obj.cbox.top < CONFIG.MAX_STEP_HEIGHT):
+							continue
+						
+						# ran into the wall on the right side
+						if(self.cbox.left < obj.cbox.left):
+							# move back left
+							self.move([obj.cbox.left - self.cbox.right + CONFIG.MIN_CAVING_IN, 0])
+							
+							# prevent from running again
+							if (self.speed[0] > 0):
+								self.speed[0] = 0
+
+						# ran into the wall on the left side
+						elif(self.cbox.right > obj.cbox.right):
+							# move back right	
+							self.move([obj.cbox.right - self.cbox.left - CONFIG.MIN_CAVING_IN, 0])
+							
+							# prevent from running again
+							if (self.speed[0] < 0):
+								self.speed[0] = 0
+
+					# end if (top or side)
+
+				# end if (top or below)
+
+
+				else:
+					# now checking top
+
+					speedComponentRelation = float(self.speed[0]) / self.speed[1]
+
+					crashvector = [0,0]
+					
+					crashedFromLeft = None
+
+					# check, wether the crash was on the left or the right side
+					if (self.cbox.left < obj.cbox.left):
+
+						#crashed from left
+						crashedFromLeft = True
+						crashvector[0] = self.cbox.right - obj.cbox.left
+
+					else:
+						
+						#crashed from right
+						crashedFromLeft = False
+						crashvector[0] = self.cbox.left - obj.cbox.right
+
+					# end if
+
+
+					crashvector[1] = obj.cbox.bottom - self.cbox.top
+
+					crashComponentRelation = float(crashvector[0]) / crashvector[1]
+
+
+					# check if the player crashed into the ceiling or into the wall
+					if (speedComponentRelation > crashComponentRelation):
+						
+						# horizontal correction
+						if (crashedFromLeft):
+							
+							self.move([obj.cbox.left - self.cbox.right, 0])
+
+						else:
+							
+							self.move([obj.cbox.right - self.cbox.left, 0])
+
+
+						self.speed[0] = 0
+
+					else:
+						
+						# vertical correction
+						
+						self.move([0, obj.cbox.bottom - self.cbox.top])
+						self.speed[1] = 0
+
+
+
+			# end if (is there even collision)
 			
-			if self.rect.colliderect(obj.rect):
-				
-				
-				
-				# Moving right and hit the left side of the object 
-				# --> stand on the left side of the object
-				
-				if speedx > 0: 
-					self.rect.left = obj.rect.left - (obj.hsize*CONFIG.TILE_WIDTH)
-					self.speed[0] = 0
-					self.lastHCollision = "right h. blocked"
-					
-				# Moving left and hit the right side of the object 
-				# --> stand on the right side of the object
-				elif speedx < 0:
-					self.rect.left = obj.rect.right
-					self.speed[0] = 0
-					self.lastHCollision = "left h. blocked"
-					
-				
-		#synchronise the rect position with the objects position
-		self.position[0] = self.rect.left
-		obj.updateRect()
-	
-	# moving on Y axis with collision check
-	def moveAndCheckY(self, world, speedy):
-	
-		# Move the rect first
-		self.rect.top += speedy
+		# end for (searching through all objects in range)
+			
 		
-		for obj in world.objectsSurrounding(self.position, CONFIG.RADIUS_COLLISION_CHECK):
-			if (not obj.collision):
-				continue
-			
-			obj.updateRect()
-			
-			if self.rect.colliderect(obj.rect):
-				
-				obj.updateRect()
-				
-				# Moving down and hit the top side of the object 
-				# --> stand on top of the object
-				
-				if speedy > 0:
-					self.rect.bottom = obj.rect.top
-					self.speed[1] = 0
-					self.lastVCollision = "down v. blocked"
-					
-				# Moving up and hit the bottom side of the object 
-				# --> stand below the object
-				elif speedy < 0:
-					self.rect.top = obj.rect.bottom
-					self.speed[1] = 0
-					self.lastVCollision = "up v. blocked"
-				
-				
-		#synchronise the rect position with the objects position
-		self.position[1] = self.rect.top
-		obj.updateRect()
+		self.move(self.speed)
+		#end method physic movements
+
+		

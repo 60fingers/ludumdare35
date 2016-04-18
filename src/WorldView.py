@@ -78,7 +78,11 @@ class WorldView:
 		
 		else:
 			player = self.world.player
-			drawrect = pygame.Rect(self.pxwidth/2 - ( self.world.player.hsize * CONFIG.TILE_WIDTH) / 2,	playerPosition[1],	player.rect.width, player.rect.height) 
+			drawrect = pygame.Rect(self.pxwidth/2 -	player.cbox.width / 2,
+					player.cbox.top,
+					player.cbox.width,
+					player.cbox.height)
+		
 			pygame.draw.rect(self.screen, (100,100,255), drawrect )
 		# end if DEBUG
 		
@@ -115,7 +119,7 @@ class WorldView:
 									CONFIG.TILE_WIDTH, CONFIG.TILE_HEIGHT))
 				
 				else:
-					drawrect = pygame.Rect(plotx, ploty, obj.rect.width, obj.rect.height,)
+					drawrect = pygame.Rect(plotx, ploty, obj.cbox.width, obj.cbox.height,)
 					pygame.draw.rect(self.screen, (255,100,100), drawrect )
 				# end if DEBUG
 				
