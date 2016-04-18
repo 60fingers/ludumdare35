@@ -36,8 +36,10 @@ class WorldObject:
 		self.world = world
 		self.frameDuration = frameDuration
 		self.visible = visible
-		# rect for collision detection
-		self.rect = pygame.Rect(self.position[0], self.position[1], (self.hsize*CONFIG.TILE_WIDTH), (self.vsize*CONFIG.TILE_HEIGHT))
+
+		# collision box / collision model
+		self.cbox = pygame.Rect(self.position[0], self.position[1],
+				(self.hsize*CONFIG.TILE_WIDTH), (self.vsize*CONFIG.TILE_HEIGHT))
 
 		# choose an image from imagelist randomly -> for variation
 		if (currentImg == None and not len(imglist) == 0):
@@ -45,11 +47,12 @@ class WorldObject:
 			currentImg = imglist[cimg_index]
 		self.currentImg = currentImg
 
-		# choose a current frame time randomly -> global sync. animation would look like crap
+		# choose a current frame time randomly ->
+		# global sync. animation would look like crap
 		self.curFrameTime = random.randint(0,frameDuration-1)	
 
-	def updateRect(self):
-		self.rect = pygame.Rect(self.position[0],
+	def updateCollisionBox(self):
+		self.cbox = pygame.Rect(self.position[0],
 				self.position[1],
 				(self.hsize*CONFIG.TILE_WIDTH),
 				(self.vsize*CONFIG.TILE_HEIGHT))

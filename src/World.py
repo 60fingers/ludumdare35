@@ -86,6 +86,38 @@ class World:
 		return surroundings
 		
 
+	# not column by column, but row by row
+	def objSurr_H_static(self, position, radius):
+		
+
+		objs = []
+
+		# x index of the tile
+		xi = position[0] / CONFIG.TILE_WIDTH
+
+		# index of the first tile
+		ai = self.levelheight * (xi-radius)
+
+		i = 0
+		# whole block: "length * height"
+		while (i < self.levelheight * 2 * radius):
+			
+			li = ( (i * self.levelheight) %  # jump in levelheight-steps
+					(2 * radius * self.levelheight ) + # modulo "block width" to not get too far
+					i/(2*radius) + # line and line and line
+					ai ) # first index
+			
+			if (li >= len(self.statics) or li < 0):
+				i+=1
+				continue
+
+			objs.append(self.statics[li])
+
+			i+=1
+
+		return objs
+
+		
 
 	def nextStep(self,keys):
 		
