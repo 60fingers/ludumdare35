@@ -63,7 +63,6 @@ class MovableObject(WorldObject):
 		
 		
 		
-		
 
 	# moving on X axis with collision check
 	def moveAndCheckX(self, world, speedx):
@@ -78,7 +77,6 @@ class MovableObject(WorldObject):
 			if self.rect.colliderect(object.rect):
 				
 				object.updateRect()
-				
 				
 				# Moving right and hit the left side of the object 
 				# --> stand on the left side of the object
@@ -112,8 +110,6 @@ class MovableObject(WorldObject):
 			if self.rect.colliderect(object.rect):
 				
 				object.updateRect()
-				
-				print(str(object.position) + " - " + str(object.rect))
 				
 				# Moving down and hit the top side of the object 
 				# --> stand on top of the object
