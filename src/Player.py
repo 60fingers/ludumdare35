@@ -78,7 +78,7 @@ class Player (MovableObject):
 		MovableObject.nextStep(self)
 		
 # -----> Spam debug output !!!!!!!!!!!!!!!!!!!!!!!!!!!
-		print("P: " + str(self.position) + " S: " + str(self.speed) + " - " + self.lastHCollision + " - " + self.lastVCollision)
+		#print("P: " + str(self.position) + " S: " + str(self.speed) + " - " + self.lastHCollision + " - " + self.lastVCollision)
 		
 		
 	def updateImageSet(self):
@@ -87,8 +87,9 @@ class Player (MovableObject):
 		
 		# standing right
 		if (self.speed == [0,0] and
-				self.currentAction[0] != "s" and
-				self.currentAction[-1] == "r"):
+				#self.currentAction[0] != "s" and
+				#self.currentAction[-1] == "r"):
+				self.facingForward):
 				
 			self.currentAction = "sr"
 			
@@ -99,9 +100,9 @@ class Player (MovableObject):
 			
 		# standing left
 		if (self.speed == [0,0] and
-				self.currentAction[0] != "s" and
-				self.currentAction[-1] == "l"):
-
+				#self.currentAction[0] != "s" and
+				#self.currentAction[-1] == "l"):
+				not self.facingForward):
 			self.currentAction = "sl"
 			
 			# stop the bird to standing during flight
@@ -136,6 +137,14 @@ class Player (MovableObject):
 				self.currentAction != "jl"):
 
 			self.currentAction = "jl"
+		
+		# flap
+		if(self.currentShape == 3):
+			if(self.currentPlayermode.lastWasFlap):
+				if(self.facingForward):
+					self.currentAction = "fr"
+				else:
+					self.currentAction = "fl"
 		
 		if (oldAction != self.currentAction):
 			self.imglist = self.currentPlayermode.imagesets[self.currentAction]
