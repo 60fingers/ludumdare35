@@ -49,7 +49,7 @@ class World:
 
 		# load all sounds and add it to the World's sound dictionary
 		for p in pathlist:
-			snd = pathlist[p]
+			snd = pygame.mixer.Sound(pathlist[p])
 			self.sounds.update({p:snd})
 
 		print("WORLD: amount sounds: " + str(len(self.sounds)))

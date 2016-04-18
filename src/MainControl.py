@@ -23,9 +23,7 @@ class MainControl:
 
 	def main(self):
 
-
-		pygame.mixer.music.load(self.world.sounds["Start"])
-		pygame.mixer.music.play(0)
+		self.world.sounds["Start"].play()
 		
 		while self.running:
 			
