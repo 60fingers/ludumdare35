@@ -67,12 +67,22 @@ class WorldView:
 		# show background, centered
 		self.screen.blit(self.images["Background"],(self.bgShiftH, self.bgShiftV))
 
-
+		
+		
 		# show player in the middle of the screen
-		self.screen.blit(self.images[self.world.player.currentImg],
-				(self.pxwidth/2 - ( self.world.player.hsize * CONFIG.TILE_WIDTH) / 2,
-				playerPosition[1]))
-
+		if (not CONFIG.DEBUGMODE):
+		
+			self.screen.blit(self.images[self.world.player.currentImg],
+					(self.pxwidth/2 - ( self.world.player.hsize * CONFIG.TILE_WIDTH) / 2,
+					playerPosition[1]))
+		
+		else:
+			player = self.world.player
+			drawrect = pygame.Rect(self.pxwidth/2 - ( self.world.player.hsize * CONFIG.TILE_WIDTH) / 2,	playerPosition[1],	player.rect.width, player.rect.height)
+		
+			pygame.draw.rect(self.screen, (100,100,255), drawrect )
+		# end if DEBUG
+		
 		# show morph image
 		if (pygame.time.get_ticks()- self.world.player.lastShift < 300):
 
@@ -94,14 +104,22 @@ class WorldView:
 			if (obj.visible):
 				
 				# show everything relatively to player, player is always in center
-				plotx = obj.position[0] - playerPosition[0] + self.pxwidth/2 - CONFIG.TILE_WIDTH/2
+				plotx = (obj.position[0] - playerPosition[0] + 
+						self.pxwidth/2 - CONFIG.TILE_WIDTH/2)
 				ploty = obj.position[1] 
 				
-				# show corresponding image from imagelist
-				self.screen.blit(self.images[obj.currentImg],
-						pygame.Rect(plotx, ploty,
-								CONFIG.TILE_WIDTH, CONFIG.TILE_HEIGHT))
-
+				# show objects
+				if (not CONFIG.DEBUGMODE):
+					# show corresponding image from imagelist
+					self.screen.blit(self.images[obj.currentImg],
+							pygame.Rect(plotx, ploty,
+									CONFIG.TILE_WIDTH, CONFIG.TILE_HEIGHT))
+				
+				else:
+					drawrect = pygame.Rect(plotx, ploty, obj.rect.width, obj.rect.height,)
+					pygame.draw.rect(self.screen, (255,100,100), drawrect )
+				# end if DEBUG
+				
 			# end if
 		# end for
 

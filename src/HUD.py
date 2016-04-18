@@ -13,6 +13,10 @@ class HUD():
 		self.elements.append(
 				MorphCoolDownBar(self,(50,50))
 				)
+				
+		self.elements.append(
+				DebugElement(self,(700,50))
+				)
 	
 	def show(self):
 	
@@ -122,5 +126,32 @@ class MorphCoolDownBar(HUD_Element):
 	#end class abstract ui element
 		
 
+		
+
+class DebugElement(HUD_Element):
+	
+	
+	def __init__(self,
+			hud,
+			position,
+			visible = True):
+		
+		self.size = (300,100)
+		
+		HUD_Element.__init__(self, hud, position,
+				self.size, visible)
+	
+	def show(self):
+		
+		self.clear()
+		
+		text = str(self.world.player.position)
+		label = self.hud.font.render(text, 1, (5,5,5))
+		self.surf.blit(label,(0,0))
+		
+		# call super show
+		HUD_Element.show(self)
+		
+	#end class abstract ui element
 		
 

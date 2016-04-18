@@ -36,7 +36,4 @@ FPS = 30
 RANGE_OF_VIEW = 20
 RADIUS_COLLISION_CHECK = 2 # in tiles
 LEGAL_OVERHANG = 30 # in pixels
-
-
-#debug
-playerrect = None
+DEBUGMODE = False
