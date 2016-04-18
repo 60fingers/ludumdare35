@@ -24,6 +24,11 @@ class MainControl:
 
 	def main(self):
 
+		# music
+		
+		pygame.mixer.music.load('../sounds/music/gameplaymusic.ogg')
+		pygame.mixer.music.play(-1)
+		
 		while self.running:
 			
 			# check for quit event
