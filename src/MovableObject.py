@@ -51,19 +51,60 @@ class MovableObject(WorldObject):
 		if (not self.canHover):
 			self.speed[1] += CONFIG.GRAVITATION
 
+		self.physicMove()
+		
+	def move (self, speed):
+		
+		self.position[0] += speed[0]
+		self.position[1] += speed[1]
+
 		self.updateCollisionBox()
-		
-		# moving to the new position axis after axis
-		if(self.speed[0] != 0):
-			self.lastHCollision = "not h. blocked"
-			self.moveAndCheckY(self.world,self.speed[1])
-		if(self.speed[1] != 0):
-			self.lastVCollision = "not v. blocked"
-			self.moveAndCheckX(self.world,self.speed[0])
+
 	
-	def move  (self):
+	def physicMove (self):
 		
-		print("not implemented")
+		surrobjs = self.world.objSurr_H_static(self.position,
+				CONFIG.RADIUS_COLLISION_CHECK)
+
+		self.move(self.speed)
+
+
+		for obj in surrobjs:
+
+			if ( not obj.collision):
+				continue
+			
+			if (self.cbox.colliderect(obj.cbox)):
+				
+				if (self.cbox.top <= obj.cbox.top):
+
+					# from above or from the side!
+					
+					if (self.cbox.bottom - self.speed[1] > obj.cbox.top):
+						
+						# landed on object - haha, lucky
+						self.move([0, obj.cbox.top - self.cbox.bottom])
+						self.speed[1] = 0
+					
+					else:
+						# get out of the wall, you idiot!
+
+						self.speed[0] = 0
+						
+						if(self.cbox.left < obj.cbox.left):
+							# move back left
+							self.move([obj.cbox.left - self.cbox.right, 0])
+
+						else:
+							# move back right	
+							self.move([obj.cbox.right - self.cbox.left, 0])
+					# end if
+				# end if
+			# end if
+		# end for
+
+
+		
 
 
 
