@@ -45,6 +45,11 @@ class PlayerHuman ():
 
 		self.lastTickVelY = self.player.speed[1]
 		
+		# stop sticking on the upper border  
+		if(self.player.position[1] == 0):
+			self.player.speed[1] = -1
+			self.lastTickVelY = 1
+		
 		#print(str(self.player.speed) + " as Human")
 	
 #-------------------------------------------------------------------
@@ -91,6 +96,11 @@ class PlayerGepard ():
 	
 		self.lastTickVelY = self.player.speed[1]
 		
+		# stop sticking on the upper border  
+		if(self.player.position[1] == 0):
+			self.player.speed[1] = -1
+			self.lastTickVelY = 1
+			
 		#print(str(self.player.speed) + " as Gepard")
 
 #-------------------------------------------------------------------
@@ -173,6 +183,11 @@ class PlayerSnake ():
 			
 		self.lastTickVelY = self.player.speed[1]
 		
+		# stop sticking on the upper border  
+		if(self.player.position[1] == 0):
+			self.player.speed[1] = -1
+			self.lastTickVelY = 1
+		
 		#print(str(self.player.speed) + " as Snake")
 		
 #------------------------------------------------------------------		
@@ -253,6 +268,11 @@ class PlayerBird ():
 			self.lastJumpInput = pygame.time.get_ticks()
 		
 		self.lastTickVelY = self.player.speed[1]
+		
+		# stop sticking on the upper border  
+		if(self.player.position[1] == 0):
+			self.player.speed[1] = -1
+			self.lastTickVelY = 1
 		
 		#print(str(self.player.speed) + " as Bird")
 

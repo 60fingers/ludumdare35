@@ -29,6 +29,7 @@ class Player (MovableObject):
 		self.currentPlayermode = PlayerHuman(self)
 		self.jumpSpeed = CONFIG.PLAYER_JUMP_SPEED_HUMAN
 		self.facingForward = True
+		self.lastTickVelY = 0
 		
 		self.currentAction = "sr" # possible: jr, jl, rl, rr, sr, sl
 		
@@ -79,13 +80,23 @@ class Player (MovableObject):
 				self.currentAction[-1] == "r"):
 				
 			self.currentAction = "sr"
-
+			
+			# stop the bird to standing during flight
+			if(self.currentShape == 3 and not self.lastTickVelY >= 0):
+				self.currentAction = "rr"
+			
+			
 		# standing left
 		if (self.speed == [0,0] and
 				self.currentAction[0] != "s" and
 				self.currentAction[-1] == "l"):
 
 			self.currentAction = "sl"
+			
+			# stop the bird to standing during flight
+			if(self.currentShape == 3 and not self.lastTickVelY >= 0):
+				self.currentAction = "rl"
+				print("stop")
 
 		# running right
 		if (self.speed[0] > 0 and
@@ -118,5 +129,7 @@ class Player (MovableObject):
 		if (oldAction != self.currentAction):
 			self.imglist = self.currentPlayermode.imagesets[self.currentAction]
 			self.currentImg = self.imglist[0]
+		
+		self.lastTickVelY = self.currentPlayermode.lastTickVelY
 		
 		#print(self.currentAction)
