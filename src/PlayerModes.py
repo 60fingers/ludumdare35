@@ -42,13 +42,18 @@ class PlayerHuman ():
 		if(keys[pygame.K_UP] and (self.player.speed[1] == 0) and (self.lastTickVelY >= 0) ):
 			self.player.speed[1] = -self.player.jumpSpeed
 			self.lastJumpInput = pygame.time.get_ticks()
-
+		
+		#for debugging
+		if(keys[pygame.K_DOWN] and self.player.canHover ):
+			self.player.speed[1] = self.player.jumpSpeed
+		
+		
 		self.lastTickVelY = self.player.speed[1]
 		
 		# stop sticking on the upper border  
 		if(self.player.position[1] == 0):
-			self.player.speed[1] = -1
-			self.lastTickVelY = 1
+			self.player.speed[1] = 1
+			self.lastTickVelY = -1
 		
 		#print(str(self.player.speed) + " as Human")
 	
