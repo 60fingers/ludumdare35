@@ -70,6 +70,8 @@ BirdFlapRight
 		../img/birdFlapRight.png
 
 # Misc.
+Morph
+		../img/morph.png
 Background
 		../img/Background.png
 

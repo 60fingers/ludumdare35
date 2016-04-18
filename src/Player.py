@@ -24,7 +24,7 @@ class Player (MovableObject):
 		self.hsize = 2
 		self.canHover = False
 			
-		self.lastShift = 0 # cooldown timer
+		self.lastShift = -1 # cooldown timer
 		self.currentShape = 0 # Shapes 0=human, 1=gepard, 2=snake, 3=bird
 		self.currentPlayermode = PlayerHuman(self)
 		self.jumpSpeed = CONFIG.PLAYER_JUMP_SPEED_HUMAN
@@ -38,7 +38,7 @@ class Player (MovableObject):
 	def nextStep(self, keys):
 		
 		# Shapeshift
-		timeSinceLastShift = (pygame.time.get_ticks() - self.lastShift)/1000
+		timeSinceLastShift = (pygame.time.get_ticks() - self.lastShift)/1000.0
 
 		if(timeSinceLastShift >= CONFIG.PLAYER_SHAPESHIFT_COOLDOWN):
 		
