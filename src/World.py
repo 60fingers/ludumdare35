@@ -12,6 +12,7 @@ class World:
 	player = None
 	movables = []
 	statics = []
+	sounds = {}
 
 	# read maps and mob positions
 	def __init__(self):
@@ -41,6 +42,19 @@ class World:
 			self.player = Player([self.legalX_min,0],self)
 	
 
+	# is run once, before the game starts
+	def loadSounds(self, pathlist):
+		
+		print("WORLD: world loading sounds")
+
+		# load all sounds and add it to the World's sound dictionary
+		for p in pathlist:
+			snd = pygame.mixer.Sound(pathlist[p])
+			self.sounds.update({p:snd})
+
+		print("WORLD: amount sounds: " + str(len(self.sounds)))
+	
+	
 	# find stativ objects and mobs within defined range around a position
 	def objectsSurrounding(self, position, radius):
 

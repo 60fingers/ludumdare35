@@ -54,15 +54,19 @@ class Player (MovableObject):
 				if(self.currentShape == 0):
 					self.currentPlayermode = PlayerHuman(self)
 					self.shapeString = "Human"
+					self.world.sounds["Fight1"].play()
 				elif(self.currentShape == 1):
 					self.currentPlayermode = PlayerGepard(self)
 					self.shapeString = "Gepard"
+					self.world.sounds["ShiftGepard"].play()
 				elif(self.currentShape == 2):
 					self.currentPlayermode = PlayerSnake(self)
 					self.shapeString = "Snake"
+					self.world.sounds["ShiftSnake"].play()
 				elif(self.currentShape == 3):
 					self.currentPlayermode = PlayerBird(self)
 					self.shapeString = "Bird"
+					self.world.sounds["ShiftEagle"].play()
 						
 				print("Shift into shape " + str(self.currentShape))
 
