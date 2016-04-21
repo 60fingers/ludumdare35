@@ -8,16 +8,24 @@ x - 0.2 Moving player
 
 x - 0.3 Switching Player Modes
 
+o - 0.4 Fully functioning jump and run platform
+
+o - 0.5 Enemies, obstacles and player health
+
+o - 0.6 World map mode
+
 o - 1.0 Complete Release
+
+### goals for release:
+- an exciting world + story
+- animal forms as skillable abilities (e.g. max duration)
 
 
 ## ToDo
 
 ### Code
 
-- Kartenrand verstecken
 - Kollision fixen
-- Flügelschlagen des Vogels visualisieren
 - HUD + Hauptmenü
 - Spielertod & Fallen
 - Spielermodell vertikal verschiebbar machen (schwebt noch)
@@ -25,8 +33,6 @@ o - 1.0 Complete Release
 ### Artwork
 
 - Spieler
-	1. Mensch
-	2. Vogel
 	3. Schlange
 	4. Gepard
 
@@ -38,9 +44,7 @@ o - 1.0 Complete Release
 
 - Laufschritte
 - SpringgerÃ¤usch
-- FlattergerÃ¤usch
 - Geraschel der Schlange auf dem Boden
-- Musik (Trommeln!)
 
 ### Leveldesign
 
@@ -52,6 +56,5 @@ o - 1.0 Complete Release
 
 ## BUG LIST
 
-- bilder werden direkt nach morph nicht aktualisiert
 - sinnfreies rumwarpen
 
