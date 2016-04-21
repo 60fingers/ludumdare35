@@ -9,6 +9,11 @@ class MovableObject(WorldObject):
 	speed = [0,0]
 	maxSpeed = 0
 
+	cboxT = None
+	cboxB = None
+	cboxL = None
+	cboxR = None
+
 	canHover = False
 
 	def __init__ (self,
@@ -40,8 +45,33 @@ class MovableObject(WorldObject):
 
 		self.speed = speed
 		self.maxSpeed = maxSpeed
-		self.lastHCollision = "not h. blocked"
-		self.lastVCollision = "not v. blocked"
+
+
+	# override: movable objects do need a more detailled
+	# collision model
+	def updateCollisionBox(self):
+
+		self.cboxT = pygame.Rect(self.cboxc.left,
+				self.cboxc.top - CONFIG.CBOX_WIDTH,
+				self.hsize * CONFIG.TILE_WIDTH,
+				CONFIG.CBOX_WIDHT)
+		self.cboxB = pygame.Rect(self.cboxc.left,
+				self.cboxc.bottom,
+				self.hsize * CONFIG.TILE_WIDTH,
+				CONFIG.CBOX_WIDHT)
+		self.cboxL = pygame.Rect(self.cboxc.left - CONFIG.CBOX_WIDTH,
+				self.cboxc.top, 
+				CONFIG.CBOX_WIDTH,
+				self.vsize * CONFIG.TILE_HEIGHT)
+		self.cboxR = pygame.Rect(self.cboxc.right,
+				self.cboxc.top - CONFIG.CBOX_WIDTH,
+				CONFIG.CBOX_WIDTH,
+				self.vsize + CONFIG.TILE_HEIGHT)
+
+		WorldObject.updateCollisionBox(self)
+	
+
+
 	
 	def nextStep (self):
 		
@@ -69,7 +99,7 @@ class MovableObject(WorldObject):
 		
 		for obj in surrobjs:
 
-			if ( not obj.collision):
+			if ( not obj.collision ):
 				continue
 			
 			if (self.cbox.colliderect(obj.cbox)):
