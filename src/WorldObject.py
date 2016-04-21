@@ -50,7 +50,7 @@ class WorldObject:
 		self.curFrameTime = random.randint(0,frameDuration-1)	
 
 	def updateCollisionBox(self):
-		self.cboxc = pygame.Rect(self.position[0],
+		self.cboxC = pygame.Rect(self.position[0],
 				self.position[1],
 				(self.hsize*CONFIG.TILE_WIDTH),
 				(self.vsize*CONFIG.TILE_HEIGHT))
