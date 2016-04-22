@@ -64,21 +64,20 @@ class MovableObject(WorldObject):
 
 		self.cboxT = pygame.Rect(self.cboxC.left,
 				self.cboxC.top - CONFIG.CBOX_WIDTH,
-				self.hsize * CONFIG.TILE_WIDTH,
+				self.cboxC.right - self.cboxC.left,
 				CONFIG.CBOX_WIDTH)
 		self.cboxB = pygame.Rect(self.cboxC.left,
 				self.cboxC.bottom,
-				self.hsize * CONFIG.TILE_WIDTH,
+				self.cboxC.right - self.cboxC.left,
 				CONFIG.CBOX_WIDTH)
 		self.cboxL = pygame.Rect(self.cboxC.left - CONFIG.CBOX_WIDTH,
 				self.cboxC.top, 
 				CONFIG.CBOX_WIDTH,
-				self.vsize * CONFIG.TILE_HEIGHT)
+				self.cboxC.bottom - self.cboxC.top)
 		self.cboxR = pygame.Rect(self.cboxC.right,
-				self.cboxC.top - CONFIG.CBOX_WIDTH,
+				self.cboxC.top,
 				CONFIG.CBOX_WIDTH,
-				self.vsize + CONFIG.TILE_HEIGHT)
-
+				self.cboxC.bottom - self.cboxC.top)
 	
 	
 	def nextStep (self):
@@ -107,19 +106,34 @@ class MovableObject(WorldObject):
 
 			if ( not obj.collision ):
 				continue
+
+			# check, if the centerbox has already collided
+			stuck = self.cboxC.colliderect(obj.cboxC)
 			
+			# collide at ground
 			if (self.cboxB.colliderect(obj.cboxC)):
 				if (self.speed[1] > 0):
 					self.speed[1] = 0
+				if (stuck):
+					self.move([0,obj.cboxC.top - self.cboxC.bottom])
+			# collide at cealing
 			if (self.cboxT.colliderect(obj.cboxC)):
 				if (self.speed[1] < 0):
 					self.speed[1] = 0	
+				if (stuck):
+					self.move([0,obj.cboxC.bottom - self.cboxC.top])
+			# collide left
 			if (self.cboxL.colliderect(obj.cboxC)):
 				if (self.speed[0] < 0):
 					self.speed[0] = 0
+				if (stuck):
+					self.move([self.cboxC.left - obj.cboxC.right,0])
+			# collide right
 			if (self.cboxR.colliderect(obj.cboxC)):
 				if (self.speed[0] > 0):
 					self.speed[0] = 0
+				if (stuck):
+					self.move([obj.cboxC.left - self.cboxC.right,0])
 			
 		# end for (searching through all objects in range)
 		
