@@ -37,9 +37,7 @@ class WorldObject:
 		self.frameDuration = frameDuration
 		self.visible = visible
 
-		# collision box / collision model
-		self.cbox = pygame.Rect(self.position[0], self.position[1],
-				(self.hsize*CONFIG.TILE_WIDTH), (self.vsize*CONFIG.TILE_HEIGHT))
+		self.updateCollisionBox()
 
 		# choose an image from imagelist randomly -> for variation
 		if (currentImg == None and not len(imglist) == 0):
@@ -52,7 +50,7 @@ class WorldObject:
 		self.curFrameTime = random.randint(0,frameDuration-1)	
 
 	def updateCollisionBox(self):
-		self.cbox = pygame.Rect(self.position[0],
+		self.cboxC = pygame.Rect(self.position[0],
 				self.position[1],
 				(self.hsize*CONFIG.TILE_WIDTH),
 				(self.vsize*CONFIG.TILE_HEIGHT))

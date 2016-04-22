@@ -172,10 +172,4 @@ class Player (MovableObject):
 		
 		#print(self.currentAction)
 
-	# override, make player slim
-	def updateCollisionBox(self):
-		self.cbox = pygame.Rect(self.position[0] + CONFIG.LEGAL_OVERHANG,
-				self.position[1],
-				(self.hsize*CONFIG.TILE_WIDTH - 2 * CONFIG.LEGAL_OVERHANG),
-				(self.vsize*CONFIG.TILE_HEIGHT))
-
+		

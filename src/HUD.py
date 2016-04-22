@@ -126,8 +126,6 @@ class MorphCoolDownBar(HUD_Element):
 	#end class abstract ui element
 		
 
-		
-
 class DebugElement(HUD_Element):
 	
 	
@@ -148,13 +146,10 @@ class DebugElement(HUD_Element):
 		self.clear()
 		
 		text = "Pos:" + str(self.world.player.position) + " Spe:" + str(self.world.player.speed)
-		text2 = str(self.world.player.lastHCollision) + " - " + str(self.world.player.lastVCollision)
 		text3 = "Currend shape: " + self.world.player.shapeString
 		positionAndSpeed = self.hud.font.render(text, 1, (5,5,5))
-		collision = self.hud.font.render(text2, 1, (5,5,5))
 		shape = self.hud.font.render(text3, 1, (5,5,5))
 		self.surf.blit(positionAndSpeed,(0,0))
-		self.surf.blit(collision,(0,20))
 		self.surf.blit(shape,(0,40))
 		
 		# call super show
