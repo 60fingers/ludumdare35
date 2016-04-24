@@ -59,10 +59,10 @@ class WorldView:
 
 		
 		# player position measured in pixels
-		playerPosition = self.world.player.position
+		player = self.world.player
 		
 		# array of all objects within visible range
-		objs_in_range = self.world.objectsSurrounding(playerPosition, CONFIG.RANGE_OF_VIEW)
+		objs_in_range = self.world.objectsSurrounding(player.position, CONFIG.RANGE_OF_VIEW)
 		
 		# show background, centered
 		self.screen.blit(self.images["Background"],(self.bgShiftH, self.bgShiftV))
@@ -72,12 +72,11 @@ class WorldView:
 		# show player in the middle of the screen
 		if (not CONFIG.DEBUGMODE):
 		
-			self.screen.blit(self.images[self.world.player.currentImg],
-					(self.pxwidth/2 - ( self.world.player.hsize * CONFIG.TILE_WIDTH) / 2,
-					playerPosition[1]))
+			self.screen.blit(self.images[player.currentImg],
+					(self.pxwidth/2 - ( player.hsize * CONFIG.TILE_WIDTH) / 2,
+					player.position[1]))
 		
 		else:
-			player = self.world.player
 			drawrect = pygame.Rect(self.pxwidth/2 -	player.cboxC.width / 2,
 					player.cboxC.top,
 					player.cboxC.width,
@@ -87,15 +86,15 @@ class WorldView:
 		# end if DEBUG
 		
 		# show morph image
-		if (pygame.time.get_ticks()- self.world.player.lastShift < 300):
+		if (pygame.time.get_ticks()- player.lastShift < 300):
 
 			curMorph = pygame.transform.scale(self.images["Morph"],
-					(int(CONFIG.TILE_WIDTH * self.world.player.hsize * 1.3),
-					 int(CONFIG.TILE_WIDTH * self.world.player.vsize * 1.3)))
+					(int(CONFIG.TILE_WIDTH * player.hsize * 1.3),
+					 int(CONFIG.TILE_WIDTH * player.vsize * 1.3)))
 	
 			self.screen.blit(curMorph,
-					(self.pxwidth/2 - ( self.world.player.hsize * CONFIG.TILE_WIDTH * 1.3) / 2,
-					playerPosition[1] - CONFIG.TILE_HEIGHT * 0.3))
+					(self.pxwidth/2 - ( player.hsize * CONFIG.TILE_WIDTH * 1.3) / 2,
+					player.position[1] - CONFIG.TILE_HEIGHT * 0.3))
 
 		# end show morph
 
@@ -107,8 +106,8 @@ class WorldView:
 			if (obj.visible):
 				
 				# show everything relatively to player, player is always in center
-				plotx = (obj.position[0] - playerPosition[0] + 
-						self.pxwidth/2 - CONFIG.TILE_WIDTH/2)
+				plotx = (obj.position[0] - player.position[0] + 
+						self.pxwidth/2 - player.hsize * CONFIG.TILE_WIDTH/2)
 				ploty = obj.position[1] 
 				
 				# show objects
