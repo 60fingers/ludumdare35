@@ -70,7 +70,7 @@ class Player (MovableObject):
 					self.shapeString = "Bird"
 					self.world.sounds["ShiftEagle"].play()
 						
-				print("Shift into shape " + str(self.currentShape))
+				self.updateCollisionBox()
 
 				# reset action, so that the imglist will be reloaded
 				# facial direction needs to be stored

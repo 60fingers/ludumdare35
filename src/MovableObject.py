@@ -127,7 +127,7 @@ class MovableObject(WorldObject):
 				if (self.speed[0] < 0):
 					self.speed[0] = 0
 				if (stuck):
-					self.move([self.cboxC.left - obj.cboxC.right,0])
+					self.move([obj.cboxC.right - self.cboxC.left,0])
 			# collide right
 			if (self.cboxR.colliderect(obj.cboxC)):
 				if (self.speed[0] > 0):

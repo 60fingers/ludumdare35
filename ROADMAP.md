@@ -54,7 +54,4 @@ o - 1.0 Complete Release
 
 - Export & Release
 
-## BUG LIST
-
-- sinnfreies rumwarpen
 
