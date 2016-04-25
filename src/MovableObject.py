@@ -88,6 +88,9 @@ class MovableObject(WorldObject):
 		
 	def move (self, speed):
 		
+		if(self.position[1] == 0):
+			self.speed[1] = 1
+		
 		self.position[0] += speed[0]
 		self.position[1] += speed[1]
 
