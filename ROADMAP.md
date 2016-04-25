@@ -2,32 +2,48 @@
 
 ## Quality Gates / Versions
 
-x - 0.1 First visual results
+___CURRENT VERSION: 0.3___
 
-x - 0.2 Moving player
+### x - 0.1 First visual results
 
-x - 0.3 Switching Player Modes
+### x - 0.2 Movement update
 
-o - 0.4 Fully functioning jump and run platform
+### x - 0.3 Shapeshift update
 
-o - 0.5 Enemies, obstacles and player health
+### o - 0.4 Fully functioning platformer - update
 
-o - 0.6 World map mode
+- bugfree collision and movement
+- implemented and tested software design concept for game menus
 
-o - 1.0 Complete Release
+### o - 0.5 Challenging-game update
 
-### goals for release:
+- enemies
+- obstacles and traps
+- (inter)active blocks (e.g. ladders)
+- player health and death
+- health bar in hud
+
+### o - 0.6 World map update
+
+- moving from one level to the next one using portals
+- world map showing levels in context
+
+### ... some more steps in between
+
+### o - 1.0 Complete release (final goals)
+
 - an exciting world + story
 - animal forms as skillable abilities (e.g. max duration)
+
+
+---
 
 
 ## ToDo
 
 ### Code
 
-- Kollision fixen
-- HUD + Hauptmenü
-- Spielertod & Fallen
+- real fps calculation
 - Spielermodell vertikal verschiebbar machen (schwebt noch)
 
 ### Artwork
@@ -36,6 +52,7 @@ o - 1.0 Complete Release
 	3. Schlange
 	4. Gepard
 
+- HUD elements
 - Hindernisse
 - Boden Variation
 - morph animation (Blitz?)
@@ -44,7 +61,7 @@ o - 1.0 Complete Release
 
 - Laufschritte
 - SpringgerÃ¤usch
-- Geraschel der Schlange auf dem Boden
+- better moving sound for snake model
 
 ### Leveldesign
 
