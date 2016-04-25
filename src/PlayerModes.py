@@ -136,6 +136,7 @@ class PlayerSnake ():
 		self.player.maxSpeed=CONFIG.PLAYER_SPEED_SNAKE
 		self.player.jumpSpeed=CONFIG.PLAYER_JUMP_SPEED_SNAKE
 		self.lastTickVelY = 0
+		self.LastMoveSound = 0
 
 		self.leftArrowNext = False
 		self.lastDirectionInput = 0
@@ -171,6 +172,18 @@ class PlayerSnake ():
 			self.lastDirectionInput = pygame.time.get_ticks()
 			self.leftArrowNext = True
 			
+			# play moving soundeffect
+			if (((pygame.time.get_ticks() - self.LastMoveSound)) > 1500 ):
+			
+				r=random.randint(0,2)
+				if(r == 0):
+					self.player.world.sounds["MoveSnake1"].play()
+				if(r == 1):
+					self.player.world.sounds["MoveSnake2"].play()
+				if(r == 2):
+					self.player.world.sounds["MoveSnake3"].play()
+				
+				self.LastMoveSound = pygame.time.get_ticks()
 
 		# left arrow key
 		elif (keys[pygame.K_LEFT] and 
@@ -187,6 +200,18 @@ class PlayerSnake ():
 			self.lastDirectionInput = pygame.time.get_ticks()
 			self.leftArrowNext = False
 			
+			# play moving soundeffect
+			if (((pygame.time.get_ticks() - self.LastMoveSound)) > 1600 ):
+			
+				r=random.randint(0,2)
+				if(r == 0):
+					self.player.world.sounds["MoveSnake1"].play()
+				if(r == 1):
+					self.player.world.sounds["MoveSnake2"].play()
+				if(r == 2):
+					self.player.world.sounds["MoveSnake3"].play()
+				
+				self.LastMoveSound = pygame.time.get_ticks()
 
 		# nothing pressed, stopping after 0.1s. If it would stop right away,
 		# the player would need to spam arrow buttons

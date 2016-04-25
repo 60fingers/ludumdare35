@@ -59,5 +59,14 @@ MoveGepard
 		../sounds/player/gepardwalking.ogg
 MoveSnake
 		../sounds/player/snakewalk.ogg
+MoveSnake1
+		../sounds/player/snakewalk1.ogg
+
+MoveSnake2
+		../sounds/player/snakewalk2.ogg
+
+MoveSnake3
+		../sounds/player/snakewalk3.ogg
+
 
 
