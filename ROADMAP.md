@@ -43,7 +43,6 @@ ___CURRENT VERSION: 0.3___
 
 ### Code
 
-- real fps calculation
 - Spielermodell vertikal verschiebbar machen (schwebt noch)
 
 ### Artwork

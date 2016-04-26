@@ -24,9 +24,13 @@ class MainControl:
 	def main(self):
 
 		self.world.sounds["Start"].play()
-		
+
+	
 		while self.running:
 			
+			# for fps calculation
+			lastFrameTime = pygame.time.get_ticks()
+
 			# check for quit event
 			for event in pygame.event.get():
 				if (event.type == pygame.QUIT):
@@ -47,7 +51,14 @@ class MainControl:
 				
 			self.world.nextStep(keys)
 			self.view.show()
-			time.sleep(1/float(CONFIG.FPS))
+
+			# for fps calculation
+			# passed time in milliseconds (int)
+			timepassed = pygame.time.get_ticks() - lastFrameTime 
+			# remaining time in seconds (float)
+			remaining = 1/float(CONFIG.FPS) - 0.001*timepassed
+			if (remaining > 0):
+				time.sleep(remaining)
 			
 
 		#end while
