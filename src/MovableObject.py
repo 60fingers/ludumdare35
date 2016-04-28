@@ -24,6 +24,8 @@ class MovableObject(WorldObject):
 			world,			
 			frameDuration = 1,
 			currentImg = None,
+			imgAdjustV = 0,
+			imgAdjustH = 0,
 			visible=True,
 			hsize=1,
 			vsize=1,
@@ -39,6 +41,8 @@ class MovableObject(WorldObject):
 			world = world,
 			frameDuration = frameDuration,
 			currentImg = currentImg,
+			imgAdjustV = imgAdjustV,
+			imgAdjustH = imgAdjustH,
 			hsize=hsize,
 			vsize=vsize,
 			visible = visible)

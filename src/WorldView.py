@@ -73,8 +73,8 @@ class WorldView:
 		if (not CONFIG.DEBUGMODE):
 		
 			self.screen.blit(self.images[player.currentImg],
-					(self.pxwidth/2 - ( player.hsize * CONFIG.TILE_WIDTH) / 2,
-					player.position[1]))
+					(self.pxwidth/2 - ( player.hsize * CONFIG.TILE_WIDTH) / 2 + player.imgAdjustH,
+					player.position[1] + player.imgAdjustV))
 		
 		else:
 			drawrect = pygame.Rect(self.pxwidth/2 -	player.cboxC.width / 2,
@@ -107,8 +107,8 @@ class WorldView:
 				
 				# show everything relatively to player, player is always in center
 				plotx = (obj.position[0] - player.position[0] + 
-						self.pxwidth/2 - player.hsize * CONFIG.TILE_WIDTH/2)
-				ploty = obj.position[1] 
+						self.pxwidth/2 - player.hsize * CONFIG.TILE_WIDTH/2 + obj.imgAdjustH)
+				ploty = obj.position[1] + obj.imgAdjustV
 				
 				# show objects
 				if (not CONFIG.DEBUGMODE):

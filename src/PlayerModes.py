@@ -23,6 +23,8 @@ class PlayerHuman ():
 			"jr" : ["PlayerJumpingRight"],
 			"jl" : ["PlayerJumpingLeft"]}
 
+		self.player.imgAdjustV = 5
+
 		self.time_last_jump = 0
 
 	def nextStep(self,keys):
@@ -94,6 +96,8 @@ class PlayerGepard ():
 			"jr" : ["GepardJumpingRight"],
 			"jl" : ["GepardJumpingLeft"]}
 
+		self.player.imgAdjustV = 0
+
 
 	def nextStep(self,keys):
 	
@@ -148,6 +152,8 @@ class PlayerSnake ():
 			"rl" : ["SnakeMovingLeft"],
 			"jr" : ["SnakeJumping"],
 			"jl" : ["SnakeJumping"]}
+
+		self.player.imgAdjustV = 0
 
 
 	def nextStep(self,keys):
@@ -262,6 +268,8 @@ class PlayerBird ():
 			"jl" : ["BirdGlideLeft"],
 			"fr" : ["BirdFlapRight"],
 			"fl" : ["BirdFlapLeft"]}
+
+		self.player.imgAdjustV = 0
 
 
 		

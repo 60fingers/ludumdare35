@@ -12,6 +12,8 @@ class WorldObject:
 	curFrameTime = 0
 	visible = True
 	currentImg = None
+	imgAdjustV = 0
+	imgAdjustH = 0
 
 	# size measured in tiles
 	hsize = 1
@@ -25,6 +27,8 @@ class WorldObject:
 			world,
 			frameDuration=1,
 			currentImg=None,
+			imgAdjustV=0,
+			imgAdjustH=0,
 			hsize=1,
 			vsize=1,
 			visible=True):
@@ -36,6 +40,9 @@ class WorldObject:
 		self.world = world
 		self.frameDuration = frameDuration
 		self.visible = visible
+
+		self.imgAdjustV = imgAdjustV
+		self.imgAdjustH = imgAdjustH
 
 		self.updateCollisionBox()
 
